@@ -11,10 +11,9 @@
   ],
   "require": {
     "php": "^7.3",
-    "ext-json": "*",
     "illuminate/config": "^8.0",
-    "illuminate/support": "^8.0"
-    "laravel/jetstream": "^1.0"
+    "illuminate/support": "^8.0",
+    "laravel/jetstream": "^1.2"
   },
   "require-dev": {
     "inertiajs/inertia-laravel": "^0.2.4",
