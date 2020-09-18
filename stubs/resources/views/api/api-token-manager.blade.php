@@ -26,7 +26,8 @@
                         @foreach (Laravel\Jetstream\Jetstream::$permissions as $permission)
                             <div class="col-6">
                                 <div class="form-check">
-                                    <input id="check-permissions-{{ $permission }}" class="form-check-input" type="checkbox" value="{{ $permission }}" wire:model.defer="createApiTokenForm.permissions">
+                                    <input id="check-permissions-{{ $permission }}" class="form-check-input" type="checkbox" value="{{ $permission }}"
+                                           wire:model.defer="createApiTokenForm.permissions">
                                     <label class="form-check-label" for="check-permissions-{{ $permission }}">
                                         {{ $permission }}
                                     </label>
@@ -40,11 +41,11 @@
 
         <x-slot name="actions">
             <x-jet-action-message class="mr-3" on="created">
-                Created.
+                {{ __('Created.') }}
             </x-jet-action-message>
 
             <x-jet-button>
-                Create
+                {{ __('Create') }}
             </x-jet-button>
         </x-slot>
     </x-jet-form-section>
@@ -80,102 +81,31 @@
                                     @endif
 
                                     @if (Laravel\Jetstream\Jetstream::hasPermissions())
-                                        <button class="btn btn-link text-secondary" data-toggle="modal"
-                                                wire:click="manageApiTokenPermissions({{ $token->id }})"
-                                                data-target="#managingApiTokenPermissions-{{ $token->id }}">
+                                        <button class="btn btn-link text-secondary"
+                                                wire:loading.attr="disabled"
+                                                wire:target="updateApiToken"
+                                                wire:click="$emit('manageApiTokenPermissions', {{ $token->id }})">
                                             Permissions
                                         </button>
                                     @endif
 
                                     <button class="btn btn-link text-danger text-decoration-none"
-                                            data-toggle="modal"
-                                            data-target="#confirmApiTokenDeletion-{{ $token->id }}">
+                                            wire:loading.attr="disabled"
+                                            wire:target="deleteApiToken"
+                                            wire:click="$emit('confirmApiTokenDeletion', {{ $token->id }})">
                                         Delete
                                     </button>
                                 </div>
                             </div>
-
-                            <!-- API Token Permissions Modal -->
-                            <x-jet-dialog-modal id="managingApiTokenPermissions-{{ $token->id }}">
-                                <x-slot name="title">
-                                    API Token Permissions
-                                </x-slot>
-
-                                <x-slot name="content">
-                                    <div class="mt-2 row">
-                                        @foreach (Laravel\Jetstream\Jetstream::$permissions as $permission)
-                                            <div class="col-6">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="{{ $permission }}" wire:model.defer="updateApiTokenForm.permissions">
-                                                    <label class="form-check-label">
-                                                        {{ $permission }}
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                </x-slot>
-
-                                <x-slot name="footer">
-                                    <x-jet-secondary-button data-dismiss="modal">
-                                        {{ __('Nevermind') }}
-                                    </x-jet-secondary-button>
-
-                                    <x-jet-button class="ml-2" wire:click="updateApiToken"
-                                                  wire:click="$emit('updateApiToken', {{ $token->id }})"
-                                                  data-dismiss="modal">
-                                        {{ __('Save') }}
-                                    </x-jet-button>
-                                </x-slot>
-                            </x-jet-dialog-modal>
-                            @push('scripts')
-                                <script>
-                                    Livewire.on('updateApiToken', id => {
-                                        @this.manageApiTokenPermissions(id)
-                                        @this.updateApiToken()
-                                    })
-                                </script>
-                            @endpush
-
-                            <!-- Delete Token Confirmation Modal -->
-                            <x-jet-confirmation-modal id="confirmApiTokenDeletion-{{ $token->id }}">
-                                <x-slot name="title">
-                                    Delete API Token
-                                </x-slot>
-
-                                <x-slot name="content">
-                                    Are you sure you would like to delete this API token?
-                                </x-slot>
-
-                                <x-slot name="footer">
-                                    <x-jet-secondary-button data-dismiss="modal">
-                                        Nevermind
-                                    </x-jet-secondary-button>
-
-                                    <x-jet-danger-button class="ml-2"
-                                                         wire:click="$emit('deleteApiToken', {{ $token->id }})"
-                                                         data-dismiss="modal">
-                                        Delete
-                                    </x-jet-danger-button>
-                                </x-slot>
-                            </x-jet-confirmation-modal>
-                            @push('scripts')
-                                <script>
-                                    Livewire.on('deleteApiToken', id => {
-                                        @this.confirmApiTokenDeletion(id)
-                                        @this.deleteApiToken()
-                                    })
-                                </script>
-                            @endpush
                         @endforeach
                     </div>
                 </x-slot>
             </x-jet-action-section>
         </div>
-    @endif
+@endif
 
-    <!-- Token Value Modal -->
-    <x-jet-dialog-modal wire:model="displayingToken">
+<!-- Token Value Modal -->
+    <x-jet-dialog-modal id="displayingToken">
         <x-slot name="title">
             API Token
         </x-slot>
@@ -185,15 +115,105 @@
                 Please copy your new API token. For your security, it won't be shown again.
             </div>
 
-            <div class="mt-4 bg-gray-100 px-4 py-2 rounded font-mono text-sm text-gray-500">
+            <div class="bg-light rounded p-3 user-select-all">
                 {{ $plainTextToken }}
             </div>
         </x-slot>
 
         <x-slot name="footer">
-            <x-jet-secondary-button wire:click="$set('displayingToken', false)" wire:loading.attr="disabled">
+            <x-jet-secondary-button wire:click="$set('displayingToken', false)"
+                                    wire:loading.attr="disabled"
+                                    data-dismiss="modal">
                 Close
             </x-jet-secondary-button>
         </x-slot>
     </x-jet-dialog-modal>
+
+    <!-- API Token Permissions Modal -->
+    <x-jet-dialog-modal id="managingApiTokenPermissionsModal">
+        <x-slot name="title">
+            API Token Permissions
+        </x-slot>
+
+        <x-slot name="content">
+            <div class="mt-2 row">
+                @foreach (Laravel\Jetstream\Jetstream::$permissions as $permission)
+                    <div class="col-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="{{ $permission }}"
+                                   wire:model.defer="updateApiTokenForm.permissions">
+                            <label class="form-check-label">
+                                {{ $permission }}
+                            </label>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </x-slot>
+
+        <x-slot name="footer">
+            <x-jet-secondary-button wire:click="$set('managingApiTokenPermissions', false)"
+                                    wire:loading.attr="disabled" data-dismiss="modal">
+                {{ __('Nevermind') }}
+            </x-jet-secondary-button>
+
+            {{--
+                This `wire:loading.remove` is added for `manageApiTokenPermissions` to take full effect before a save
+                can be made to avoid accidental updates.
+            --}}
+            <div wire:loading.remove
+                 wire:target="manageApiTokenPermissions">
+                <x-jet-button wire:click="updateApiToken"
+                              wire:loading.attr="disabled"
+                              data-dismiss="modal">
+                    {{ __('Save') }}
+                </x-jet-button>
+            </div>
+        </x-slot>
+    </x-jet-dialog-modal>
+
+    <!-- Delete Token Confirmation Modal -->
+    <x-jet-confirmation-modal id="confirmApiTokenDeletionModal">
+        <x-slot name="title">
+            Delete API Token
+        </x-slot>
+
+        <x-slot name="content">
+            Are you sure you would like to delete this API token?
+        </x-slot>
+
+        <x-slot name="footer">
+            <x-jet-secondary-button wire:click="$toggle('confirmingApiTokenDeletion')" wire:loading.attr="disabled" data-dismiss="modal">
+                Nevermind
+            </x-jet-secondary-button>
+
+
+            <div wire:loading.remove
+                 wire:target="confirmApiTokenDeletion">
+                <x-jet-danger-button wire:loading.attr="disabled"
+                                     wire:click="deleteApiToken"
+                                     data-dismiss="modal">
+                    Delete
+                </x-jet-danger-button>
+            </div>
+        </x-slot>
+    </x-jet-confirmation-modal>
 </div>
+
+@push('scripts')
+    <script>
+        Livewire.on('manageApiTokenPermissions', id => {
+        @this.manageApiTokenPermissions(id)
+            new Bootstrap.Modal(document.getElementById('managingApiTokenPermissionsModal')).toggle()
+        })
+
+        Livewire.on('confirmApiTokenDeletion', id => {
+        @this.confirmApiTokenDeletion(id)
+            new Bootstrap.Modal(document.getElementById('confirmApiTokenDeletionModal')).toggle()
+        })
+
+        Livewire.on('created', id => {
+            new Bootstrap.Modal(document.getElementById('displayingToken')).toggle()
+        })
+    </script>
+@endpush
