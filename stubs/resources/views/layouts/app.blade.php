@@ -15,125 +15,119 @@
 
     @livewireStyles
 
-    <style>
-        .navbar-light .navbar-nav .show > .nav-link, .navbar-light .navbar-nav .nav-link.active {
-            border-bottom: 2px solid #6875f5;
-        }
-    </style>
-
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.6.0/dist/alpine.js" defer></script>
 </head>
 <body class="bg-light">
-    <nav class="navbar navbar-expand-md navbar-light bg-white border-bottom sticky-top">
-        <div class="container">
-            <!-- Logo -->
-            <a class="navbar-brand" href="/dashboard">
-                <x-jet-application-mark />
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+<nav class="navbar navbar-expand-md navbar-light bg-white border-bottom sticky-top">
+    <div class="container">
+        <!-- Logo -->
+        <a class="navbar-brand" href="/dashboard">
+            <x-jet-application-mark />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!-- Left Side Of Navbar -->
-                <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
-                    <x-jet-nav-link href="/dashboard" :active="request()->routeIs('dashboard')">
-                        Dashboard
-                    </x-jet-nav-link>
-                </ul>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Left Side Of Navbar -->
+            <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+                <x-jet-nav-link href="/dashboard" :active="request()->routeIs('dashboard')">
+                    Dashboard
+                </x-jet-nav-link>
+            </ul>
 
-                <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav ml-auto">
-                    <!-- Authentication Links -->
-                    @auth
-                        <x-jet-dropdown id="navbarDropdown">
-                            <x-slot name="trigger">
-                                <img class="rounded-circle" width="32" height="32" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
-                            </x-slot>
+            <!-- Right Side Of Navbar -->
+            <ul class="navbar-nav ml-auto">
+                <!-- Authentication Links -->
+                @auth
+                    <x-jet-dropdown id="navbarDropdown">
+                        <x-slot name="trigger">
+                            <img class="rounded-circle" width="32" height="32" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
+                        </x-slot>
 
-                            <x-slot name="content">
-                                <!-- Account Management -->
-                                <h6 class="dropdown-header small text-muted">
-                                    Manage Account
-                                </h6>
+                        <x-slot name="content">
+                            <!-- Account Management -->
+                            <h6 class="dropdown-header small text-muted">
+                                Manage Account
+                            </h6>
 
-                                <x-jet-dropdown-link href="/user/profile">
-                                    Profile
+                            <x-jet-dropdown-link href="/user/profile">
+                                Profile
+                            </x-jet-dropdown-link>
+
+                            @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
+                                <x-jet-dropdown-link href="/user/api-tokens">
+                                    API Tokens
                                 </x-jet-dropdown-link>
+                            @endif
 
-                                @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
-                                    <x-jet-dropdown-link href="/user/api-tokens">
-                                        API Tokens
-                                    </x-jet-dropdown-link>
-                                @endif
-
-                                <!-- Team Management -->
-                                @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
-
-                                    <hr class="dropdown-divider">
-
-                                    <h6 class="dropdown-header">
-                                        Manage Team
-                                    </h6>
-
-                                    <!-- Team Settings -->
-                                    <x-jet-dropdown-link href="/teams/{{ Auth::user()->currentTeam->id }}">
-                                        Team Settings
-                                    </x-jet-dropdown-link>
-
-                                    @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
-                                        <x-jet-dropdown-link href="/teams/create">
-                                            Create New Team
-                                        </x-jet-dropdown-link>
-                                    @endcan
-
-                                    <hr class="dropdown-divider">
-
-                                    <!-- Team Switcher -->
-                                    <h6 class="dropdown-header">
-                                        Switch Teams
-                                    </h6>
-
-                                    @foreach (Auth::user()->allTeams() as $team)
-                                        <x-jet-switchable-team :team="$team" />
-                                    @endforeach
-                                @endif
+                        <!-- Team Management -->
+                            @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
 
                                 <hr class="dropdown-divider">
 
-                                <!-- Authentication -->
-                                <x-jet-dropdown-link href="{{ route('logout') }}"
-                                                     onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                <h6 class="dropdown-header">
+                                    Manage Team
+                                </h6>
+
+                                <!-- Team Settings -->
+                                <x-jet-dropdown-link href="/teams/{{ Auth::user()->currentTeam->id }}">
+                                    Team Settings
                                 </x-jet-dropdown-link>
-                                <form method="POST" id="logout-form" action="{{ route('logout') }}">
-                                    @csrf
-                                </form>
-                            </x-slot>
-                        </x-jet-dropdown>
-                    @endauth
-                </ul>
-            </div>
+
+                                @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
+                                    <x-jet-dropdown-link href="/teams/create">
+                                        Create New Team
+                                    </x-jet-dropdown-link>
+                                @endcan
+
+                                <hr class="dropdown-divider">
+
+                                <!-- Team Switcher -->
+                                <h6 class="dropdown-header">
+                                    Switch Teams
+                                </h6>
+
+                                @foreach (Auth::user()->allTeams() as $team)
+                                    <x-jet-switchable-team :team="$team" />
+                                @endforeach
+                            @endif
+
+                            <hr class="dropdown-divider">
+
+                            <!-- Authentication -->
+                            <x-jet-dropdown-link href="{{ route('logout') }}"
+                                                 onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </x-jet-dropdown-link>
+                            <form method="POST" id="logout-form" action="{{ route('logout') }}">
+                                @csrf
+                            </form>
+                        </x-slot>
+                    </x-jet-dropdown>
+                @endauth
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
 
-    <header class="d-flex py-2 bg-white shadow-sm border-bottom">
-        <div class="container">
-            {{ $header }}
-        </div>
-    </header>
+<header class="d-flex py-2 bg-white shadow-sm border-bottom">
+    <div class="container">
+        {{ $header }}
+    </div>
+</header>
 
-    <!-- Page Content -->
-    <main class="container my-3">
-        {{ $slot }}
-    </main>
+<!-- Page Content -->
+<main class="container my-3">
+    {{ $slot }}
+</main>
 
-    @stack('modals')
+@stack('modals')
 
-    <script src="{{ asset('js/app.js') }}"></script>
-    @livewireScripts
-    @stack('scripts')
+<script src="{{ asset('js/app.js') }}"></script>
+@livewireScripts
+@stack('scripts')
 </body>
 </html>

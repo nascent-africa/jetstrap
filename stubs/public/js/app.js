@@ -27031,9 +27031,12 @@ __webpack_require__(/*! ./bootstrap */ "./stubs/resources/js/bootstrap.js");
 /*!*****************************************!*\
   !*** ./stubs/resources/js/bootstrap.js ***!
   \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.esm.js");
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -27041,17 +27044,14 @@ window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
  * code may be modified to fit the specific needs of your application.
  */
 
-try {
-  window.Popper = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js")["default"];
+window.Popper = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js")["default"];
 
-  __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.esm.js");
-} catch (e) {}
+window.Bootstrap = bootstrap__WEBPACK_IMPORTED_MODULE_0__;
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
-
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
@@ -27089,8 +27089,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/anitchec/Code/nascentafrica/jetstrap/stubs/resources/js/app.js */"./stubs/resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/anitchec/Code/nascentafrica/jetstrap/stubs/resources/sass/app.scss */"./stubs/resources/sass/app.scss");
+__webpack_require__(/*! /home/anitchec/Code/nascentafrica/packages/jetstrap/stubs/resources/js/app.js */"./stubs/resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/anitchec/Code/nascentafrica/packages/jetstrap/stubs/resources/sass/app.scss */"./stubs/resources/sass/app.scss");
 
 
 /***/ })

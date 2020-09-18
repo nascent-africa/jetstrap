@@ -15,7 +15,7 @@
                 </div>
             </div>
         </div>
-        <div class="modal-footer">
+        <div class="modal-footer bg-light">
             {{ $footer }}
         </div>
     </div>
