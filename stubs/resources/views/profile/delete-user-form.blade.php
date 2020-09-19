@@ -51,13 +51,13 @@
             </x-slot>
         </x-jet-dialog-modal>
     </x-slot>
-</x-jet-action-section>
 
-@push('scripts')
-    <script>
-        Livewire.on('confirmingUserDeletion', () => {
-        @this.confirmUserDeletion()
-            new Bootstrap.Modal(document.getElementById('confirmingUserDeletionModal')).toggle()
-        })
-    </script>
-@endpush
+    @push('scripts')
+        <script>
+            Livewire.on('confirmingUserDeletion', () => {
+            @this.confirmUserDeletion()
+                new Bootstrap.Modal(document.getElementById('confirmingUserDeletionModal')).toggle()
+            })
+        </script>
+    @endpush
+</x-jet-action-section>
