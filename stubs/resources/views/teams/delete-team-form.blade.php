@@ -13,13 +13,13 @@
         </div>
 
         <div class="mt-5">
-            <x-jet-danger-button wire:click="$toggle('confirmingTeamDeletion')" wire:loading.attr="disabled">
+            <x-jet-danger-button wire:click="$emit('confirmingTeamDeletion')" wire:loading.attr="disabled">
                 Delete Team
             </x-jet-danger-button>
         </div>
 
         <!-- Delete Team Confirmation Modal -->
-        <x-jet-confirmation-modal wire:model="confirmingTeamDeletion">
+        <x-jet-confirmation-modal id="confirmingTeamDeletionModal">
             <x-slot name="title">
                 Delete Team
             </x-slot>
@@ -29,14 +29,25 @@
             </x-slot>
 
             <x-slot name="footer">
-                <x-jet-secondary-button wire:click="$toggle('confirmingTeamDeletion')" wire:loading.attr="disabled">
+                <x-jet-secondary-button wire:click="$toggle('confirmingTeamDeletion')"
+                                        wire:click="$toggle('confirmingTeamDeletion')"
+                                        wire:loading.attr="disabled"
+                                        data-dismiss="modal">
                     Nevermind
                 </x-jet-secondary-button>
 
-                <x-jet-danger-button class="ml-2" wire:click="deleteTeam" wire:loading.attr="disabled">
+                <x-jet-danger-button wire:click="deleteTeam" wire:loading.attr="disabled">
                     Delete Team
                 </x-jet-danger-button>
             </x-slot>
         </x-jet-confirmation-modal>
     </x-slot>
+
+    @push('scripts')
+        <script>
+            Livewire.on('confirmingTeamDeletion', () => {
+                new Bootstrap.Modal(document.getElementById('confirmingTeamDeletionModal')).toggle()
+            })
+        </script>
+    @endpush
 </x-jet-action-section>
