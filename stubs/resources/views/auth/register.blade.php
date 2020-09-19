@@ -16,7 +16,9 @@
                     <x-jet-label value="Name" class="col-md-4 col-form-label text-md-right" />
 
                     <div class="col-md-6">
-                        <x-jet-input class="form-control" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                        <x-jet-input class="{{ $errors->has('name') ? 'is-invalid' : '' }}" type="text" name="name"
+                                     :value="old('name')" required autofocus autocomplete="name" />
+                        <x-jet-input-error for="name"></x-jet-input-error>
                     </div>
                 </div>
 
@@ -24,7 +26,9 @@
                     <x-jet-label value="Email" class="col-md-4 col-form-label text-md-right" />
 
                     <div class="col-md-6">
-                        <x-jet-input class="form-control" type="email" name="email" :value="old('email')" required />
+                        <x-jet-input class="{{ $errors->has('email') ? 'is-invalid' : '' }}" type="email" name="email"
+                                     :value="old('email')" required />
+                        <x-jet-input-error for="email"></x-jet-input-error>
                     </div>
                 </div>
 
@@ -32,7 +36,9 @@
                     <x-jet-label value="Password" class="col-md-4 col-form-label text-md-right" />
 
                     <div class="col-md-6">
-                        <x-jet-input class="form-control" type="password" name="password" required autocomplete="new-password" />
+                        <x-jet-input class="{{ $errors->has('password') ? 'is-invalid' : '' }}" type="password"
+                                     name="password" required autocomplete="new-password" />
+                        <x-jet-input-error for="password"></x-jet-input-error>
                     </div>
                 </div>
 

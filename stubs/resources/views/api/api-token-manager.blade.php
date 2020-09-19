@@ -11,10 +11,11 @@
 
         <x-slot name="form">
             <!-- Token Name -->
-            <div>
+            <div class="mb-3">
                 <x-jet-label for="name" value="Token Name" />
-                <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="createApiTokenForm.name" autofocus />
-                <x-jet-input-error for="name" class="mt-2" />
+                <x-jet-input id="name" type="text" class="{{ $errors->has('name') ? 'is-invalid' : '' }}"
+                             wire:model.defer="createApiTokenForm.name" autofocus />
+                <x-jet-input-error for="name" />
             </div>
 
             <!-- Token Permissions -->
@@ -203,12 +204,12 @@
 @push('scripts')
     <script>
         Livewire.on('manageApiTokenPermissions', id => {
-        @this.manageApiTokenPermissions(id)
+            @this.manageApiTokenPermissions(id)
             new Bootstrap.Modal(document.getElementById('managingApiTokenPermissionsModal')).toggle()
         })
 
         Livewire.on('confirmApiTokenDeletion', id => {
-        @this.confirmApiTokenDeletion(id)
+            @this.confirmApiTokenDeletion(id)
             new Bootstrap.Modal(document.getElementById('confirmApiTokenDeletionModal')).toggle()
         })
 

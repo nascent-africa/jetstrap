@@ -13,9 +13,9 @@
             <div class="mb-3" x-data="{photoName: null, photoPreview: null}">
                 <!-- Profile Photo File Input -->
                 <input type="file" hidden
-                            wire:model="photo"
-                            x-ref="photo"
-                            x-on:change="
+                       wire:model="photo"
+                       x-ref="photo"
+                       x-on:change="
                                     photoName = $refs.photo.files[0].name;
                                     const reader = new FileReader();
                                     reader.onload = (e) => {
@@ -42,20 +42,20 @@
 
                 <x-jet-input-error for="photo" class="mt-2" />
             </div>
-        @endif
+    @endif
 
-        <!-- Name -->
-        <div class="col-span-6 sm:col-span-4">
+    <!-- Name -->
+        <div class="mb-3">
             <x-jet-label for="name" value="Name" />
-            <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="state.name" autocomplete="name" />
-            <x-jet-input-error for="name" class="mt-2" />
+            <x-jet-input id="name" type="text" class="{{ $errors->has('name') ? 'is-invalid' : '' }}" wire:model.defer="state.name" autocomplete="name" />
+            <x-jet-input-error for="name" />
         </div>
 
         <!-- Email -->
-        <div class="col-span-6 sm:col-span-4">
+        <div>
             <x-jet-label for="email" value="Email" />
-            <x-jet-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="state.email" />
-            <x-jet-input-error for="email" class="mt-2" />
+            <x-jet-input id="email" type="email" class="{{ $errors->has('email') ? 'is-invalid' : '' }}" wire:model.defer="state.email" />
+            <x-jet-input-error for="email" />
         </div>
     </x-slot>
 

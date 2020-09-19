@@ -16,7 +16,9 @@
                     <x-jet-label value="Email" class="col-md-4 col-form-label text-md-right" />
 
                     <div class="col-md-6">
-                        <x-jet-input class="form-control" type="email" name="email" :value="old('email', $request->email)" required autofocus />
+                        <x-jet-input class="{{ $errors->has('email') ? 'is-invalid' : '' }}" type="email" name="email"
+                                     :value="old('email', $request->email)" required autofocus />
+                        <x-jet-input-error for="email"></x-jet-input-error>
                     </div>
                 </div>
 
@@ -24,7 +26,9 @@
                     <x-jet-label value="Password" class="col-md-4 col-form-label text-md-right" />
 
                     <div class="col-md-6">
-                        <x-jet-input class="form-control" type="password" name="password" required autocomplete="new-password" />
+                        <x-jet-input class="{{ $errors->has('password') ? 'is-invalid' : '' }}" type="password"
+                                     name="password" required autocomplete="new-password" />
+                        <x-jet-input-error for="password"></x-jet-input-error>
                     </div>
                 </div>
 
@@ -32,7 +36,9 @@
                     <x-jet-label value="Confirm Password" class="col-md-4 col-form-label text-md-right" />
 
                     <div class="col-md-6">
-                        <x-jet-input class="form-control" type="password" name="password_confirmation" required autocomplete="new-password" />
+                        <x-jet-input class="{{ $errors->has('password_confirmation') ? 'is-invalid' : '' }}" type="password"
+                                     name="password_confirmation" required autocomplete="new-password" />
+                        <x-jet-input-error for="password_confirmation"></x-jet-input-error>
                     </div>
                 </div>
 

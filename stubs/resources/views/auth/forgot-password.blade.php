@@ -15,14 +15,16 @@
                 </div>
             @endif
 
-            <x-jet-validation-errors class="mb-4" />
+            <x-jet-validation-errors class="mb-4 rounded-0" />
 
             <form method="POST" action="/forgot-password">
                 @csrf
 
-                <div>
+                <div  class="mb-3">
                     <x-jet-label value="Email" />
-                    <x-jet-input type="email" name="email" :value="old('email')" required autofocus />
+                    <x-jet-input type="email" name="email" class="{{ $errors->has('email') ? 'is-invalid' : '' }}"
+                                 :value="old('email')" required autofocus />
+                    <x-jet-input-error for="email"></x-jet-input-error>
                 </div>
 
                 <div class="d-flex justify-content-center mt-4">
