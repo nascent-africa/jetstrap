@@ -84,7 +84,7 @@ class InstallCommand extends Command
         (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/livewire/resources/views/api', resource_path('views/api'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/livewire/resources/views/profile', resource_path('views/profile'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/resources/views/auth', resource_path('views/auth'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/resources/views/vendor', resource_path('views/vendor'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/livewire/resources/views/vendor', resource_path('views/vendor'));
 
         // Assets...
         $this->publishBootstrapAssets();

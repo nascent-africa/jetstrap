@@ -8,23 +8,24 @@
     </x-slot>
 
     <x-slot name="form">
-        <div class="col-span-6">
-            <x-jet-label value="Team Owner" />
+        <div class="mb-4">
+            <x-jet-label value="Team Owner" class="font-weight-bold" />
 
-            <div class="flex items-center mt-2">
-                <img class="w-12 h-12 rounded-full" src="{{ $this->user->profile_photo_url }}">
+            <div class="d-flex mt-2">
+                <img class="rounded-circle" width="48" src="{{ $this->user->profile_photo_url }}">
 
-                <div class="ml-4 leading-tight">
+                <div class="ml-2">
                     <div>{{ $this->user->name }}</div>
-                    <div class="text-gray-700 text-sm">{{ $this->user->email }}</div>
+                    <div class="text-muted">{{ $this->user->email }}</div>
                 </div>
             </div>
         </div>
 
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="name" value="Team Name" />
-            <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="state.name" autofocus />
-            <x-jet-input-error for="name" class="mt-2" />
+            <x-jet-input id="name" type="text" class="{{ $errors->has('name') ? 'is-invalid' : '' }}"
+                         wire:model.defer="state.name" autofocus />
+            <x-jet-input-error for="name" />
         </div>
     </x-slot>
 

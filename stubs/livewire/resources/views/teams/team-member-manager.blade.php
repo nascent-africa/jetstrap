@@ -3,7 +3,7 @@
         <x-jet-section-border />
 
         <!-- Add Team Member -->
-        <div class="mt-10 sm:mt-0">
+        <div class="mt-10 mt-sm-0">
             <x-jet-form-section submit="addTeamMember">
                 <x-slot name="title">
                     Add Team Member
@@ -14,47 +14,44 @@
                 </x-slot>
 
                 <x-slot name="form">
-                    <div class="col-span-6">
-                        <div class="max-w-xl text-sm text-gray-600">
-                            Please provide the email address of the person you would like to add to this team. The email address must be associated with an existing account.
-                        </div>
+                    <div>
+                        Please provide the email address of the person you would like to add to this team. The email address must be associated with an existing account.
                     </div>
 
                     <!-- Member Email -->
-                    <div class="col-span-6 sm:col-span-4">
+                    <div class="mb-2">
                         <x-jet-label for="email" value="Email" />
-                        <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="addTeamMemberForm.email" />
-                        <x-jet-input-error for="email" class="mt-2" />
+                        <x-jet-input id="name" type="text" class="{{ $errors->has('email') ? 'is-invalid' : '' }}"
+                                     wire:model.defer="addTeamMemberForm.email" />
+                        <x-jet-input-error for="email" />
                     </div>
 
                     <!-- Role -->
                     @if (count($this->roles) > 0)
-                        <div class="col-span-6 lg:col-span-4">
+                        <div class="mb-3">
                             <x-jet-label for="role" value="Role" />
-                            <x-jet-input-error for="role" class="mt-2" />
 
-                            <div class="mt-1 border border-gray-200 rounded-lg cursor-pointer">
+                            <input type="hidden" class="{{ $errors->has('role') ? 'is-invalid' : '' }}">
+                            <x-jet-input-error for="role" />
+
+                            <div class="list-group">
                                 @foreach ($this->roles as $index => $role)
-                                        <div class="px-4 py-3 {{ $index > 0 ? 'border-t border-gray-200' : '' }}"
-                                                        wire:click="$set('addTeamMemberForm.role', '{{ $role->key }}')">
-                                            <div class="{{ isset($addTeamMemberForm['role']) && $addTeamMemberForm['role'] !== $role->key ? 'opacity-50' : '' }}">
-                                                <!-- Role Name -->
-                                                <div class="flex items-center">
-                                                    <div class="text-sm text-gray-600 {{ $addTeamMemberForm['role'] == $role->key ? 'font-semibold' : '' }}">
-                                                        {{ $role->name }}
-                                                    </div>
-
-                                                    @if ($addTeamMemberForm['role'] == $role->key)
-                                                        <svg class="ml-2 h-5 w-5 text-green-400" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                                    @endif
-                                                </div>
-
-                                                <!-- Role Description -->
-                                                <div class="mt-2 text-xs text-gray-600">
-                                                    {{ $role->description }}
-                                                </div>
-                                            </div>
+                                    <a href="#" class="list-group-item list-group-item-action{{ isset($addTeamMemberForm['role']) && $addTeamMemberForm['role'] !== $role->key ? ' disabled' : '' }}"
+                                       wire:click.prevent="$set('addTeamMemberForm.role', '{{ $role->key }}')">
+                                        <div>
+                                        <span class="{{ $addTeamMemberForm['role'] == $role->key ? 'font-weight-bold' : '' }}">
+                                            {{ $role->name }}
+                                        </span>
+                                            @if ($addTeamMemberForm['role'] == $role->key)
+                                                <svg class="ml-1 text-success font-weight-light" width="20" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                            @endif
                                         </div>
+
+                                        <!-- Role Description -->
+                                        <div class="mt-2">
+                                            {{ $role->description }}
+                                        </div>
+                                    </a>
                                 @endforeach
                             </div>
                         </div>
@@ -78,7 +75,7 @@
         <x-jet-section-border />
 
         <!-- Manage Team Members -->
-        <div class="mt-10 sm:mt-0">
+        <div class="mt-5 mt-sm-0">
             <x-jet-action-section>
                 <x-slot name="title">
                     Team Members
@@ -110,13 +107,13 @@
                                         </div>
                                     @endif
 
-                                    <!-- Leave Team -->
+                                <!-- Leave Team -->
                                     @if ($this->user->id === $user->id)
                                         <button class="cursor-pointer ml-6 text-sm text-red-500 focus:outline-none" wire:click="$toggle('confirmingLeavingTeam')">
                                             Leave
                                         </button>
 
-                                    <!-- Remove Team Member -->
+                                        <!-- Remove Team Member -->
                                     @elseif (Gate::check('removeTeamMember', $team))
                                         <button class="cursor-pointer ml-6 text-sm text-red-500 focus:outline-none" wire:click="confirmTeamMemberRemoval('{{ $user->id }}')">
                                             Remove
@@ -129,37 +126,37 @@
                 </x-slot>
             </x-jet-action-section>
         </div>
-    @endif
+@endif
 
-    <!-- Role Management Modal -->
+<!-- Role Management Modal -->
     <x-jet-dialog-modal wire:model="currentlyManagingRole">
         <x-slot name="title">
             Manage Role
         </x-slot>
 
         <x-slot name="content">
-                <div class="mt-1 border border-gray-200 rounded-lg cursor-pointer">
-                    @foreach ($this->roles as $index => $role)
-                        <div class="px-4 py-3 {{ $index > 0 ? 'border-t border-gray-200' : '' }}"
-                                        wire:click="$set('currentRole', '{{ $role->key }}')">
-                            <div class="{{ $currentRole !== $role->key ? 'opacity-50' : '' }}">
-                                <!-- Role Name -->
-                                <div class="flex items-center">
-                                    <div class="text-sm text-gray-600 {{ $currentRole == $role->key ? 'font-semibold' : '' }}">
-                                        {{ $role->name }}
-                                    </div>
-
-                                    @if ($currentRole == $role->key)
-                                        <svg class="ml-2 h-5 w-5 text-green-400" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                    @endif
+            <div class="mt-1 border border-gray-200 rounded-lg cursor-pointer">
+                @foreach ($this->roles as $index => $role)
+                    <div class="px-4 py-3 {{ $index > 0 ? 'border-t border-gray-200' : '' }}"
+                         wire:click="$set('currentRole', '{{ $role->key }}')">
+                        <div class="{{ $currentRole !== $role->key ? 'opacity-50' : '' }}">
+                            <!-- Role Name -->
+                            <div class="flex items-center">
+                                <div class="text-sm text-gray-600 {{ $currentRole == $role->key ? 'font-semibold' : '' }}">
+                                    {{ $role->name }}
                                 </div>
 
-                                <!-- Role Description -->
-                                <div class="mt-2 text-xs text-gray-600">
-                                    {{ $role->description }}
-                                </div>
+                                @if ($currentRole == $role->key)
+                                    <svg class="ml-2 h-5 w-5 text-green-400" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                @endif
+                            </div>
+
+                            <!-- Role Description -->
+                            <div class="mt-2 text-xs text-gray-600">
+                                {{ $role->description }}
                             </div>
                         </div>
+                    </div>
                 @endforeach
             </div>
         </x-slot>
