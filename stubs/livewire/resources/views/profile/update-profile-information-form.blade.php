@@ -42,20 +42,22 @@
 
                 <x-jet-input-error for="photo" class="mt-2" />
             </div>
-    @endif
+        @endif
 
-    <!-- Name -->
-        <div class="mb-3">
-            <x-jet-label for="name" value="Name" />
-            <x-jet-input id="name" type="text" class="{{ $errors->has('name') ? 'is-invalid' : '' }}" wire:model.defer="state.name" autocomplete="name" />
-            <x-jet-input-error for="name" />
-        </div>
+        <div class="w-75">
+            <!-- Name -->
+            <div class="mb-3">
+                <x-jet-label for="name" value="Name" />
+                <x-jet-input id="name" type="text" class="{{ $errors->has('name') ? 'is-invalid' : '' }}" wire:model.defer="state.name" autocomplete="name" />
+                <x-jet-input-error for="name" />
+            </div>
 
-        <!-- Email -->
-        <div>
-            <x-jet-label for="email" value="Email" />
-            <x-jet-input id="email" type="email" class="{{ $errors->has('email') ? 'is-invalid' : '' }}" wire:model.defer="state.email" />
-            <x-jet-input-error for="email" />
+            <!-- Email -->
+            <div>
+                <x-jet-label for="email" value="Email" />
+                <x-jet-input id="email" type="email" class="{{ $errors->has('email') ? 'is-invalid' : '' }}" wire:model.defer="state.email" />
+                <x-jet-input-error for="email" />
+            </div>
         </div>
     </x-slot>
 

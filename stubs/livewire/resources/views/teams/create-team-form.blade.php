@@ -9,7 +9,7 @@
 
     <x-slot name="form">
         <div class="mb-4">
-            <x-jet-label value="Team Owner" class="font-weight-bold" />
+            <x-jet-label value="Team Owner" />
 
             <div class="d-flex mt-2">
                 <img class="rounded-circle" width="48" src="{{ $this->user->profile_photo_url }}">
@@ -21,7 +21,7 @@
             </div>
         </div>
 
-        <div class="col-span-6 sm:col-span-4">
+        <div class="w-75">
             <x-jet-label for="name" value="Team Name" />
             <x-jet-input id="name" type="text" class="{{ $errors->has('name') ? 'is-invalid' : '' }}"
                          wire:model.defer="state.name" autofocus />

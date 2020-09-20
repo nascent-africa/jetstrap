@@ -4,8 +4,8 @@
             <x-jet-authentication-card-logo />
         </x-slot>
 
-        <div class="card-body py-5 px-4">
-            <div class="mb-4 small text-muted">
+        <div class="card-body">
+            <div class="mb-4">
                 {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
             </div>
 
@@ -15,19 +15,17 @@
                 </div>
             @endif
 
-            <x-jet-validation-errors class="mb-4 rounded-0" />
+            <x-jet-validation-errors class="mb-4" />
 
             <form method="POST" action="/forgot-password">
                 @csrf
 
-                <div  class="mb-3">
+                <div>
                     <x-jet-label value="Email" />
-                    <x-jet-input type="email" name="email" class="{{ $errors->has('email') ? 'is-invalid' : '' }}"
-                                 :value="old('email')" required autofocus />
-                    <x-jet-input-error for="email"></x-jet-input-error>
+                    <x-jet-input type="email" name="email" :value="old('email')" required autofocus />
                 </div>
 
-                <div class="d-flex justify-content-center mt-4">
+                <div class="d-flex justify-content-end mt-4">
                     <x-jet-button>
                         {{ __('Email Password Reset Link') }}
                     </x-jet-button>

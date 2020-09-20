@@ -4,7 +4,7 @@
             <x-jet-authentication-card-logo />
         </x-slot>
 
-        <div class="card-body py-5 px-4">
+        <div class="card-body">
             <div x-data="{ recovery: false }">
                 <div class="mb-4 text-sm text-gray-600" x-show="! recovery">
                     {{ __('Please confirm access to your account by entering the authentication code provided by your authenticator application.') }}
@@ -33,7 +33,7 @@
                         <x-jet-input-error for="recovery_code"></x-jet-input-error>
                     </div>
 
-                    <div class="flex items-center justify-end mt-4">
+                    <div class="d-flex justify-content-end mt-3">
                         <button type="button" class="btn btn-outline-secondary"
                                 x-show="! recovery"
                                 x-on:click="

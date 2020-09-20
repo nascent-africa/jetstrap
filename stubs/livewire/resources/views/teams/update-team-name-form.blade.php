@@ -10,7 +10,7 @@
     <x-slot name="form">
         <!-- Team Owner Information -->
         <div class="mb-4">
-            <x-jet-label value="Team Owner" class="font-weight-bold" />
+            <x-jet-label value="Team Owner" />
 
             <div class="d-flex mt-2">
                 <img class="rounded-circle" width="48" src="{{ $team->owner->profile_photo_url }}">
@@ -23,7 +23,7 @@
         </div>
 
         <!-- Team Name -->
-        <div>
+        <div class="w-75">
             <x-jet-label for="name" value="Team Name" />
 
             <x-jet-input id="name"

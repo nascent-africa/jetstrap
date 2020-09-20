@@ -10,34 +10,36 @@
         </x-slot>
 
         <x-slot name="form">
-            <!-- Token Name -->
-            <div class="mb-3">
-                <x-jet-label for="name" value="Token Name" />
-                <x-jet-input id="name" type="text" class="{{ $errors->has('name') ? 'is-invalid' : '' }}"
-                             wire:model.defer="createApiTokenForm.name" autofocus />
-                <x-jet-input-error for="name" />
-            </div>
-
-            <!-- Token Permissions -->
-            @if (Laravel\Jetstream\Jetstream::hasPermissions())
-                <div>
-                    <x-jet-label for="permissions" value="Permissions" />
-
-                    <div class="mt-2 grid row">
-                        @foreach (Laravel\Jetstream\Jetstream::$permissions as $permission)
-                            <div class="col-6">
-                                <div class="form-check">
-                                    <input id="check-permissions-{{ $permission }}" class="form-check-input" type="checkbox" value="{{ $permission }}"
-                                           wire:model.defer="createApiTokenForm.permissions">
-                                    <label class="form-check-label" for="check-permissions-{{ $permission }}">
-                                        {{ $permission }}
-                                    </label>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
+            <div class="w-75">
+                <!-- Token Name -->
+                <div class="mb-3">
+                    <x-jet-label for="name" value="Token Name" />
+                    <x-jet-input id="name" type="text" class="{{ $errors->has('name') ? 'is-invalid' : '' }}"
+                                 wire:model.defer="createApiTokenForm.name" autofocus />
+                    <x-jet-input-error for="name" />
                 </div>
-            @endif
+
+                <!-- Token Permissions -->
+                @if (Laravel\Jetstream\Jetstream::hasPermissions())
+                    <div>
+                        <x-jet-label for="permissions" value="Permissions" />
+
+                        <div class="mt-2 grid row">
+                            @foreach (Laravel\Jetstream\Jetstream::$permissions as $permission)
+                                <div class="col-6">
+                                    <div class="form-check">
+                                        <input id="check-permissions-{{ $permission }}" class="form-check-input" type="checkbox" value="{{ $permission }}"
+                                               wire:model.defer="createApiTokenForm.permissions">
+                                        <label class="form-check-label" for="check-permissions-{{ $permission }}">
+                                            {{ $permission }}
+                                        </label>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
+            </div>
         </x-slot>
 
         <x-slot name="actions">
