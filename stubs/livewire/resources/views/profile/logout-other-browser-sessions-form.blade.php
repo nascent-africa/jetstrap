@@ -51,7 +51,7 @@
             </div>
         @endif
 
-        <div class="flex items-center mt-3">
+        <div class="d-flex mt-3">
             <x-jet-button wire:click="confirmLogout" wire:loading.attr="disabled">
                 Logout Other Browser Sessions
             </x-jet-button>

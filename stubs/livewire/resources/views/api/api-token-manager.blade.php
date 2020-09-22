@@ -24,13 +24,13 @@
                     <div>
                         <x-jet-label for="permissions" value="Permissions" />
 
-                        <div class="mt-2 grid row">
+                        <div class="mt-2 row">
                             @foreach (Laravel\Jetstream\Jetstream::$permissions as $permission)
                                 <div class="col-6">
                                     <div class="form-check">
-                                        <input id="check-permissions-{{ $permission }}" class="form-check-input" type="checkbox" value="{{ $permission }}"
+                                        <input class="form-check-input" type="checkbox" value="{{ $permission }}"
                                                wire:model.defer="createApiTokenForm.permissions">
-                                        <label class="form-check-label" for="check-permissions-{{ $permission }}">
+                                        <label class="form-check-label">
                                             {{ $permission }}
                                         </label>
                                     </div>
@@ -57,7 +57,7 @@
         <x-jet-section-border />
 
         <!-- Manage API Tokens -->
-        <div class="mt-5 mt-sm-0">
+        <div>
             <x-jet-action-section>
                 <x-slot name="title">
                     Manage API Tokens
@@ -69,7 +69,7 @@
 
                 <!-- API Token List -->
                 <x-slot name="content">
-                    <div class="space-y-6">
+                    <div>
                         @foreach ($this->user->tokens->sortBy('name') as $token)
                             <div class="d-flex justify-content-between">
                                 <div>

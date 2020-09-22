@@ -75,57 +75,55 @@
         <x-jet-section-border />
 
         <!-- Manage Team Members -->
-        <div class="mt-5 mt-sm-0">
-            <x-jet-action-section>
-                <x-slot name="title">
-                    Team Members
-                </x-slot>
+        <x-jet-action-section>
+            <x-slot name="title">
+                Team Members
+            </x-slot>
 
-                <x-slot name="description">
-                    All of the people that are part of this team.
-                </x-slot>
+            <x-slot name="description">
+                All of the people that are part of this team.
+            </x-slot>
 
-                <!-- Team Member List -->
-                <x-slot name="content">
-                    @foreach ($team->users->sortBy('name') as $user)
-                        <div class="d-flex justify-content-between mb-3">
-                            <div class="d-flex justify-content-start">
-                                <div class="pr-3">
-                                    <img width="32" class="rounded-circle" src="{{ $user->profile_photo_url }}">
-                                </div>
-                                <span>{{ $user->name }}</span>
+            <!-- Team Member List -->
+            <x-slot name="content">
+                @foreach ($team->users->sortBy('name') as $user)
+                    <div class="d-flex justify-content-between mb-3">
+                        <div class="d-flex justify-content-start">
+                            <div class="pr-3">
+                                <img width="32" class="rounded-circle" src="{{ $user->profile_photo_url }}">
                             </div>
-
-                            <div class="d-flex">
-                                <!-- Manage Team Member Role -->
-                                @if (Gate::check('addTeamMember', $team) && Laravel\Jetstream\Jetstream::hasRoles())
-                                    <button class="btn btn-link text-secondary" wire:click="$emit('manageRole', {{ $user->id }})">
-                                        {{ Laravel\Jetstream\Jetstream::findRole($user->membership->role)->name }}
-                                    </button>
-                                @elseif (Laravel\Jetstream\Jetstream::hasRoles())
-                                    <button class="btn btn-link text-secondary disabled text-decoration-none ml-2">
-                                        {{ Laravel\Jetstream\Jetstream::findRole($user->membership->role)->name }}
-                                    </button>
-                                @endif
-
-                            <!-- Leave Team -->
-                                @if ($this->user->id === $user->id)
-                                    <button class="btn btn-link text-danger text-decoration-none" wire:click="$emit('confirmingLeavingTeam')">
-                                        Leave
-                                    </button>
-
-                                    <!-- Remove Team Member -->
-                                @elseif (Gate::check('removeTeamMember', $team))
-                                    <button class="btn btn-link text-danger text-decoration-none" wire:click="$emit('confirmTeamMemberRemoval', {{ $user->id }})">
-                                        Remove
-                                    </button>
-                                @endif
-                            </div>
+                            <span>{{ $user->name }}</span>
                         </div>
-                    @endforeach
-                </x-slot>
-            </x-jet-action-section>
-        </div>
+
+                        <div class="d-flex">
+                            <!-- Manage Team Member Role -->
+                            @if (Gate::check('addTeamMember', $team) && Laravel\Jetstream\Jetstream::hasRoles())
+                                <button class="btn btn-link text-secondary" wire:click="$emit('manageRole', {{ $user->id }})">
+                                    {{ Laravel\Jetstream\Jetstream::findRole($user->membership->role)->name }}
+                                </button>
+                            @elseif (Laravel\Jetstream\Jetstream::hasRoles())
+                                <button class="btn btn-link text-secondary disabled text-decoration-none ml-2">
+                                    {{ Laravel\Jetstream\Jetstream::findRole($user->membership->role)->name }}
+                                </button>
+                            @endif
+
+                        <!-- Leave Team -->
+                            @if ($this->user->id === $user->id)
+                                <button class="btn btn-link text-danger text-decoration-none" wire:click="$emit('confirmingLeavingTeam')">
+                                    Leave
+                                </button>
+
+                                <!-- Remove Team Member -->
+                            @elseif (Gate::check('removeTeamMember', $team))
+                                <button class="btn btn-link text-danger text-decoration-none" wire:click="$emit('confirmTeamMemberRemoval', {{ $user->id }})">
+                                    Remove
+                                </button>
+                            @endif
+                        </div>
+                    </div>
+                @endforeach
+            </x-slot>
+    </x-jet-action-section>
     @endif
 
 <!-- Role Management Modal -->

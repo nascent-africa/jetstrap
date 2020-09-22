@@ -11,7 +11,7 @@
                         </svg>
                     </div>
                 </div>
-                <div class="">
+                <div>
                     <h5 class="font-weight-bold">{{ $title }}</h5>
                     {{ $content }}
                 </div>

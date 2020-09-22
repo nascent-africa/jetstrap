@@ -8,7 +8,7 @@
     </x-slot>
 
     <x-slot name="content">
-        <h3 class="text-lg font-medium text-gray-900">
+        <h3 class="h5 font-weight-bold">
             @if ($this->enabled)
                 You have enabled two factor authentication.
             @else
@@ -25,7 +25,7 @@
         @if ($this->enabled)
             @if ($showingQrCode)
                 <div class="mt-3">
-                    <p class="font-semibold">
+                    <p>
                         Two factor authentication is now enabled. Scan the following QR code using your phone's authenticator application.
                     </p>
                 </div>
@@ -37,7 +37,7 @@
 
             @if ($showingRecoveryCodes)
                 <div class="mt-4">
-                    <p class="font-semibold">
+                    <p>
                         Store these recovery codes in a secure password manager. They can be used to recover access to your account if your two factor authentication device is lost.
                     </p>
                 </div>

@@ -5,7 +5,5 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <x-jet-welcome />
-    </div>
+    <x-jet-welcome />
 </x-app-layout>
