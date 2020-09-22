@@ -27,4 +27,24 @@ class InstallCommandTest extends TestCase
             ->expectsOutput('Please execute the "npm install && npm run dev" command to build your assets.')
             ->assertExitCode(0);
     }
+
+    /** @test */
+    public function livewire_swapped_with_teams_without_error()
+    {
+        // Run the make command
+        $this->artisan('jetstrap:swap livewire --teams')
+            ->expectsOutput('Bootstrap scaffolding swapped for livewire successfully.')
+            ->expectsOutput('Please execute the "npm install && npm run dev" command to build your assets.')
+            ->assertExitCode(0);
+    }
+
+    /** @test */
+    public function inertia_swapped_teams_without_error()
+    {
+        // Run the make command
+        $this->artisan('jetstrap:swap inertia --teams')
+            ->expectsOutput('Bootstrap scaffolding swapped for inertia successfully.')
+            ->expectsOutput('Please execute the "npm install && npm run dev" command to build your assets.')
+            ->assertExitCode(0);
+    }
 }

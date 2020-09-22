@@ -9,23 +9,24 @@
         </template>
 
         <template #form>
-            <div class="col-span-6">
+            <div class="mb-4">
                 <jet-label value="Team Owner" />
 
-                <div class="flex items-center mt-2">
-                    <img class="w-12 h-12 rounded-full" :src="$page.user.profile_photo_url">
+                <div class="d-flex mt-2">
+                    <img class="rounded-circle" width="48" :src="$page.user.profile_photo_url" :alt="$page.user.name">
 
-                    <div class="ml-4 leading-tight">
+                    <div class="ml-2">
                         <div>{{ $page.user.name }}</div>
-                        <div class="text-gray-700 text-sm">{{ $page.user.email }}</div>
+                        <div class="text-muted">{{ $page.user.email }}</div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-span-6 sm:col-span-4">
+            <div class="w-75">
                 <jet-label for="name" value="Team Name" />
-                <jet-input id="name" type="text" class="mt-1 block w-full" v-model="form.name" autofocus />
-                <jet-input-error :message="form.error('name')" class="mt-2" />
+                <jet-input id="name" type="text" v-model="form.name" autofocus
+                           :class="{ 'is-invalid': form.error('name') }" />
+                <jet-input-error :message="form.error('name')" />
             </div>
         </template>
 
@@ -34,7 +35,7 @@
                 Saved.
             </jet-action-message>
 
-            <jet-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+            <jet-button :class="{ 'text-black-50': form.processing }" :disabled="form.processing">
                 Save
             </jet-button>
         </template>

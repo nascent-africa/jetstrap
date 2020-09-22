@@ -146,7 +146,6 @@ class InstallCommand extends Command
         (new Filesystem)->ensureDirectoryExists(public_path('css'));
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Jetstream'));
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Layouts'));
-        (new Filesystem)->ensureDirectoryExists(resource_path('js/Mixins'));
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Pages'));
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Pages/API'));
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Pages/Profile'));
@@ -166,7 +165,6 @@ class InstallCommand extends Command
 
         (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/inertia/resources/js/Jetstream', resource_path('js/Jetstream'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/inertia/resources/js/Layouts', resource_path('js/Layouts'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/inertia/resources/js/Mixins', resource_path('js/Mixins'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/inertia/resources/js/Pages/API', resource_path('js/Pages/API'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/inertia/resources/js/Pages/Profile', resource_path('js/Pages/Profile'));
 

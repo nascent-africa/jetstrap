@@ -14,45 +14,41 @@
                 </template>
 
                 <template #form>
-                    <div class="col-span-6">
-                        <div class="max-w-xl text-sm text-gray-600">
-                            Please provide the email address of the person you would like to add to this team. The email address must be associated with an existing account.
-                        </div>
+                    <div class="mb-3">
+                        Please provide the email address of the person you would like to add to this team. The email address must be associated with an existing account.
                     </div>
 
                     <!-- Member Email -->
-                    <div class="col-span-6 sm:col-span-4">
+                    <div class="mb-2 w-75">
                         <jet-label for="email" value="Email" />
-                        <jet-input id="name" type="text" class="mt-1 block w-full" v-model="addTeamMemberForm.email" />
-                        <jet-input-error :message="addTeamMemberForm.error('email')" class="mt-2" />
+                        <jet-input id="name" type="text" v-model="addTeamMemberForm.email"
+                                   :class="{ 'is-invalid': addTeamMemberForm.error('email') }" />
+                        <jet-input-error :message="addTeamMemberForm.error('email')" />
                     </div>
 
                     <!-- Role -->
-                    <div class="col-span-6 lg:col-span-4" v-if="availableRoles.length > 0">
+                    <div class="mb-3 w-75" v-if="availableRoles.length > 0">
                         <jet-label for="roles" value="Role" />
-                        <jet-input-error :message="addTeamMemberForm.error('role')" class="mt-2" />
 
-                        <div class="mt-1 border border-gray-200 rounded-lg cursor-pointer">
-                            <div class="px-4 py-3"
-                                            :class="{'border-t border-gray-200': i > 0}"
-                                            @click="addTeamMemberForm.role = role.key"
-                                            v-for="(role, i) in availableRoles">
-                                <div :class="{'opacity-50': addTeamMemberForm.role && addTeamMemberForm.role != role.key}">
-                                    <!-- Role Name -->
-                                    <div class="flex items-center">
-                                        <div class="text-sm text-gray-600" :class="{'font-semibold': addTeamMemberForm.role == role.key}">
-                                            {{ role.name }}
-                                        </div>
+                        <input type="hidden" :class="{ 'is-invalid': addTeamMemberForm.error('role') }">
+                        <jet-input-error :message="addTeamMemberForm.error('role')" />
 
-                                        <svg v-if="addTeamMemberForm.role == role.key" class="ml-2 h-5 w-5 text-green-400" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                    </div>
+                        <div class="list-group">
+                            <a href="#" class="list-group-item list-group-item-action" :class="{'text-black-50': addTeamMemberForm.role && addTeamMemberForm.role != role.key}"
+                               @click.prevent="addTeamMemberForm.role = role.key" v-for="(role, i) in availableRoles">
+                                <div>
+                                    <span :class="{'font-weight-bold': addTeamMemberForm.role == role.key}">
+                                        {{ role.name }}
+                                    </span>
 
-                                    <!-- Role Description -->
-                                    <div class="mt-2 text-xs text-gray-600">
-                                        {{ role.description }}
-                                    </div>
+                                    <svg v-if="addTeamMemberForm.role == role.key" class="ml-1 text-success font-weight-light" width="20" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                 </div>
-                            </div>
+
+                                <!-- Role Description -->
+                                <div class="mt-2">
+                                    {{ role.description }}
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </template>
@@ -62,7 +58,7 @@
                         Added.
                     </jet-action-message>
 
-                    <jet-button :class="{ 'opacity-25': addTeamMemberForm.processing }" :disabled="addTeamMemberForm.processing">
+                    <jet-button :class="{ 'text-black-50': addTeamMemberForm.processing }" :disabled="addTeamMemberForm.processing">
                         Add
                     </jet-button>
                 </template>
@@ -73,7 +69,7 @@
             <jet-section-border />
 
             <!-- Manage Team Members -->
-            <jet-action-section class="mt-10 sm:mt-0">
+            <jet-action-section>
                 <template #title>
                     Team Members
                 </template>
@@ -84,39 +80,39 @@
 
                 <!-- Team Member List -->
                 <template #content>
-                    <div class="space-y-6">
-                        <div class="flex items-center justify-between" v-for="user in team.users">
-                            <div class="flex items-center">
-                                <img class="w-8 h-8 rounded-full" :src="user.profile_photo_url">
-                                <div class="ml-4">{{ user.name }}</div>
+                    <div class="d-flex justify-content-between mb-3" v-for="user in team.users">
+                        <div class="d-flex justify-content-start">
+                            <div class="pr-3">
+                                <img width="32" class="rounded-circle" :src="user.profile_photo_url" :alt="user.name">
+                            </div>
+                            <span>{{ user.name }}</span>
+                        </div>
+
+                        <div class="d-flex">
+                            <!-- Manage Team Member Role -->
+                            <button class="btn btn-link text-secondary"
+                                    v-if="userPermissions.canAddTeamMembers && availableRoles.length > 0"
+                                    @click="manageRole(user)">
+                                {{ displayableRole(user.membership.role) }}
+                            </button>
+
+                            <div class="btn btn-link text-secondary disabled text-decoration-none ml-2" v-else-if="availableRoles.length > 0">
+                                {{ displayableRole(user.membership.role) }}
                             </div>
 
-                            <div class="flex items-center">
-                                <!-- Manage Team Member Role -->
-                                <button class="ml-2 text-sm text-gray-400 underline"
-                                        v-if="userPermissions.canAddTeamMembers && availableRoles.length > 0"
-                                        @click="manageRole(user)">
-                                    {{ displayableRole(user.membership.role) }}
-                                </button>
+                            <!-- Leave Team -->
+                            <button class="btn btn-link text-danger text-decoration-none"
+                                    @click="confirmLeavingTeam"
+                                    v-if="$page.user.id === user.id">
+                                Leave
+                            </button>
 
-                                <div class="ml-2 text-sm text-gray-400" v-else-if="availableRoles.length > 0">
-                                    {{ displayableRole(user.membership.role) }}
-                                </div>
-
-                                <!-- Leave Team -->
-                                <button class="cursor-pointer ml-6 text-sm text-red-500 focus:outline-none"
-                                                    @click="confirmLeavingTeam"
-                                                    v-if="$page.user.id === user.id">
-                                    Leave
-                                </button>
-
-                                <!-- Remove Team Member -->
-                                <button class="cursor-pointer ml-6 text-sm text-red-500 focus:outline-none"
-                                                    @click="confirmTeamMemberRemoval(user)"
-                                                    v-if="userPermissions.canRemoveTeamMembers">
-                                    Remove
-                                </button>
-                            </div>
+                            <!-- Remove Team Member -->
+                            <button class="btn btn-link text-danger text-decoration-none"
+                                    @click="confirmTeamMemberRemoval(user)"
+                                    v-if="userPermissions.canRemoveTeamMembers">
+                                Remove
+                            </button>
                         </div>
                     </div>
                 </template>
@@ -124,51 +120,44 @@
         </div>
 
         <!-- Role Management Modal -->
-        <jet-dialog-modal :show="currentlyManagingRole" @close="currentlyManagingRole = false">
+        <jet-dialog-modal id="currentlyManagingRoleModal">
             <template #title>
                 Manage Role
             </template>
 
             <template #content>
-                <div v-if="managingRoleFor">
-                    <div class="mt-1 border border-gray-200 rounded-lg cursor-pointer">
-                        <div class="px-4 py-3"
-                                        :class="{'border-t border-gray-200': i > 0}"
-                                        @click="updateRoleForm.role = role.key"
-                                        v-for="(role, i) in availableRoles">
-                            <div :class="{'opacity-50': updateRoleForm.role && updateRoleForm.role != role.key}">
-                                <!-- Role Name -->
-                                <div class="flex items-center">
-                                    <div class="text-sm text-gray-600" :class="{'font-semibold': updateRoleForm.role == role.key}">
-                                        {{ role.name }}
-                                    </div>
+                <div class="list-group" v-if="managingRoleFor">
+                    <a href="#" class="list-group-item list-group-item-action" :class="{'text-black-50': updateRoleForm.role && updateRoleForm.role != role.key}"
+                       @click.prevent="updateRoleForm.role = role.key" v-for="(role, i) in availableRoles">
+                        <div>
+                            <span :class="{'font-weight-bold': updateRoleForm.role == role.key}">
+                                {{ role.name }}
+                            </span>
 
-                                    <svg v-if="updateRoleForm.role == role.key" class="ml-2 h-5 w-5 text-green-400" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                </div>
-
-                                <!-- Role Description -->
-                                <div class="mt-2 text-xs text-gray-600">
-                                    {{ role.description }}
-                                </div>
-                            </div>
+                            <svg v-if="updateRoleForm.role == role.key" class="ml-1 text-success font-weight-light" width="20" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                         </div>
-                    </div>
+
+                        <!-- Role Description -->
+                        <div class="mt-2">
+                            {{ role.description }}
+                        </div>
+                    </a>
                 </div>
             </template>
 
             <template #footer>
-                <jet-secondary-button @click.native="currentlyManagingRole = false">
+                <jet-secondary-button data-dismiss="modal">
                     Nevermind
                 </jet-secondary-button>
 
-                <jet-button class="ml-2" @click.native="updateRole" :class="{ 'opacity-25': updateRoleForm.processing }" :disabled="updateRoleForm.processing">
+                <jet-button class="ml-2" @click.native="updateRole" :class="{ 'text-black-50': updateRoleForm.processing }" :disabled="updateRoleForm.processing">
                     Save
                 </jet-button>
             </template>
         </jet-dialog-modal>
 
         <!-- Leave Team Confirmation Modal -->
-        <jet-confirmation-modal :show="confirmingLeavingTeam" @close="confirmingLeavingTeam = false">
+        <jet-confirmation-modal id="confirmingLeavingTeamModal">
             <template #title>
                 Leave Team
             </template>
@@ -178,18 +167,18 @@
             </template>
 
             <template #footer>
-                <jet-secondary-button @click.native="confirmingLeavingTeam = false">
+                <jet-secondary-button data-dismiss="modal">
                     Nevermind
                 </jet-secondary-button>
 
-                <jet-danger-button class="ml-2" @click.native="leaveTeam" :class="{ 'opacity-25': leaveTeamForm.processing }" :disabled="leaveTeamForm.processing">
+                <jet-danger-button class="ml-2" @click.native="leaveTeam" :class="{ 'text-white-50': leaveTeamForm.processing }" :disabled="leaveTeamForm.processing">
                     Leave
                 </jet-danger-button>
             </template>
         </jet-confirmation-modal>
 
         <!-- Remove Team Member Confirmation Modal -->
-        <jet-confirmation-modal :show="teamMemberBeingRemoved" @close="teamMemberBeingRemoved = null">
+        <jet-confirmation-modal id="teamMemberBeingRemovedModal">
             <template #title>
                 Remove Team Member
             </template>
@@ -199,11 +188,11 @@
             </template>
 
             <template #footer>
-                <jet-secondary-button @click.native="teamMemberBeingRemoved = null">
+                <jet-secondary-button data-dismiss="modal">
                     Nevermind
                 </jet-secondary-button>
 
-                <jet-danger-button class="ml-2" @click.native="removeTeamMember" :class="{ 'opacity-25': removeTeamMemberForm.processing }" :disabled="removeTeamMemberForm.processing">
+                <jet-danger-button class="ml-2" @click.native="removeTeamMember" :class="{ 'text-white-50': removeTeamMemberForm.processing }" :disabled="removeTeamMemberForm.processing">
                     Remove
                 </jet-danger-button>
             </template>
@@ -276,10 +265,9 @@
                     bag: 'removeTeamMember',
                 }),
 
-                currentlyManagingRole: false,
                 managingRoleFor: null,
-                confirmingLeavingTeam: false,
                 teamMemberBeingRemoved: null,
+                modal: null
             }
         },
 
@@ -294,26 +282,34 @@
                 this.managingRoleFor = teamMember
                 this.updateRoleForm.role = teamMember.membership.role
                 this.currentlyManagingRole = true
+
+                this.modal = new Bootstrap.Modal(document.getElementById('currentlyManagingRoleModal'))
+                this.modal.toggle()
             },
 
             updateRole() {
                 this.updateRoleForm.put('/teams/' + this.team.id + '/members/' + this.managingRoleFor.id, {
                     preserveScroll: true,
                 }).then(() => {
-                    this.currentlyManagingRole = false
+                    this.modal.toggle()
                 })
             },
 
             confirmLeavingTeam() {
-                this.confirmingLeavingTeam = true
+                this.modal = new Bootstrap.Modal(document.getElementById('confirmingLeavingTeamModal'))
+                this.modal.toggle()
             },
 
             leaveTeam() {
-                this.leaveTeamForm.delete('/teams/' + this.team.id + '/members/' + this.$page.user.id)
+                this.leaveTeamForm.delete('/teams/' + this.team.id + '/members/' + this.$page.user.id).then(() => {
+                    this.modal.toggle()
+                })
             },
 
             confirmTeamMemberRemoval(teamMember) {
                 this.teamMemberBeingRemoved = teamMember
+                this.modal = new Bootstrap.Modal(document.getElementById('teamMemberBeingRemovedModal'))
+                this.modal.toggle()
             },
 
             removeTeamMember() {
@@ -322,6 +318,7 @@
                     preserveState: true,
                 }).then(() => {
                     this.teamMemberBeingRemoved = null
+                    this.modal.toggle()
                 })
             },
 

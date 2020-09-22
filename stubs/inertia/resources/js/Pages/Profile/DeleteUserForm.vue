@@ -9,18 +9,18 @@
         </template>
 
         <template #content>
-            <div class="max-w-xl text-sm text-gray-600">
+            <div>
                 Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.
             </div>
 
-            <div class="mt-5">
+            <div class="mt-3">
                 <jet-danger-button @click.native="confirmUserDeletion">
                     Delete Account
                 </jet-danger-button>
             </div>
 
             <!-- Delete Account Confirmation Modal -->
-            <jet-dialog-modal :show="confirmingUserDeletion" @close="confirmingUserDeletion = false">
+            <jet-dialog-modal id="confirmingUserDeletionModal">
                 <template #title>
                     Delete Account
                 </template>
@@ -29,21 +29,22 @@
                     Are you sure you want to delete your account? Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.
 
                     <div class="mt-4">
-                        <jet-input type="password" class="mt-1 block w-3/4" placeholder="Password"
+                        <jet-input type="password" placeholder="Password"
                                     ref="password"
                                     v-model="form.password"
+                                   :class="{ 'is-invalid': form.error('password') }"
                                     @keyup.enter.native="deleteUser" />
 
-                        <jet-input-error :message="form.error('password')" class="mt-2" />
+                        <jet-input-error :message="form.error('password')" />
                     </div>
                 </template>
 
                 <template #footer>
-                    <jet-secondary-button @click.native="confirmingUserDeletion = false">
+                    <jet-secondary-button data-dismiss="modal">
                         Nevermind
                     </jet-secondary-button>
 
-                    <jet-danger-button class="ml-2" @click.native="deleteUser" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                    <jet-danger-button @click.native="deleteUser" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                         Delete Account
                     </jet-danger-button>
                 </template>
@@ -74,7 +75,8 @@
 
         data() {
             return {
-                confirmingUserDeletion: false,
+                modal: null,
+
                 deleting: false,
 
                 form: this.$inertia.form({
@@ -90,7 +92,9 @@
             confirmUserDeletion() {
                 this.form.password = '';
 
-                this.confirmingUserDeletion = true;
+                this.modal = new Bootstrap.Modal(document.getElementById('confirmingUserDeletionModal'))
+
+                this.modal.toggle()
 
                 setTimeout(() => {
                     this.$refs.password.focus()
@@ -102,7 +106,7 @@
                     preserveScroll: true
                 }).then(response => {
                     if (! this.form.hasErrors()) {
-                        this.confirmingUserDeletion = false;
+                        this.modal.toggle()
                     }
                 })
             },
