@@ -45,7 +45,8 @@
                     Nevermind
                 </x-jet-secondary-button>
 
-                <x-jet-danger-button wire:click="deleteUser" wire:loading.attr="disabled">
+                <x-jet-danger-button wire:click="deleteUser" wire:loading.attr="disabled"
+                                     data-dismiss="modal">
                     Delete Account
                 </x-jet-danger-button>
             </x-slot>
