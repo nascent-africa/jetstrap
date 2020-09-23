@@ -34,7 +34,14 @@
     "laravel": {
       "providers": [
         "NascentAfrica\\Jetstrap\\JetstrapServiceProvider"
-      ]
+      ],
+      "aliases": {
+        "Jetstrap": "NascentAfrica\\Jetstrap\\JetstrapFacade"
+      }
     }
+  },
+  "scripts": {
+    "tests": "vendor/bin/phpunit",
+    "testsVerbose": "@tests -vvv"
   }
 }
