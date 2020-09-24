@@ -81,7 +81,8 @@
             </x-slot>
 
             <x-slot name="footer">
-                <x-jet-secondary-button wire:click="$toggle('confirmingLogout')" wire:loading.attr="disabled">
+                <x-jet-secondary-button wire:click="$toggle('confirmingLogout')" wire:loading.attr="disabled"
+                                        data-dismiss="modal">
                     Nevermind
                 </x-jet-secondary-button>
 
