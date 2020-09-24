@@ -10,7 +10,7 @@
         <div>{{ $team->name }}</div>
     </div>
 
-    <form method="POST" action="/current-team" id="switch-team-form-{{ $team->id }}">
+    <form method="POST" action="{{ route('current-team.update') }}" id="switch-team-form-{{ $team->id }}">
         @method('PUT')
         @csrf
 

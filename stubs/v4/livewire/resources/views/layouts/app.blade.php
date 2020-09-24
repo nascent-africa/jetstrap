@@ -32,7 +32,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <x-jet-nav-link href="/dashboard" :active="request()->routeIs('dashboard')">
+                        <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                             {{ __('Dashboard') }}
                         </x-jet-nav-link>
                     </ul>
@@ -52,12 +52,12 @@
                                         {{ __('Manage Account') }}
                                     </h6>
 
-                                    <x-jet-dropdown-link href="/user/profile">
+                                    <x-jet-dropdown-link href="{{ route('profile.show') }}">
                                         {{ __('Profile') }}
                                     </x-jet-dropdown-link>
 
                                     @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
-                                        <x-jet-dropdown-link href="/user/api-tokens">
+                                        <x-jet-dropdown-link href="{{ route('api-tokens.index') }}">
                                             {{ __('API Tokens') }}
                                         </x-jet-dropdown-link>
                                     @endif
@@ -72,12 +72,12 @@
                                         </h6>
 
                                         <!-- Team Settings -->
-                                        <x-jet-dropdown-link href="/teams/{{ Auth::user()->currentTeam->id }}">
+                                        <x-jet-dropdown-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}">
                                             {{ __('Team Settings') }}
                                         </x-jet-dropdown-link>
 
                                         @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
-                                            <x-jet-dropdown-link href="/teams/create">
+                                            <x-jet-dropdown-link href="{{ route('teams.create') }}">
                                                 {{ __('Create New Team') }}
                                             </x-jet-dropdown-link>
                                         @endcan
