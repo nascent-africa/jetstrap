@@ -4,8 +4,6 @@
             <x-jet-authentication-card-logo />
         </x-slot>
 
-        {{--<div class="card-header">{{ __('Register') }}</div>--}}
-
         <x-jet-validation-errors class="mb-4" />
 
         <div class="card-body">
@@ -13,7 +11,7 @@
                 @csrf
 
                 <div class="mb-3">
-                    <x-jet-label value="Name" />
+                    <x-jet-label value="{{ __('Name') }}" />
 
                     <x-jet-input class="{{ $errors->has('name') ? 'is-invalid' : '' }}" type="text" name="name"
                                  :value="old('name')" required autofocus autocomplete="name" />
@@ -21,7 +19,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <x-jet-label value="Email" />
+                    <x-jet-label value="{{ __('Email') }}" />
 
                     <x-jet-input class="{{ $errors->has('email') ? 'is-invalid' : '' }}" type="email" name="email"
                                  :value="old('email')" required />
@@ -29,7 +27,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <x-jet-label value="Password" />
+                    <x-jet-label value="{{ __('Password') }}" />
 
                     <x-jet-input class="{{ $errors->has('password') ? 'is-invalid' : '' }}" type="password"
                                  name="password" required autocomplete="new-password" />
@@ -37,7 +35,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <x-jet-label value="Confirm Password" />
+                    <x-jet-label value="{{ __('Confirm Password') }}" />
 
                     <x-jet-input class="form-control" type="password" name="password_confirmation" required autocomplete="new-password" />
                 </div>

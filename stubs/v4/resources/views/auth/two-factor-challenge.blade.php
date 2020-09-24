@@ -20,14 +20,14 @@
                     @csrf
 
                     <div class="mt-4" x-show="! recovery">
-                        <x-jet-label value="Code" />
+                        <x-jet-label value="{{ __('Code') }}" />
                         <x-jet-input class="{{ $errors->has('code') ? 'is-invalid' : '' }}" type="text"
                                      name="code" autofocus x-ref="code" autocomplete="one-time-code" />
                         <x-jet-input-error for="code"></x-jet-input-error>
                     </div>
 
                     <div class="mt-4" x-show="recovery">
-                        <x-jet-label value="Recovery Code" />
+                        <x-jet-label value="{{ __('Recovery Code') }}" />
                         <x-jet-input class="{{ $errors->has('recovery_code') ? 'is-invalid' : '' }}" type="text"
                                      name="recovery_code" x-ref="recovery_code" autocomplete="one-time-code" />
                         <x-jet-input-error for="recovery_code"></x-jet-input-error>

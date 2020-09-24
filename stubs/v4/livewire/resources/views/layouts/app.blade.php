@@ -33,7 +33,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <x-jet-nav-link href="/dashboard" :active="request()->routeIs('dashboard')">
-                            Dashboard
+                            {{ __('Dashboard') }}
                         </x-jet-nav-link>
                     </ul>
 
@@ -49,16 +49,16 @@
                                 <x-slot name="content">
                                     <!-- Account Management -->
                                     <h6 class="dropdown-header small text-muted">
-                                        Manage Account
+                                        {{ __('Manage Account') }}
                                     </h6>
 
                                     <x-jet-dropdown-link href="/user/profile">
-                                        Profile
+                                        {{ __('Profile') }}
                                     </x-jet-dropdown-link>
 
                                     @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                                         <x-jet-dropdown-link href="/user/api-tokens">
-                                            API Tokens
+                                            {{ __('API Tokens') }}
                                         </x-jet-dropdown-link>
                                     @endif
 
@@ -68,17 +68,17 @@
                                         <hr class="dropdown-divider">
 
                                         <h6 class="dropdown-header">
-                                            Manage Team
+                                            {{ __('Manage Team') }}
                                         </h6>
 
                                         <!-- Team Settings -->
                                         <x-jet-dropdown-link href="/teams/{{ Auth::user()->currentTeam->id }}">
-                                            Team Settings
+                                            {{ __('Team Settings') }}
                                         </x-jet-dropdown-link>
 
                                         @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
                                             <x-jet-dropdown-link href="/teams/create">
-                                                Create New Team
+                                                {{ __('Create New Team') }}
                                             </x-jet-dropdown-link>
                                         @endcan
 
@@ -86,7 +86,7 @@
 
                                         <!-- Team Switcher -->
                                         <h6 class="dropdown-header">
-                                            Switch Teams
+                                            {{ __('Switch Teams') }}
                                         </h6>
 
                                         @foreach (Auth::user()->allTeams() as $team)

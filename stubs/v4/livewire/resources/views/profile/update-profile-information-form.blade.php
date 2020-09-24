@@ -1,10 +1,10 @@
 <x-jet-form-section submit="updateProfileInformation">
     <x-slot name="title">
-        Profile Information
+        {{ __('Profile Information') }}
     </x-slot>
 
     <x-slot name="description">
-        Update your account's profile information and email address.
+        {{ __('Update your account\'s profile information and email address.') }}
     </x-slot>
 
     <x-slot name="form">
@@ -24,7 +24,7 @@
                                     reader.readAsDataURL($refs.photo.files[0]);
                             " />
 
-                <x-jet-label for="photo" value="Photo" />
+                <x-jet-label for="photo" value="{{ __('Photo') }}" />
 
                 <!-- Current Profile Photo -->
                 <div class="mt-2" x-show="! photoPreview">
@@ -37,7 +37,7 @@
                 </div>
 
                 <x-jet-secondary-button class="mt-2" type="button" x-on:click.prevent="$refs.photo.click()">
-                    Select A New Photo
+                    {{ __('Select A New Photo') }}
                 </x-jet-secondary-button>
 
                 <x-jet-input-error for="photo" class="mt-2" />
@@ -47,14 +47,14 @@
         <div class="w-75">
             <!-- Name -->
             <div class="mb-3">
-                <x-jet-label for="name" value="Name" />
+                <x-jet-label for="name" value="{{ __('Name') }}" />
                 <x-jet-input id="name" type="text" class="{{ $errors->has('name') ? 'is-invalid' : '' }}" wire:model.defer="state.name" autocomplete="name" />
                 <x-jet-input-error for="name" />
             </div>
 
             <!-- Email -->
             <div>
-                <x-jet-label for="email" value="Email" />
+                <x-jet-label for="email" value="{{ __('Email') }}" />
                 <x-jet-input id="email" type="email" class="{{ $errors->has('email') ? 'is-invalid' : '' }}" wire:model.defer="state.email" />
                 <x-jet-input-error for="email" />
             </div>
@@ -63,11 +63,11 @@
 
     <x-slot name="actions">
         <x-jet-action-message class="mr-3" on="saved">
-            Saved.
+            {{ __('Saved.') }}
         </x-jet-action-message>
 
         <x-jet-button>
-            Save
+            {{ __('Save') }}
         </x-jet-button>
     </x-slot>
 </x-jet-form-section>
