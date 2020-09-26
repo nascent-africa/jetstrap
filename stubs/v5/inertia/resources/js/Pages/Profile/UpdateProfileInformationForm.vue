@@ -28,8 +28,12 @@
                     <img :src="photoPreview" class="rounded-circle" width="80px" height="80px">
                 </div>
 
-                <jet-secondary-button class="mt-2" type="button" @click.native.prevent="selectNewPhoto">
+                <jet-secondary-button class="mt-2 mr-2" type="button" @click.native.prevent="selectNewPhoto">
                     Select A New Photo
+                </jet-secondary-button>
+
+				<jet-secondary-button type="button" class="mt-2" @click.native.prevent="deletePhoto" v-if="$page.user.profile_photo_path">
+                    Remove Photo
                 </jet-secondary-button>
 
                 <jet-input-error :message="form.error('photo')" class="mt-2" />

@@ -36,9 +36,15 @@
                     <img x-bind:src="photoPreview" class="rounded-circle" width="80px" height="80px">
                 </div>
 
-                <x-jet-secondary-button class="mt-2" type="button" x-on:click.prevent="$refs.photo.click()">
+                <x-jet-secondary-button class="mt-2 mr-2" type="button" x-on:click.prevent="$refs.photo.click()">
                     {{ __('Select A New Photo') }}
-                </x-jet-secondary-button>
+				</x-jet-secondary-button>
+				
+				@if ($this->user->profile_photo_path)
+                    <x-jet-secondary-button type="button" class="mt-2" wire:click="deleteProfilePhoto">
+                        {{ __('Remove Photo') }}
+                    </x-jet-secondary-button>
+                @endif
 
                 <x-jet-input-error for="photo" class="mt-2" />
             </div>
@@ -62,12 +68,14 @@
     </x-slot>
 
     <x-slot name="actions">
-        <x-jet-action-message class="mr-3" on="saved">
-            {{ __('Saved.') }}
-        </x-jet-action-message>
+		<div class="d-flex align-items-baseline">
+			<x-jet-action-message class="mr-3" on="saved">
+				{{ __('Saved.') }}
+			</x-jet-action-message>
 
-        <x-jet-button>
-            {{ __('Save') }}
-        </x-jet-button>
+			<x-jet-button>
+				{{ __('Save') }}
+			</x-jet-button>
+		</div>
     </x-slot>
 </x-jet-form-section>
