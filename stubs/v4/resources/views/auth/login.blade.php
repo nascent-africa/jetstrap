@@ -43,7 +43,7 @@
                 </div>
 
                 <div class="mb-0">
-                    <div class="d-flex justify-content-end">
+                    <div class="d-flex justify-content-end align-items-baseline">
                         @if (Route::has('password.request'))
                             <a class="text-muted mr-3" href="{{ route('password.request') }}">
                                 {{ __('Forgot your password?') }}

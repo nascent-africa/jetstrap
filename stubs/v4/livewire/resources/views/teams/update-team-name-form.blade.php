@@ -10,7 +10,7 @@
     <x-slot name="form">
         <!-- Team Owner Information -->
         <div class="mb-4">
-            <x-jet-label value="Team Owner" />
+            <x-jet-label value="{{ __('Team Owner') }}" />
 
             <div class="d-flex mt-2">
                 <img class="rounded-circle" width="48" src="{{ $team->owner->profile_photo_url }}">
@@ -24,7 +24,7 @@
 
         <!-- Team Name -->
         <div class="w-75">
-            <x-jet-label for="name" value="Team Name" />
+            <x-jet-label for="name" value="{{ __('Team Name') }}" />
 
             <x-jet-input id="name"
                          type="text"
@@ -38,13 +38,15 @@
 
     @if (Gate::check('update', $team))
         <x-slot name="actions">
-            <x-jet-action-message class="mr-3" on="saved">
-                {{ __('Saved.') }}
-            </x-jet-action-message>
+			<div class="d-flex align-items-baseline">
+				<x-jet-action-message class="mr-3" on="saved">
+					{{ __('Saved.') }}
+				</x-jet-action-message>
 
-            <x-jet-button>
-                {{ __('Save') }}
-            </x-jet-button>
+				<x-jet-button>
+					{{ __('Save') }}
+				</x-jet-button>
+			</div>
         </x-slot>
     @endif
 </x-jet-form-section>
