@@ -2,6 +2,7 @@
 
 namespace NascentAfrica\Jetstrap;
 
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
 class JetstrapServiceProvider extends ServiceProvider
@@ -27,6 +28,9 @@ class JetstrapServiceProvider extends ServiceProvider
     {
         $this->configurePublishing();
         $this->configureCommands();
+
+        // Use pagination views built using Bootstrap
+        Paginator::useBootstrap();
     }
 
     /**
