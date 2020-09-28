@@ -50,35 +50,38 @@
                 </div>
             </div>
 
-            <div class="mt-3">
-                <div v-if="! twoFactorEnabled">
-                    <jet-button type="button" @click.native="enableTwoFactorAuthentication"
-                                        :class="{ 'text-black-50': enabling }"
-                                        :disabled="enabling">
-                        Enable
-                    </jet-button>
-                </div>
-
-                <div v-else>
-                    <jet-secondary-button class="mr-3"
-                                    @click.native="regenerateRecoveryCodes"
-                                    v-if="recoveryCodes.length > 0">
-                        Regenerate Recovery Codes
-                    </jet-secondary-button>
-
-                    <jet-secondary-button class="mr-3"
-                                @click.native="showRecoveryCodes"
-                                v-else>
-                        Show Recovery Codes
-                    </jet-secondary-button>
-
-                    <jet-danger-button @click.native="disableTwoFactorAuthentication"
-                                    :class="{ 'text-white-50': disabling }"
-                                    :disabled="disabling">
-                        Disable
-                    </jet-danger-button>
-                </div>
+          <div class="mt-3">
+            <div v-if="! twoFactorEnabled">
+              <jet-confirms-password @confirmed="enableTwoFactorAuthentication">
+                <jet-button type="button" :class="{ 'text-white-50': enabling }" :disabled="enabling">
+                  Enable
+                </jet-button>
+              </jet-confirms-password>
             </div>
+
+            <div v-else>
+              <jet-confirms-password @confirmed="regenerateRecoveryCodes">
+                <jet-secondary-button class="mr-3"
+                                      v-if="recoveryCodes.length > 0">
+                  Regenerate Recovery Codes
+                </jet-secondary-button>
+              </jet-confirms-password>
+
+              <jet-confirms-password @confirmed="showRecoveryCodes">
+                <jet-secondary-button class="mr-3" v-if="recoveryCodes.length == 0">
+                  Show Recovery Codes
+                </jet-secondary-button>
+              </jet-confirms-password>
+
+              <jet-confirms-password @confirmed="disableTwoFactorAuthentication">
+                <jet-danger-button
+                    :class="{ 'text-white-50': disabling }"
+                    :disabled="disabling">
+                  Disable
+                </jet-danger-button>
+              </jet-confirms-password>
+            </div>
+          </div>
         </template>
     </jet-action-section>
 </template>
@@ -86,6 +89,7 @@
 <script>
     import JetActionSection from './../../Jetstream/ActionSection'
     import JetButton from './../../Jetstream/Button'
+    import JetConfirmsPassword from './../../Jetstream/ConfirmsPassword'
     import JetDangerButton from './../../Jetstream/DangerButton'
     import JetSecondaryButton from './../../Jetstream/SecondaryButton'
 
@@ -93,6 +97,7 @@
         components: {
             JetActionSection,
             JetButton,
+            JetConfirmsPassword,
             JetDangerButton,
             JetSecondaryButton,
         },
