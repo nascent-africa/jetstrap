@@ -23,7 +23,8 @@
                         <!-- Authentication Links -->
                         <jet-dropdown id="navbarDropdown">
                             <template #trigger>
-                                <img class="rounded-circle" width="32" height="32" :src="$page.user.profile_photo_url" :alt="$page.user.name" />
+                                <img v-if="$page.jetstream.managesProfilePhotos" class="rounded-circle" width="32" height="32" :src="$page.user.profile_photo_url" :alt="$page.user.name" />
+                                <span v-else>{{ $page.user.name }}</span>
                             </template>
 
                             <template #content>
