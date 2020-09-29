@@ -113,17 +113,31 @@ This will publish overrides to enable Bootstrap like the good old days!
 - `resources/views/teams`
 
 - ~~resources/css~~ `resources/views/sass`
-- ~~tailwind.config.js~~
-- `webpack.mix.js`
+- ~~tailwind.config.js~~ `webpack.mix.js`
 
 ### Finalizing The Installation
 
-After installing Jetstap and swapping Jetstream resources, remove tailwindCSS and its dependencies if any from your package.json and then install and build your NPM dependencies and migrate your database:
+After installing Jetsrtap and swapping Jetstream resources, remove tailwindCSS and its dependencies if any from your package.json and then install and build your NPM dependencies and migrate your database:
 
 ```
 npm install && npm run dev
 
 php artisan migrate
+```
+
+### Extras
+
+#### Pagination
+
+It also important to point out that Laravel includes pagination views built using Bootstrap CSS. To use these views instead of the default Tailwind views, you may call the paginator's useBootstrap method within your AppServiceProvider:
+
+```php
+use Illuminate\Pagination\Paginator;
+
+public function boot()
+{
+    Paginator::useBootstrap();
+}
 ```
 
 ## License
