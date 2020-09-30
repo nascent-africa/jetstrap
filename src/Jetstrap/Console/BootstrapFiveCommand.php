@@ -31,7 +31,7 @@ class BootstrapFiveCommand extends BaseCommand
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
             return [
-                    "bootstrap" => "^5.0.0-alpha1",
+                    "bootstrap" => "^5.0.0-alpha2",
                     "popper.js" => "^1.16.1"
                 ] + $packages;
         });
@@ -95,7 +95,7 @@ class BootstrapFiveCommand extends BaseCommand
             return [
                     '@inertiajs/inertia' => '^0.1.7',
                     '@inertiajs/inertia-vue' => '^0.1.2',
-                    "bootstrap" => "^5.0.0-alpha1",
+                    "bootstrap" => "^5.0.0-alpha2",
                     'laravel-jetstream' => '^0.0.3',
                     "popper.js" => "^1.16.1",
                     'portal-vue' => '^2.1.7',
