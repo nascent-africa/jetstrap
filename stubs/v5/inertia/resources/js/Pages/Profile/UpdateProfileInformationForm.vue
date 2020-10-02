@@ -131,7 +131,15 @@
                 };
 
                 reader.readAsDataURL(this.$refs.photo.files[0]);
-            }
+            },
+
+            deletePhoto() {
+              this.$inertia.delete('/user/profile-photo', {
+                preserveScroll: true,
+              }).then(() => {
+                this.photoPreview = null
+              });
+            },
         }
     }
 </script>
