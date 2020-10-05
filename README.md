@@ -5,7 +5,7 @@
 
 ## Description
 
-On September 8th after spending some time with my fresh sandbox installation of Laravel 8 the first question I asked myself was, "Am I going to learn a new CSS framework or convert the jetstream resources back to Bootstrap", I also tried to let the two co-exist but that created more chaos than the problem is solved.
+On September 8th after spending some time with my fresh sandbox installation of Laravel 8 the first question I asked myself was, "Am I going to learn a new CSS framework or convert the jetstream resources back to Bootstrap", I also tried to let the two co-exist but that created more chaos than the problem it solved.
 
 As a backend developer, Livewire was a dream come true, and since the inception of Vue I've been moving away from jquery so AlpineJS was a welcomed idea, but with Bootstrap 5 on the horizon promising everything that makes Tailwind special I couldn't find a strong reason to commit to learning a new CSS framework also considering the fact that am not supposed to be meddling with front end codes, to begin with.
 
@@ -48,7 +48,7 @@ composer require nascent-africa/jetstrap --dev
 ### Choosing a Bootstrap version
 
 Jetstrap supports two different versions of Bootstrap, version 4 and 5. Version 5 is set as the default version, 
-but you can easily switch to version 4 by using the `JetstrapFacade` in your service provider before performing a swap:
+but you can easily switch to version 4 by using the Jetstrap's bootstrap4 method within your AppServiceProvider before performing a swap:
 
 ```php
 <?php
@@ -129,7 +129,7 @@ php artisan migrate
 
 #### Pagination
 
-It also important to point out that Laravel includes pagination views built using Bootstrap CSS. To use these views instead of the default Tailwind views, you may call the paginator's useBootstrap method within your AppServiceProvider:
+It is also important to point out that Laravel 8 still includes pagination views built using Bootstrap CSS. To use these views instead of the default Tailwind views, you may call the paginator's useBootstrap method within your AppServiceProvider:
 
 ```php
 use Illuminate\Pagination\Paginator;
