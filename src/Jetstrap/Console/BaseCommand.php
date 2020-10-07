@@ -38,6 +38,8 @@ abstract class BaseCommand extends Command
 
         // Install Stack...
         if ($this->argument('stack') === 'livewire') {
+            (new Filesystem)->delete(resource_path('navigation-dropdown.blade.php'));
+
             $this->installLivewireStack();
         } elseif ($this->argument('stack') === 'inertia') {
             $this->installInertiaStack();
