@@ -14,18 +14,6 @@ class BootstrapFiveCommandTest extends TestCase
         JetstrapFacade::bootstrap5();
     }
 
-    /**
-     * Clean up the testing environment before the next test.
-     *
-     * @return void
-     */
-    protected function tearDown(): void
-    {
-        parent::tearDown();
-        $this->cleanLivewireFiles($this->filesystem);
-        $this->cleanInertiaFiles($this->filesystem);
-    }
-
     /** @test */
     public function livewire_swapped()
     {

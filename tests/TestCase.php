@@ -32,6 +32,8 @@ class TestCase extends \Orchestra\Testbench\TestCase
     {
         parent::tearDown();
         $this->cleanResourceDirectory($this->filesystem);
+        $this->cleanLivewireFiles($this->filesystem);
+        $this->cleanInertiaFiles($this->filesystem);
     }
 
     /**
@@ -139,6 +141,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
     protected function basicTests()
     {
         $this->assertFalse($this->filesystem->exists(base_path('tailwind.config.js')));
+        $this->assertFalse($this->filesystem->exists(resource_path('navigation-dropdown.blade.php')));
         $this->assertFalse($this->filesystem->exists(resource_path('css')));
         $this->assertTrue($this->filesystem->exists(base_path('webpack.mix.js')));
     }
