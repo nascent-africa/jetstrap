@@ -6,9 +6,8 @@
                     <slot name="title">
                     </slot>
                 </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+              <!-- Modal close button is different in bootstrap 5 -->
+              <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <slot name="content">

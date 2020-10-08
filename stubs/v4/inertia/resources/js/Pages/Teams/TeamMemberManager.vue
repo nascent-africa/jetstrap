@@ -59,7 +59,7 @@
                         Added.
                     </jet-action-message>
 
-                    <jet-button :class="{ 'text-black-50': addTeamMemberForm.processing }" :disabled="addTeamMemberForm.processing">
+                    <jet-button :class="{ 'text-white-50': addTeamMemberForm.processing }" :disabled="addTeamMemberForm.processing">
                         Add
                     </jet-button>
                 </template>

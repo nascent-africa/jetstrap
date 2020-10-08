@@ -77,7 +77,7 @@
                         Nevermind
                     </jet-secondary-button>
 
-                    <jet-button class="ml-2" @click.native="logoutOtherBrowserSessions" :class="{ 'text-black-50': form.processing }" :disabled="form.processing">
+                    <jet-button class="ml-2" @click.native="logoutOtherBrowserSessions" :class="{ 'text-white-50': form.processing }" :disabled="form.processing">
                         Logout Other Browser Sessions
                     </jet-button>
                 </template>

@@ -35,7 +35,7 @@
                 Saved.
             </jet-action-message>
 
-            <jet-button :class="{ 'text-black-50': form.processing }" :disabled="form.processing">
+            <jet-button :class="{ 'text-white-50': form.processing }" :disabled="form.processing">
                 Save
             </jet-button>
         </template>

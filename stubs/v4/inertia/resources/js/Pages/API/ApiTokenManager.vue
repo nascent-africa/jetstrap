@@ -44,7 +44,7 @@
                     Created.
                 </jet-action-message>
 
-                <jet-button :class="{ 'text-black-50': createApiTokenForm.processing }" :disabled="createApiTokenForm.processing">
+                <jet-button :class="{ 'text-white-50': createApiTokenForm.processing }" :disabled="createApiTokenForm.processing">
                     Create
                 </jet-button>
             </template>
