@@ -218,7 +218,6 @@ class TestCase extends \Orchestra\Testbench\TestCase
         $this->assertTrue($this->filesystem->exists(resource_path('js/Jetstream/SecondaryButton.vue')));
         $this->assertTrue($this->filesystem->exists(resource_path('js/Jetstream/SectionBorder.vue')));
         $this->assertTrue($this->filesystem->exists(resource_path('js/Jetstream/SectionTitle.vue')));
-        $this->assertTrue($this->filesystem->exists(resource_path('js/Jetstream/SwitchableTeam.vue')));
         $this->assertTrue($this->filesystem->exists(resource_path('js/Jetstream/Welcome.vue')));
         $this->assertTrue($this->filesystem->exists(resource_path('js/Layouts/AppLayout.vue')));
         $this->assertTrue($this->filesystem->exists(resource_path('js/Pages/Dashboard.vue')));
