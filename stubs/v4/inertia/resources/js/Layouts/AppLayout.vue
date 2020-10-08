@@ -13,7 +13,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <jet-nav-link href="/dashboard" :active="$page.currentRouteName == 'dashboard'">
+                        <jet-nav-link :href="route('dashboard')" :active="$page.currentRouteName == 'dashboard'">
                             Dashboard
                         </jet-nav-link>
                     </ul>
@@ -23,8 +23,8 @@
                         <!-- Authentication Links -->
                         <jet-dropdown id="navbarDropdown">
                             <template #trigger>
-                                <img v-if="$page.jetstream.managesProfilePhotos" class="rounded-circle" width="32" height="32" :src="$page.user.profile_photo_url" :alt="$page.user.name" />
-                                <span v-else>{{ $page.user.name }}</span>
+                              <img v-if="$page.jetstream.managesProfilePhotos" class="rounded-circle" width="32" height="32" :src="$page.user.profile_photo_url" :alt="$page.user.name" />
+                              <span v-else>{{ $page.user.name }}</span>
                             </template>
 
                             <template #content>
@@ -33,11 +33,11 @@
                                     Manage Account
                                 </h6>
 
-                                <jet-dropdown-link href="/user/profile">
+                                <jet-dropdown-link :href="route('profile.show')">
                                     Profile
                                 </jet-dropdown-link>
 
-                                <jet-dropdown-link href="/user/api-tokens" v-if="$page.jetstream.hasApiFeatures">
+                                <jet-dropdown-link :href="route('api-tokens.index')" v-if="$page.jetstream.hasApiFeatures">
                                     API Tokens
                                 </jet-dropdown-link>
 
@@ -51,11 +51,11 @@
                                     </h6>
 
                                     <!-- Team Settings -->
-                                    <jet-dropdown-link :href="'/teams/' + $page.user.current_team.id">
+                                    <jet-dropdown-link :href="route('teams.show', $page.user.current_team)">
                                         Team Settings
                                     </jet-dropdown-link>
 
-                                    <jet-dropdown-link href="/teams/create" v-if="$page.jetstream.canCreateTeams">
+                                    <jet-dropdown-link :href="route('teams.create')" v-if="$page.jetstream.canCreateTeams">
                                         Create New Team
                                     </jet-dropdown-link>
 
@@ -137,7 +137,7 @@
 
         methods: {
             switchToTeam(team) {
-                this.$inertia.put('/current-team', {
+                this.$inertia.put(route('current-team.update'), {
                     'team_id': team.id
                 }, {
                     preserveState: false
@@ -145,7 +145,7 @@
             },
 
             logout() {
-                axios.post('/logout').then(response => {
+                axios.post(route('logout').url()).then(response => {
                     window.location = '/';
                 })
             },

@@ -35,7 +35,8 @@
 
                         <div class="list-group">
                             <a href="#" class="list-group-item list-group-item-action" :class="{'text-black-50': addTeamMemberForm.role && addTeamMemberForm.role != role.key}"
-                               @click.prevent="addTeamMemberForm.role = role.key" v-for="(role, i) in availableRoles">
+                               @click.prevent="addTeamMemberForm.role = role.key"
+                               v-for="(role, i) in availableRoles">
                                 <div>
                                     <span :class="{'font-weight-bold': addTeamMemberForm.role == role.key}">
                                         {{ role.name }}
@@ -273,7 +274,7 @@
 
         methods: {
             addTeamMember() {
-                this.addTeamMemberForm.post('/teams/' + this.team.id + '/members', {
+                this.addTeamMemberForm.post(route('team-members.store', this.team), {
                     preserveScroll: true
                 });
             },
@@ -288,7 +289,7 @@
             },
 
             updateRole() {
-                this.updateRoleForm.put('/teams/' + this.team.id + '/members/' + this.managingRoleFor.id, {
+                this.updateRoleForm.put(route('team-members.update', [this.team, this.managingRoleFor]), {
                     preserveScroll: true,
                 }).then(() => {
                     this.modal.toggle()
@@ -301,7 +302,7 @@
             },
 
             leaveTeam() {
-                this.leaveTeamForm.delete('/teams/' + this.team.id + '/members/' + this.$page.user.id).then(() => {
+                this.leaveTeamForm.delete(route('team-members.destroy', [this.team, this.$page.user])).then(() => {
                     this.modal.toggle()
                 })
             },
@@ -313,7 +314,7 @@
             },
 
             removeTeamMember() {
-                this.removeTeamMemberForm.delete('/teams/' + this.team.id + '/members/' + this.teamMemberBeingRemoved.id, {
+                this.removeTeamMemberForm.delete(route('team-members.destroy', [this.team, this.teamMemberBeingRemoved]), {
                     preserveScroll: true,
                     preserveState: true,
                 }).then(() => {

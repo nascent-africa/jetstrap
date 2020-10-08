@@ -83,7 +83,7 @@
 
         methods: {
             updateTeamName() {
-                this.form.put('/teams/' + this.team.id, {
+                this.form.put(route('teams.update', this.team), {
                     preserveScroll: true
                 });
             },
