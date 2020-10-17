@@ -67,4 +67,30 @@ class BootstrapFourCommandTest extends TestCase
         $this->basicInertiaTests();
         $this->inertiaTeamTests();
     }
+
+    /** @test */
+    public function livewire_core_ui_swap()
+    {
+        JetstrapFacade::useCoreUi3();
+
+        // Run the make command
+        $this->artisan('jetstrap:swap:bootstrap-4 livewire')
+            ->assertExitCode(0);
+
+        $this->basicTests();
+        $this->basicLivewireTests();
+    }
+
+    /** @test */
+    public function inertia_core_ui_swap()
+    {
+        JetstrapFacade::useCoreUi3();
+
+        // Run the make command
+        $this->artisan('jetstrap:swap:bootstrap-4 inertia')
+            ->assertExitCode(0);
+
+        $this->basicTests();
+        $this->basicInertiaTests();
+    }
 }

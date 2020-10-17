@@ -4,6 +4,8 @@ namespace NascentAfrica\Jetstrap\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
+use NascentAfrica\Jetstrap\CoreUi;
+use NascentAfrica\Jetstrap\JetstrapFacade;
 
 abstract class BaseCommand extends Command
 {
@@ -47,36 +49,6 @@ abstract class BaseCommand extends Command
     }
 
     /**
-     * Update the "package.json" file.
-     *
-     * @param  callable  $callback
-     * @param  bool  $dev
-     * @return void
-     */
-    protected static function updateNodePackages(callable $callback, $dev = true)
-    {
-        if (! file_exists(base_path('package.json'))) {
-            return;
-        }
-
-        $configurationKey = $dev ? 'devDependencies' : 'dependencies';
-
-        $packages = json_decode(file_get_contents(base_path('package.json')), true);
-
-        $packages[$configurationKey] = $callback(
-            array_key_exists($configurationKey, $packages) ? $packages[$configurationKey] : [],
-            $configurationKey
-        );
-
-        ksort($packages[$configurationKey]);
-
-        file_put_contents(
-            base_path('package.json'),
-            json_encode($packages, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT).PHP_EOL
-        );
-    }
-
-    /**
      * Replace a given string within a given file.
      *
      * @param string $search
@@ -87,5 +59,22 @@ abstract class BaseCommand extends Command
     protected function replaceInFile(string $search, string $replace, string $path)
     {
         file_put_contents($path, str_replace($search, $replace, file_get_contents($path)));
+    }
+
+    /**
+     *
+     */
+    protected function installPreset()
+    {
+        // Check for preset usage...
+        if ($preset = JetstrapFacade::getPreset()) {
+            switch ($preset) {
+                case 'core-ui-3':
+                    $this->line('');
+                    $this->info('Setting up Core Ui 3.');
+                    CoreUi::setupCoreUi3($this->argument('stack'));
+                    break;
+            }
+        }
     }
 }

@@ -3,6 +3,7 @@
 namespace NascentAfrica\Jetstrap\Console;
 
 use Illuminate\Filesystem\Filesystem;
+use NascentAfrica\Jetstrap\Helpers;
 
 class BootstrapFourCommand extends BaseCommand
 {
@@ -29,7 +30,7 @@ class BootstrapFourCommand extends BaseCommand
     protected function installLivewireStack()
     {
         // NPM Packages...
-        $this->updateNodePackages(function ($packages) {
+        Helpers::updateNodePackages(function ($packages) {
             return [
                     "bootstrap" => "^4.4.1",
                     "jquery" => "^3.5.1",
@@ -67,6 +68,8 @@ class BootstrapFourCommand extends BaseCommand
             $this->installLivewireTeamStack();
         }
 
+        $this->installPreset();
+
         $this->line('');
         $this->info('Bootstrap scaffolding swapped for livewire successfully.');
         $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
@@ -94,7 +97,7 @@ class BootstrapFourCommand extends BaseCommand
     protected function installInertiaStack()
     {
         // Install NPM packages...
-        $this->updateNodePackages(function ($packages) {
+        Helpers::updateNodePackages(function ($packages) {
             return [
                     '@inertiajs/inertia' => '^0.1.7',
                     '@inertiajs/inertia-vue' => '^0.1.2',
@@ -149,6 +152,8 @@ class BootstrapFourCommand extends BaseCommand
         if ($this->option('teams')) {
             $this->installInertiaTeamStack();
         }
+
+        $this->installPreset();
 
         $this->line('');
         $this->info('Bootstrap scaffolding swapped for inertia successfully.');

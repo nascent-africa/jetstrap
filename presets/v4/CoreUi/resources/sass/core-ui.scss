@@ -1,0 +1,13 @@
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "~@fortawesome/fontawesome-free/scss/solid.scss";
+@import "~@fortawesome/fontawesome-free/scss/brands.scss";
+@import "~@fortawesome/fontawesome-free/scss/regular.scss";
+
+// If you want to override variables do it here
+@import "variables";
+
+// Import styles
+@import '~@coreui/coreui/scss/coreui';
+
+// If you want to add something do it here
+@import "custom";

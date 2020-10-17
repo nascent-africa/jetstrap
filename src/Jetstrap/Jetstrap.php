@@ -12,6 +12,11 @@ class Jetstrap
     protected $bootstrapVersion = 5;
 
     /**
+     * @var string
+     */
+    protected $presets = '';
+
+    /**
      * Use bootstrap 4 as the default for scaffolding.
      *
      * @return $this
@@ -51,5 +56,26 @@ class Jetstrap
     public function isBootstrap5(): bool
     {
         return $this->bootstrapVersion === 5;
+    }
+
+    /**
+     * Use Core Ui presets
+     *
+     * @return $this
+     */
+    public function useCoreUi3()
+    {
+        $this->presets = 'core-ui-3';
+        return $this;
+    }
+
+    /**
+     * Get preset name
+     *
+     * @return false|string
+     */
+    public function getPreset()
+    {
+        return $this->presets === '' ? false : $this->presets;
     }
 }

@@ -13,9 +13,10 @@
             <x-jet-label value="{{ __('Team Owner') }}" />
 
             <div class="d-flex mt-2">
-                <img class="rounded-circle" width="48" src="{{ $team->owner->profile_photo_url }}">
-
-                <div class="ml-2">
+                @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
+                    <img class="rounded-circle mr-2" width="48" src="{{ $team->owner->profile_photo_url }}">
+                @endif
+                <div>
                     <div>{{ $team->owner->name }}</div>
                     <div class="text-muted">{{ $team->owner->email }}</div>
                 </div>
