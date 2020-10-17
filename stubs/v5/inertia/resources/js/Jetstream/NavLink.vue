@@ -14,7 +14,7 @@
             classes() {
                 return this.active
                             ? 'nav-link active font-weight-bolder'
-                            : 'nav-link active'
+                            : 'nav-link'
             }
         }
     }
