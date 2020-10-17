@@ -140,6 +140,51 @@ public function boot()
 }
 ```
 
+## Presets
+
+Presets are custom third party templates built using bootstrap. We've thought about it, what are the chances that you're going to use the default template provided by Laravel or Laravel Jetstream.
+
+> Presets are only supported in Bootstrap 4 at the moment.
+
+### Core Ui
+
+[Core Ui](https://coreui.io/) lets you save thousands of priceless hours because it offers everything you need to create modern, beautiful, and responsive applications as stated on their website.
+
+To use Core Ui presets, simply call the `useCoreUi3` method within your AppServiceProvider
+
+```php
+<?php
+
+namespace App\Providers;
+
+use Illuminate\Support\ServiceProvider;
+use NascentAfrica\Jetstrap\JetstrapFacade;
+
+class AppServiceProvider extends ServiceProvider
+{
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        //
+    }
+
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        JetstrapFacade::bootstrap4();
+        JetstrapFacade::useCoreUi3();
+    }
+}
+```
+
 ## Testing
 Run the tests with:
 

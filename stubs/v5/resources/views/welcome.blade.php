@@ -50,7 +50,7 @@
 
                 <div class="card shadow-sm">
                     <div class="row g-0">
-                        <div class="col-md-6">
+                        <div class="col-md-6 pr-0">
                             <div class="card-body border-right border-bottom p-3 h-100">
                                 <div class="d-flex flex-row bd-highlight mb-3">
                                     <div>
@@ -67,7 +67,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 pl-0">
                             <div class="card-body border-bottom p-3 h-100">
                                 <div class="d-flex flex-row bd-highlight mb-3">
                                     <div>
@@ -84,7 +84,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 pr-0">
                             <div class="card-body border-right p-3 h-100">
                                 <div class="d-flex flex-row bd-highlight mb-3">
                                     <div>
@@ -101,7 +101,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 pl-0">
                             <div class="card-body p-3 h-100">
                                 <div class="d-flex flex-row bd-highlight mb-3">
                                     <div>

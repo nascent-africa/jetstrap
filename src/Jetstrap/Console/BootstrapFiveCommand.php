@@ -3,6 +3,7 @@
 namespace NascentAfrica\Jetstrap\Console;
 
 use Illuminate\Filesystem\Filesystem;
+use NascentAfrica\Jetstrap\Helpers;
 
 class BootstrapFiveCommand extends BaseCommand
 {
@@ -29,7 +30,7 @@ class BootstrapFiveCommand extends BaseCommand
     protected function installLivewireStack()
     {
         // NPM Packages...
-        $this->updateNodePackages(function ($packages) {
+        Helpers::updateNodePackages(function ($packages) {
             return [
                     "bootstrap" => "^5.0.0-alpha2",
                     "popper.js" => "^1.16.1"
@@ -91,7 +92,7 @@ class BootstrapFiveCommand extends BaseCommand
     protected function installInertiaStack()
     {
         // Install NPM packages...
-        $this->updateNodePackages(function ($packages) {
+        Helpers::updateNodePackages(function ($packages) {
             return [
                     '@inertiajs/inertia' => '^0.1.7',
                     '@inertiajs/inertia-vue' => '^0.1.2',
