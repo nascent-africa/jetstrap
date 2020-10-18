@@ -31,7 +31,7 @@
         @routes
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
     </head>
-    <body class="font-sans antialiased">
+    <body class="c-app">
         @inertia
 
         <script src="{{ mix('js/app.js') }}"></script>
