@@ -3,6 +3,7 @@
 [![Latest Stable Version](https://poser.pugx.org/nascent-africa/jetstrap/v)](//packagist.org/packages/nascent-africa/jetstrap)
 [![License](https://poser.pugx.org/nascent-africa/jetstrap/license)](//packagist.org/packages/nascent-africa/jetstrap)
 
+  
 ## Description
 
 On September 8th after spending some time with my fresh sandbox installation of Laravel 8 the first question I asked myself was, "Am I going to learn a new CSS framework or convert the jetstream resources back to Bootstrap", I also tried to let the two co-exist but that created more chaos than the problem it solved.
@@ -13,6 +14,22 @@ Jetstrap focus is on the `VIEW` side of [Jetstream](https://github.com/laravel/j
 
 > This package offers an option for of Bootstrap 5 by default so check out the [Bootstrap 5](https://v5.getbootstrap.com/docs/5.0/getting-started/introduction/) documentation for more details.
 
+## Table of Content
+  * [Installation](#installation)
+    + [Installing Jetstream](#installing-jetstream)
+      - [Install Jetstream With Livewire](#install-jetstream-with-livewire)
+      - [Or, Install Jetstream With Inertia](#or--install-jetstream-with-inertia)
+    + [Install Jetstrap](#install-jetstrap)
+    + [Choosing a Bootstrap version](#choosing-a-bootstrap-version)
+    + [Finalizing The Installation](#finalizing-the-installation)
+    + [Extras](#extras)
+      - [Pagination](#pagination)
+  * [Presets](#presets)
+    + [Core Ui](#core-ui)
+    + [AdminLTE](#adminlte)
+  * [Testing](#testing)
+  * [License](#license)
+  
 ## Installation
 
 ### Installing Jetstream
@@ -103,18 +120,6 @@ php artisan jetstrap:swap inertia --teams
 
 This will publish overrides to enable Bootstrap like the good old days!
 
-### Directories / files modified
-
-- `resources/views/vendor/Jetstream` 
-- `resources/views/api`
-- `resources/views/auth`
-- `resources/views/layouts`
-- `resources/views/profiles`
-- `resources/views/teams`
-
-- ~~resources/css~~ `resources/views/sass`
-- ~~tailwind.config.js~~ `webpack.mix.js`
-
 ### Finalizing The Installation
 
 After installing Jetsrtap and swapping Jetstream resources, remove tailwindCSS and its dependencies if any from your package.json and then install and build your NPM dependencies and migrate your database:
@@ -132,11 +137,32 @@ php artisan migrate
 It is also important to point out that Laravel 8 still includes pagination views built using Bootstrap CSS. To use these views instead of the default Tailwind views, you may call the paginator's useBootstrap method within your AppServiceProvider:
 
 ```php
+namespace App\Providers;
+
+use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
 
-public function boot()
+class AppServiceProvider extends ServiceProvider
 {
-    Paginator::useBootstrap();
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        //
+    }
+
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        Paginator::useBootstrap();
+    }
 }
 ```
 
@@ -150,7 +176,7 @@ Presets are custom third party templates built using bootstrap. We've thought ab
 
 [Core Ui](https://coreui.io/) lets you save thousands of priceless hours because it offers everything you need to create modern, beautiful, and responsive applications as stated on their website.
 
-To use Core Ui presets, simply call the `useCoreUi3` method within your AppServiceProvider
+To use Core Ui presets, simply call the `useCoreUi3` method within your AppServiceProvider:
 
 ```php
 <?php
@@ -181,6 +207,45 @@ class AppServiceProvider extends ServiceProvider
     {
         JetstrapFacade::bootstrap4();
         JetstrapFacade::useCoreUi3();
+    }
+}
+```
+
+### AdminLTE
+
+[AdminLTE](https://adminlte.io/) is an open source admin dashboard & control panel theme. Built on top of Bootstrap, AdminLTE provides a range of responsive, reusable, and commonly used components.
+
+To use AdminLte presets, simply call the `useAdminLte3` method within your AppServiceProvider:
+
+```php
+<?php
+
+namespace App\Providers;
+
+use Illuminate\Support\ServiceProvider;
+use NascentAfrica\Jetstrap\JetstrapFacade;
+
+class AppServiceProvider extends ServiceProvider
+{
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        //
+    }
+
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        JetstrapFacade::bootstrap4();
+        JetstrapFacade::useAdminLte3();
     }
 }
 ```

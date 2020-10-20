@@ -4,8 +4,23 @@ namespace NascentAfrica\Jetstrap;
 
 use Illuminate\Filesystem\Filesystem;
 
-class CoreUi
+/**
+ * Class Presets
+ *
+ * @package NascentAfrica\Jetstrap
+ */
+class Presets
 {
+    /**
+     * @var string
+     */
+    const CORE_UI_3 = 'core-ui-3';
+
+    /**
+     * @var string
+     */
+    const ADMIN_LTE_3 = 'admin-lte-3';
+
     /**
      * Make Core Ui swaps
      *
@@ -56,5 +71,49 @@ class CoreUi
                     "perfect-scrollbar" => "^1.5.0"
                 ] + $packages;
         });
+    }
+
+    /**
+     * Make AdminLte swaps
+     *
+     * @param string $stack
+     * @return void
+     */
+    public static function setupAdminLte3(string $stack)
+    {
+        copy(__DIR__ . '/../../presets/v4/AdminLte/resources/js/admin-lte.js', resource_path('js/admin-lte.js'));
+        copy(__DIR__ . '/../../presets/v4/AdminLte/resources/sass/admin-lte.scss', resource_path('sass/admin-lte.scss'));
+
+        copy(__DIR__ . '/../../presets/v4/AdminLte/resources/views/layouts/guest.blade.php', resource_path('views/layouts/guest.blade.php'));
+
+        (new Filesystem)->copyDirectory(__DIR__.'/../../presets/v4/AdminLte/resources/views/auth', resource_path('views/auth'));
+
+        copy(__DIR__.'/../../presets/v4/AdminLte/webpack.mix.js', base_path('webpack.mix.js'));
+
+        // NPM Packages...
+        Helpers::updateNodePackages(function ($packages) {
+            return [
+                    "admin-lte" => "^3.0.5",
+                    "overlayscrollbars" => "^1.13.0"
+                ] + $packages;
+        });
+
+        copy(__DIR__ . '/../../presets/v4/AdminLte/resources/views/components/authentication-card.blade.php', resource_path('views/vendor/jetstream/components/authentication-card.blade.php'));
+        copy(__DIR__ . '/../../presets/v4/AdminLte/resources/views/components/dropdown.blade.php', resource_path('views/vendor/jetstream/components/dropdown.blade.php'));
+        copy(__DIR__ . '/../../presets/v4/AdminLte/resources/views/components/nav-link.blade.php', resource_path('views/vendor/jetstream/components/nav-link.blade.php'));
+        copy(__DIR__ . '/../../presets/v4/AdminLte/resources/views/components/welcome.blade.php', resource_path('views/vendor/jetstream/components/welcome.blade.php'));
+
+        copy(__DIR__ . '/../../presets/v4/AdminLte/resources/views/layouts/guest.blade.php', resource_path('views/layouts/guest.blade.php'));
+
+        if ($stack == 'livewire') {
+            copy(__DIR__ . '/../../presets/v4/AdminLte/resources/views/layouts/app.blade.php', resource_path('views/layouts/app.blade.php'));
+        } elseif ($stack == 'inertia') {
+            copy(__DIR__ . '/../../presets/v4/AdminLte/inertia/resources/views/app.blade.php', resource_path('views/app.blade.php'));
+            copy(__DIR__ . '/../../presets/v4/AdminLte/inertia/resources/js/Layouts/AppLayout.vue', resource_path('js/Layouts/AppLayout.vue'));
+
+            copy(__DIR__ . '/../../presets/v4/AdminLte/inertia/resources/js/Jetstream/Dropdown.vue', resource_path('js/Jetstream/Dropdown.vue'));
+            copy(__DIR__ . '/../../presets/v4/AdminLte/inertia/resources/js/Jetstream/NavLink.vue', resource_path('js/Jetstream/NavLink.vue'));
+            copy(__DIR__ . '/../../presets/v4/AdminLte/inertia/resources/js/Jetstream/Welcome.vue', resource_path('js/Jetstream/Welcome.vue'));
+        }
     }
 }
