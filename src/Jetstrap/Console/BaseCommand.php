@@ -4,7 +4,7 @@ namespace NascentAfrica\Jetstrap\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
-use NascentAfrica\Jetstrap\CoreUi;
+use NascentAfrica\Jetstrap\Presets;
 use NascentAfrica\Jetstrap\JetstrapFacade;
 
 abstract class BaseCommand extends Command
@@ -69,10 +69,15 @@ abstract class BaseCommand extends Command
         // Check for preset usage...
         if ($preset = JetstrapFacade::getPreset()) {
             switch ($preset) {
-                case 'core-ui-3':
+                case Presets::CORE_UI_3:
                     $this->line('');
                     $this->info('Setting up Core Ui 3.');
-                    CoreUi::setupCoreUi3($this->argument('stack'));
+                    Presets::setupCoreUi3($this->argument('stack'));
+                    break;
+                case Presets::ADMIN_LTE_3:
+                    $this->line('');
+                    $this->info('Setting up AdminLte 3.');
+                    Presets::setupAdminLte3($this->argument('stack'));
                     break;
             }
         }

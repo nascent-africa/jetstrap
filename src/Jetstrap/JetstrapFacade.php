@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static bool isBootstrap4()
  * @method static bool isBootstrap5()
  * @method static Jetstrap useCoreUi3()
+ * @method static Jetstrap useAdminLte3()
  * @method static false|string getPreset()
  *
  * @see Jetstrap

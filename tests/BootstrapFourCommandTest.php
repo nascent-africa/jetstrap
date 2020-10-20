@@ -93,4 +93,30 @@ class BootstrapFourCommandTest extends TestCase
         $this->basicTests();
         $this->basicInertiaTests();
     }
+
+    /** @test */
+    public function livewire_admin_lte_swap()
+    {
+        JetstrapFacade::useAdminLte3();
+
+        // Run the make command
+        $this->artisan('jetstrap:swap:bootstrap-4 livewire')
+            ->assertExitCode(0);
+
+        $this->basicTests();
+        $this->basicLivewireTests();
+    }
+
+    /** @test */
+    public function inertia_admin_lte_swap()
+    {
+        JetstrapFacade::useAdminLte3();
+
+        // Run the make command
+        $this->artisan('jetstrap:swap:bootstrap-4 inertia')
+            ->assertExitCode(0);
+
+        $this->basicTests();
+        $this->basicInertiaTests();
+    }
 }

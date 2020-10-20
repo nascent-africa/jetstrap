@@ -65,7 +65,20 @@ class Jetstrap
      */
     public function useCoreUi3()
     {
-        $this->presets = 'core-ui-3';
+        $this->presets = Presets::CORE_UI_3;
+
+        return $this;
+    }
+
+    /**
+     * Use Core Ui presets
+     *
+     * @return $this
+     */
+    public function useAdminLte3()
+    {
+        $this->presets = Presets::ADMIN_LTE_3;
+
         return $this;
     }
 
