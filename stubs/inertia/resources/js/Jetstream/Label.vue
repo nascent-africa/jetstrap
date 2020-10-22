@@ -7,6 +7,12 @@
 
 <script>
     export default {
-        props: ['value', 'classes']
+        props: {
+            value: String,
+            classes: {
+                type: String,
+                default: 'form-label'
+            }
+        }
     }
 </script>

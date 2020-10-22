@@ -13,7 +13,7 @@
             <template #form>
                 <div class="w-75">
                     <!-- Token Name -->
-                    <div class="mb-3">
+                    <div class="form-group">
                         <jet-label for="name" value="Name" />
                         <jet-input id="name" type="text" v-model="createApiTokenForm.name" autofocus
                                    :class="{ 'is-invalid': createApiTokenForm.error('name') }" />

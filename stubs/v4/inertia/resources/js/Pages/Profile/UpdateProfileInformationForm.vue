@@ -10,7 +10,7 @@
 
         <template #form>
             <!-- Profile Photo -->
-            <div class="mb-3" v-if="$page.jetstream.managesProfilePhotos">
+            <div class="form-group" v-if="$page.jetstream.managesProfilePhotos">
                 <!-- Profile Photo File Input -->
                 <input type="file" hidden
                             ref="photo"
@@ -32,7 +32,7 @@
                     Select A New Photo
                 </jet-secondary-button>
 
-				<jet-secondary-button type="button" class="mt-2" @click.native.prevent="deletePhoto" v-if="$page.user.profile_photo_path">
+				        <jet-secondary-button type="button" class="mt-2" @click.native.prevent="deletePhoto" v-if="$page.user.profile_photo_path">
                     Remove Photo
                 </jet-secondary-button>
 
@@ -41,7 +41,7 @@
 
             <div class="w-75">
                 <!-- Name -->
-                <div class="mb-3">
+                <div class="form-group">
                     <jet-label for="name" value="Name" />
                     <jet-input id="name" type="text" v-model="form.name"
                                :class="{ 'is-invalid': form.error('name') }" autocomplete="name" />
@@ -49,7 +49,7 @@
                 </div>
 
                 <!-- Email -->
-                <div class="mb-3">
+                <div class="form-group">
                     <jet-label for="email" value="Email" />
                     <jet-input id="email" type="email" v-model="form.email"
                                :class="{ 'is-invalid': form.error('email') }" />

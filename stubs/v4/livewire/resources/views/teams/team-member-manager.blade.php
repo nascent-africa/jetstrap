@@ -20,19 +20,23 @@
 
                     <!-- Member Email -->
                     <div class="mb-2 w-75">
-                        <x-jet-label for="email" value="{{ __('Email') }}" />
-                        <x-jet-input id="name" type="email" class="{{ $errors->has('email') ? 'is-invalid' : '' }}"
-                                     wire:model.defer="addTeamMemberForm.email" />
-                        <x-jet-input-error for="email" />
+                        <div class="form-group">
+                            <x-jet-label for="email" value="{{ __('Email') }}" />
+                            <x-jet-input id="name" type="email" class="{{ $errors->has('email') ? 'is-invalid' : '' }}"
+                                         wire:model.defer="addTeamMemberForm.email" />
+                            <x-jet-input-error for="email" />
+                        </div>
                     </div>
 
                     <!-- Role -->
                     @if (count($this->roles) > 0)
                         <div class="mb-3 w-75">
-                            <x-jet-label for="role" value="{{ __('Role') }}" />
+                            <div class="form-group">
+                                <x-jet-label for="role" value="{{ __('Role') }}" />
 
-                            <input type="hidden" class="{{ $errors->has('role') ? 'is-invalid' : '' }}">
-                            <x-jet-input-error for="role" />
+                                <input type="hidden" class="{{ $errors->has('role') ? 'is-invalid' : '' }}">
+                                <x-jet-input-error for="role" />
+                            </div>
 
                             <div class="list-group">
                                 @foreach ($this->roles as $index => $role)

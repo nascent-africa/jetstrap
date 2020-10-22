@@ -80,10 +80,10 @@
                             </div>
                             <div class="pl-3">
                                 <div class="mb-2">
-                                    <a href="https://tailwindcss.com/" class="h5 font-weight-bolder text-decoration-none text-dark">Tailwind</a>
+                                    <a href="https://getbootstrap.com/" class="h5 font-weight-bolder text-decoration-none text-dark">Bootstrap</a>
                                 </div>
                                 <p class="text-muted">
-                                    Laravel Jetstream is built with Tailwind, an amazing utility first CSS framework that doesn't get in your way. You'll be amazed how easily you can build and maintain fresh, modern designs with this wonderful framework at your fingertips.
+                                    Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.
                                 </p>
                             </div>
                         </div>

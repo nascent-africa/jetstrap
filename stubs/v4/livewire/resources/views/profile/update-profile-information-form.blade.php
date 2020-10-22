@@ -10,7 +10,7 @@
     <x-slot name="form">
         <!-- Profile Photo -->
         @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-            <div class="mb-3" x-data="{photoName: null, photoPreview: null}">
+            <div class="form-group" x-data="{photoName: null, photoPreview: null}">
                 <!-- Profile Photo File Input -->
                 <input type="file" hidden
                        wire:model="photo"
@@ -52,14 +52,14 @@
 
         <div class="w-75">
             <!-- Name -->
-            <div class="mb-3">
+            <div class="form-group">
                 <x-jet-label for="name" value="{{ __('Name') }}" />
                 <x-jet-input id="name" type="text" class="{{ $errors->has('name') ? 'is-invalid' : '' }}" wire:model.defer="state.name" autocomplete="name" />
                 <x-jet-input-error for="name" />
             </div>
 
             <!-- Email -->
-            <div>
+            <div class="form-group">
                 <x-jet-label for="email" value="{{ __('Email') }}" />
                 <x-jet-input id="email" type="email" class="{{ $errors->has('email') ? 'is-invalid' : '' }}" wire:model.defer="state.email" />
                 <x-jet-input-error for="email" />

@@ -19,11 +19,13 @@
                     </div>
 
                     <!-- Member Email -->
-                    <div class="mb-2 w-75">
-                        <jet-label for="email" value="Email" />
-                        <jet-input id="name" type="text" v-model="addTeamMemberForm.email"
-                                   :class="{ 'is-invalid': addTeamMemberForm.error('email') }" />
-                        <jet-input-error :message="addTeamMemberForm.error('email')" />
+                    <div class="w-75">
+                      <div class="form-group">
+                          <jet-label for="email" value="Email" />
+                          <jet-input id="name" type="text" v-model="addTeamMemberForm.email"
+                                     :class="{ 'is-invalid': addTeamMemberForm.error('email') }" />
+                          <jet-input-error :message="addTeamMemberForm.error('email')" />
+                      </div >
                     </div>
 
                     <!-- Role -->
