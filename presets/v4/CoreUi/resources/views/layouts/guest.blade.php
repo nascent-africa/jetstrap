@@ -17,7 +17,13 @@
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.0/dist/alpine.js" defer></script>
     </head>
     <body class="c-app flex-row align-items-center">
-        {{ $slot }}
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    {{ $slot }}
+                </div>
+            </div>
+        </div>
 
         @stack('scripts')
     </body>
