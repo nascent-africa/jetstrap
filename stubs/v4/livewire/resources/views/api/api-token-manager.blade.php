@@ -12,7 +12,7 @@
         <x-slot name="form">
             <div class="w-75">
                 <!-- Token Name -->
-                <div class="mb-3">
+                <div class="form-group">
                     <x-jet-label for="name" value="{{ __('Token Name') }}" />
                     <x-jet-input id="name" type="text" class="{{ $errors->has('name') ? 'is-invalid' : '' }}"
                                  wire:model.defer="createApiTokenForm.name" autofocus />

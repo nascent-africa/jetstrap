@@ -1,5 +1,5 @@
 <template>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center my-5 pt-4">
         <div class="col-md-12">
             <div class="card shadow bg-light">
                 <div class="card-body bg-white px-5 py-3 border-bottom rounded-top">
@@ -84,7 +84,7 @@
                                         <a href="https://getbootstrap.com/" class="h5 font-weight-bolder text-decoration-none text-dark">Bootstrap</a>
                                     </div>
                                     <p class="text-muted">
-                                        Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.
+                                      Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.
                                     </p>
                                 </div>
                             </div>

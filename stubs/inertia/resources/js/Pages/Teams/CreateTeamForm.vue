@@ -1,46 +1,38 @@
 <template>
-    <jet-form-section @submitted="updateTeamName">
+    <jet-form-section @submitted="createTeam">
         <template #title>
-            Team Name
+            Team Details
         </template>
 
         <template #description>
-            The team's name and owner information.
+            Create a new team to collaborate with others on projects.
         </template>
 
         <template #form>
-            <!-- Team Owner Information -->
             <div class="mb-4">
                 <jet-label value="Team Owner" />
 
-                <div class="d-flex items-center mt-2">
-                    <img v-if="$page.jetstream.managesProfilePhotos" class="rounded-circle ml-2" width="48" :src="team.owner.profile_photo_url" :alt="team.owner.name">
+                <div class="d-flex mt-2">
+                    <img class="rounded-circle" width="48" :src="$page.user.profile_photo_url" :alt="$page.user.name">
 
-                    <div>
-                        <div>{{ team.owner.name }}</div>
-                        <div class="text-muted">{{ team.owner.email }}</div>
+                    <div class="ml-2">
+                        <div>{{ $page.user.name }}</div>
+                        <div class="text-muted">{{ $page.user.email }}</div>
                     </div>
                 </div>
             </div>
 
-            <!-- Team Name -->
             <div class="w-75">
-              <div class="form-group">
-                <jet-label for="name" value="Team Name" />
-
-                <jet-input id="name"
-                           type="text"
-                           class="mt-1 block w-full"
-                           :class="{ 'is-invalid': form.error('name') }"
-                           v-model="form.name"
-                           :disabled="! permissions.canUpdateTeam" />
-
-                <jet-input-error :message="form.error('name')" />
-              </div>
+                <div class="form-group">
+                    <jet-label for="name" value="Team Name" />
+                    <jet-input id="name" type="text" v-model="form.name" autofocus
+                               :class="{ 'is-invalid': form.error('name') }" />
+                    <jet-input-error :message="form.error('name')" />
+                </div>
             </div>
         </template>
 
-        <template #actions v-if="permissions.canUpdateTeam">
+        <template #actions>
             <jet-action-message :on="form.recentlySuccessful" class="mr-3">
                 Saved.
             </jet-action-message>
@@ -70,22 +62,20 @@
             JetLabel,
         },
 
-        props: ['team', 'permissions'],
-
         data() {
             return {
                 form: this.$inertia.form({
-                    name: this.team.name,
+                    name: '',
                 }, {
-                    bag: 'updateTeamName',
+                    bag: 'createTeam',
                     resetOnSuccess: false,
                 })
             }
         },
 
         methods: {
-            updateTeamName() {
-                this.form.put(route('teams.update', this.team), {
+            createTeam() {
+                this.form.post(route('teams.store'), {
                     preserveScroll: true
                 });
             },

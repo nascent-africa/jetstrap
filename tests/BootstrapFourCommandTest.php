@@ -18,7 +18,7 @@ class BootstrapFourCommandTest extends TestCase
     public function livewire_swapped()
     {
         // Run the make command
-        $this->artisan('jetstrap:swap:bootstrap-4 livewire')
+        $this->artisan('jetstrap:swap livewire')
             ->expectsOutput('Bootstrap scaffolding swapped for livewire successfully.')
             ->expectsOutput('Please execute the "npm install && npm run dev" command to build your assets.')
             ->assertExitCode(0);
@@ -31,7 +31,7 @@ class BootstrapFourCommandTest extends TestCase
     public function inertia_swapped()
     {
         // Run the make command
-        $this->artisan('jetstrap:swap:bootstrap-4 inertia')
+        $this->artisan('jetstrap:swap inertia')
             ->expectsOutput('Bootstrap scaffolding swapped for inertia successfully.')
             ->expectsOutput('Please execute the "npm install && npm run dev" command to build your assets.')
             ->assertExitCode(0);
@@ -44,7 +44,7 @@ class BootstrapFourCommandTest extends TestCase
     public function livewire_swapped_with_teams()
     {
         // Run the make command
-        $this->artisan('jetstrap:swap:bootstrap-4 livewire --teams')
+        $this->artisan('jetstrap:swap livewire --teams')
             ->expectsOutput('Bootstrap scaffolding swapped for livewire successfully.')
             ->expectsOutput('Please execute the "npm install && npm run dev" command to build your assets.')
             ->assertExitCode(0);
@@ -58,7 +58,7 @@ class BootstrapFourCommandTest extends TestCase
     public function inertia_swapped_teams()
     {
         // Run the make command
-        $this->artisan('jetstrap:swap:bootstrap-4 inertia --teams')
+        $this->artisan('jetstrap:swap inertia --teams')
             ->expectsOutput('Bootstrap scaffolding swapped for inertia successfully.')
             ->expectsOutput('Please execute the "npm install && npm run dev" command to build your assets.')
             ->assertExitCode(0);
@@ -74,7 +74,7 @@ class BootstrapFourCommandTest extends TestCase
         JetstrapFacade::useCoreUi3();
 
         // Run the make command
-        $this->artisan('jetstrap:swap:bootstrap-4 livewire')
+        $this->artisan('jetstrap:swap livewire')
             ->assertExitCode(0);
 
         $this->basicTests();
@@ -87,7 +87,7 @@ class BootstrapFourCommandTest extends TestCase
         JetstrapFacade::useCoreUi3();
 
         // Run the make command
-        $this->artisan('jetstrap:swap:bootstrap-4 inertia')
+        $this->artisan('jetstrap:swap inertia')
             ->assertExitCode(0);
 
         $this->basicTests();
@@ -100,7 +100,7 @@ class BootstrapFourCommandTest extends TestCase
         JetstrapFacade::useAdminLte3();
 
         // Run the make command
-        $this->artisan('jetstrap:swap:bootstrap-4 livewire')
+        $this->artisan('jetstrap:swap livewire')
             ->assertExitCode(0);
 
         $this->basicTests();
@@ -113,7 +113,7 @@ class BootstrapFourCommandTest extends TestCase
         JetstrapFacade::useAdminLte3();
 
         // Run the make command
-        $this->artisan('jetstrap:swap:bootstrap-4 inertia')
+        $this->artisan('jetstrap:swap inertia')
             ->assertExitCode(0);
 
         $this->basicTests();
