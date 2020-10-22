@@ -76,8 +76,8 @@
 
         methods: {
             confirmTeamDeletion() {
-                this.modal = new Bootstrap.Modal(document.getElementById('confirmingTeamDeletionModal'))
-                this.modal.toggle()
+              this.modal = new Bootstrap.Modal(document.getElementById('confirmingTeamDeletionModal'))
+              this.modal.toggle()
             },
 
             deleteTeam() {

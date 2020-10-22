@@ -22,10 +22,12 @@
         </div>
 
         <div class="w-75">
-            <x-jet-label for="name" value="{{ __('Team Name') }}" />
-            <x-jet-input id="name" type="text" class="{{ $errors->has('name') ? 'is-invalid' : '' }}"
-                         wire:model.defer="state.name" autofocus />
-            <x-jet-input-error for="name" />
+            <div class="form-group">
+                <x-jet-label for="name" value="{{ __('Team Name') }}" />
+                <x-jet-input id="name" type="text" class="{{ $errors->has('name') ? 'is-invalid' : '' }}"
+                             wire:model.defer="state.name" autofocus />
+                <x-jet-input-error for="name" />
+            </div>
         </div>
     </x-slot>
 

@@ -14,7 +14,7 @@
                 <jet-label value="Team Owner" />
 
                 <div class="d-flex items-center mt-2">
-                    <img v-if="$page.jetstream.managesProfilePhotos" class="rounded-circle ml-2" width="48" :src="team.owner.profile_photo_url" :alt="team.owner.name">
+                    <img v-if="$page.jetstream.managesProfilePhotos" class="rounded-circle mr-2" width="48" :src="team.owner.profile_photo_url" :alt="team.owner.name">
 
                     <div>
                         <div>{{ team.owner.name }}</div>
@@ -25,16 +25,18 @@
 
             <!-- Team Name -->
             <div class="w-75">
+              <div class="form-group">
                 <jet-label for="name" value="Team Name" />
 
                 <jet-input id="name"
-                            type="text"
-                            class="mt-1 block w-full"
+                           type="text"
+                           class="mt-1 block w-full"
                            :class="{ 'is-invalid': form.error('name') }"
-                            v-model="form.name"
-                            :disabled="! permissions.canUpdateTeam" />
+                           v-model="form.name"
+                           :disabled="! permissions.canUpdateTeam" />
 
                 <jet-input-error :message="form.error('name')" />
+              </div>
             </div>
         </template>
 

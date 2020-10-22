@@ -40,15 +40,9 @@ class JetstrapServiceProvider extends ServiceProvider
             return;
         }
 
-        if (JetstrapFacade::isBootstrap4()) {
-            $this->publishes([
-                __DIR__.'/../../resources/v4/views' => resource_path('views/vendor/jetstream'),
-            ], 'jetstrap-views');
-        } elseif (JetstrapFacade::isBootstrap5()) {
-            $this->publishes([
-                __DIR__.'/../../resources/v5/views' => resource_path('views/vendor/jetstream'),
-            ], 'jetstrap-views');
-        }
+        $this->publishes([
+            __DIR__ . '/../../resources/views' => resource_path('views/vendor/jetstream'),
+        ], 'jetstrap-views');
     }
 
     /**
@@ -64,8 +58,6 @@ class JetstrapServiceProvider extends ServiceProvider
 
         $this->commands([
             Console\InstallCommand::class,
-            Console\BootstrapFourCommand::class,
-            Console\BootstrapFiveCommand::class,
         ]);
     }
 }

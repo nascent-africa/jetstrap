@@ -13,7 +13,7 @@
 
                 <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
-                <div class="mb-3">
+                <div class="form-group">
                     <x-jet-label value="{{ __('Email') }}" />
 
                     <x-jet-input class="{{ $errors->has('email') ? 'is-invalid' : '' }}" type="email" name="email"
@@ -21,7 +21,7 @@
                     <x-jet-input-error for="email"></x-jet-input-error>
                 </div>
 
-                <div class="mb-3">
+                <div class="form-group">
                     <x-jet-label value="{{ __('Password') }}" />
 
                     <x-jet-input class="{{ $errors->has('password') ? 'is-invalid' : '' }}" type="password"
@@ -29,7 +29,7 @@
                     <x-jet-input-error for="password"></x-jet-input-error>
                 </div>
 
-                <div class="mb-3">
+                <div class="form-group">
                     <x-jet-label value="{{ __('Confirm Password') }}" />
 
                     <x-jet-input class="{{ $errors->has('password_confirmation') ? 'is-invalid' : '' }}" type="password"
