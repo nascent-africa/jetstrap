@@ -29,7 +29,7 @@
                     </div>
 
                     <!-- Role -->
-                    <div class="mb-3 w-75" v-if="availableRoles.length > 0">
+                    <div class="my-3 w-75" v-if="availableRoles.length > 0">
                         <jet-label for="roles" value="Role" />
 
                         <input type="hidden" :class="{ 'is-invalid': addTeamMemberForm.error('role') }">

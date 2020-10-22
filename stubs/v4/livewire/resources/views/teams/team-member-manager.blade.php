@@ -30,7 +30,7 @@
 
                     <!-- Role -->
                     @if (count($this->roles) > 0)
-                        <div class="mb-3 w-75">
+                        <div class="my-3 w-75">
                             <div class="form-group">
                                 <x-jet-label for="role" value="{{ __('Role') }}" />
 

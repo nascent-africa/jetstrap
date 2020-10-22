@@ -28,7 +28,7 @@
 
                     <!-- Role -->
                     @if (count($this->roles) > 0)
-                        <div class="mb-3 w-75">
+                        <div class="my-3 w-75">
                             <x-jet-label for="role" value="{{ __('Role') }}" />
 
                             <input type="hidden" class="{{ $errors->has('role') ? 'is-invalid' : '' }}">

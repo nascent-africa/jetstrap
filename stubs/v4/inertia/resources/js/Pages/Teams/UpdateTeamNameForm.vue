@@ -14,7 +14,7 @@
                 <jet-label value="Team Owner" />
 
                 <div class="d-flex items-center mt-2">
-                    <img v-if="$page.jetstream.managesProfilePhotos" class="rounded-circle ml-2" width="48" :src="team.owner.profile_photo_url" :alt="team.owner.name">
+                    <img v-if="$page.jetstream.managesProfilePhotos" class="rounded-circle mr-2" width="48" :src="team.owner.profile_photo_url" :alt="team.owner.name">
 
                     <div>
                         <div>{{ team.owner.name }}</div>
