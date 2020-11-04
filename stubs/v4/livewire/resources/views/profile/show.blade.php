@@ -5,11 +5,15 @@
         </h2>
     </x-slot>
 
-    @livewire('profile.update-profile-information-form')
+    @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updateProfileInformation()))
+        @livewire('profile.update-profile-information-form')
 
-    <x-jet-section-border />
+        <x-jet-section-border />
+    @endif
 
-    @livewire('profile.update-password-form')
+    @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updatePasswords()))
+        @livewire('profile.update-password-form')
+    @endif
 
     @if (Laravel\Fortify\Features::canManageTwoFactorAuthentication())
         <x-jet-section-border />
