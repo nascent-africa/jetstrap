@@ -73,6 +73,7 @@
                 <div class="mt-4" x-data="{}" x-on:confirming-logout-other-browser-sessions.window="setTimeout(() => $refs.password.focus(), 250)">
                     <x-jet-input type="password" placeholder="{{ __('Password') }}"
                                  x-ref="password"
+                                 class="{{ $errors->has('password') ? 'is-invalid' : '' }}"
                                  wire:model.defer="password"
                                  wire:keydown.enter="logoutOtherBrowserSessions" />
 

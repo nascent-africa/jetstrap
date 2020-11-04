@@ -65,6 +65,7 @@
                     <div class="mt-4">
                         <jet-input type="password" placeholder="Password"
                                     ref="password"
+                                    :class="{ 'is-invalid': form.error('password') }"
                                     v-model="form.password"
                                     @keyup.enter.native="logoutOtherBrowserSessions" />
 
