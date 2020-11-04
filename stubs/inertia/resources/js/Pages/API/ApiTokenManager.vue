@@ -267,7 +267,7 @@
             },
 
             deleteApiToken() {
-                this.deleteApiTokenForm.delete(route('api-tokens.destroy', this.managingPermissionsFor), {
+                this.deleteApiTokenForm.delete(route('api-tokens.destroy', this.apiTokenBeingDeleted), {
                     preserveScroll: true,
                     preserveState: true,
                 }).then(() => {
