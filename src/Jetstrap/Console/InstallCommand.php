@@ -123,7 +123,7 @@ class InstallCommand extends Command
             // NPM Packages...
             Helpers::updateNodePackages(function ($packages) {
                 return [
-                        "bootstrap" => "^4.4.1",
+                        "bootstrap" => "^4.5.3",
                         "jquery" => "^3.5.1",
                         "popper.js" => "^1.16.1"
                     ] + $packages;
@@ -193,9 +193,9 @@ class InstallCommand extends Command
             // Install NPM packages...
             Helpers::updateNodePackages(function ($packages) {
                 return [
-                        '@inertiajs/inertia' => '^0.1.7',
-                        '@inertiajs/inertia-vue' => '^0.1.2',
-                        "bootstrap" => "^4.4.1",
+                        '@inertiajs/inertia' => '^0.3.0',
+                        '@inertiajs/inertia-vue' => '^0.2.0',
+                        "bootstrap" => "^4.5.3",
                         "jquery" => "^3.5.1",
                         'laravel-jetstream' => '^0.0.3',
                         "popper.js" => "^1.16.1",
