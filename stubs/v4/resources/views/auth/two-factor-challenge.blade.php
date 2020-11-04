@@ -22,7 +22,7 @@
                     <div class="form-group" x-show="! recovery">
                         <x-jet-label value="{{ __('Code') }}" />
                         <x-jet-input class="{{ $errors->has('code') ? 'is-invalid' : '' }}" type="text"
-                                     name="code" autofocus x-ref="code" autocomplete="one-time-code" />
+                                     inputmode="numeric" name="code" autofocus x-ref="code" autocomplete="one-time-code" />
                         <x-jet-input-error for="code"></x-jet-input-error>
                     </div>
 
