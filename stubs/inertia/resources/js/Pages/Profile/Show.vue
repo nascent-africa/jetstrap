@@ -7,8 +7,7 @@
         </template>
 
         <update-profile-information-form
-            :name="$page.user.name"
-            :email="$page.user.email" />
+            :user="$page.user" />
 
         <jet-section-border />
 
