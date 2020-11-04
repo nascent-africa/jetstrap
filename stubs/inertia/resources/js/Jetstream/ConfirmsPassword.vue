@@ -82,7 +82,7 @@
                 this.form.error = '';
                 this.modal = new Bootstrap.Modal(document.getElementById('confirmingPasswordModal'))
 
-                axios.get('/user/confirmed-password-status').then(response => {
+                axios.get(route('password.confirmation')).then(response => {
                     if (response.data.confirmed) {
                         this.$emit('confirmed');
                     } else {
@@ -99,7 +99,7 @@
             confirmPassword() {
                 this.form.processing = true;
 
-                axios.post('/user/confirm-password', {
+                axios.post(route('password.confirm'), {
                     password: this.form.password,
                 }).then(response => {
                     this.modal.hide()
