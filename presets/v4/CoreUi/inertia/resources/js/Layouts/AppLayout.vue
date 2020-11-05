@@ -26,7 +26,7 @@
 
         <ul class="c-header-nav d-md-down-none">
           <li class="c-header-nav-item px-3">
-            <jet-nav-link :href="route('dashboard')" :active="$page.currentRouteName == 'dashboard'">
+            <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
               Dashboard
             </jet-nav-link>
           </li>
