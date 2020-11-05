@@ -17,7 +17,7 @@
     "php": "^7.3|^8.0",
     "illuminate/config": "^8.0",
     "illuminate/support": "^8.0",
-    "laravel/jetstream": "^1.4"
+    "laravel/jetstream": "^1.6"
   },
   "require-dev": {
     "orchestra/testbench": "^6.0",
