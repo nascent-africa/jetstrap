@@ -26,7 +26,7 @@
 
         <ul class="c-header-nav d-md-down-none">
           <li class="c-header-nav-item px-3">
-            <jet-nav-link :href="route('dashboard')" :active="$page.currentRouteName == 'dashboard'">
+            <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
               Dashboard
             </jet-nav-link>
           </li>
@@ -143,11 +143,11 @@
 </template>
 
 <script>
-    import JetApplicationLogo from './../Jetstream/ApplicationLogo'
-    import JetApplicationMark from './../Jetstream/ApplicationMark'
-    import JetDropdown from './../Jetstream/Dropdown'
-    import JetDropdownLink from './../Jetstream/DropdownLink'
-    import JetNavLink from './../Jetstream/NavLink'
+    import JetApplicationLogo from '@/Jetstream/ApplicationLogo'
+    import JetApplicationMark from '@/Jetstream/ApplicationMark'
+    import JetDropdown from '@/Jetstream/Dropdown'
+    import JetDropdownLink from '@/Jetstream/DropdownLink'
+    import JetNavLink from '@/Jetstream/NavLink'
 
     export default {
         components: {

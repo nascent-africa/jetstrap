@@ -9,7 +9,7 @@
 
     <x-slot name="content">
         <div>
-            {{ __('If necessary, you may logout of all of your other browser sessions across all of your devices. If you feel your account has been compromised, you should also update your password.') }}
+            {{ __('If necessary, you may logout of all of your other browser sessions across all of your devices. Some of your recent sessions are listed below; however, this list may not be exhaustive. If you feel your account has been compromised, you should also update your password.') }}
         </div>
 
         @if (count($this->sessions) > 0)
@@ -73,6 +73,7 @@
                 <div class="mt-4" x-data="{}" x-on:confirming-logout-other-browser-sessions.window="setTimeout(() => $refs.password.focus(), 250)">
                     <x-jet-input type="password" placeholder="{{ __('Password') }}"
                                  x-ref="password"
+                                 class="{{ $errors->has('password') ? 'is-invalid' : '' }}"
                                  wire:model.defer="password"
                                  wire:keydown.enter="logoutOtherBrowserSessions" />
 

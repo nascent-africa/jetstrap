@@ -12,7 +12,8 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+    .sass('resources/sass/app.scss', 'public/css')
+    .webpackConfig(require('./webpack.config'));
 
 // Core Ui assets...
 mix.js('resources/js/admin-lte.js', 'public/js')

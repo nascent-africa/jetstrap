@@ -20,7 +20,7 @@
 
                 <!-- Current Profile Photo -->
                 <div class="mt-2" v-show="! photoPreview">
-                    <img :src="$page.user.profile_photo_url" alt="Current Profile Photo" class="rounded-circle">
+                    <img :src="user.profile_photo_url" alt="Current Profile Photo" class="rounded-circle">
                 </div>
 
                 <!-- New Profile Photo Preview -->
@@ -32,7 +32,7 @@
                     Select A New Photo
                 </jet-secondary-button>
 
-				<jet-secondary-button type="button" class="mt-2" @click.native.prevent="deletePhoto" v-if="$page.user.profile_photo_path">
+				        <jet-secondary-button type="button" class="mt-2" @click.native.prevent="deletePhoto" v-if="user.profile_photo_path">
                     Remove Photo
                 </jet-secondary-button>
 
@@ -71,13 +71,13 @@
 </template>
 
 <script>
-    import JetButton from './../../Jetstream/Button'
-    import JetFormSection from './../../Jetstream/FormSection'
-    import JetInput from './../../Jetstream/Input'
-    import JetInputError from './../../Jetstream/InputError'
-    import JetLabel from './../../Jetstream/Label'
-    import JetActionMessage from './../../Jetstream/ActionMessage'
-    import JetSecondaryButton from './../../Jetstream/SecondaryButton'
+    import JetButton from '@/Jetstream/Button'
+    import JetFormSection from '@/Jetstream/FormSection'
+    import JetInput from '@/Jetstream/Input'
+    import JetInputError from '@/Jetstream/InputError'
+    import JetLabel from '@/Jetstream/Label'
+    import JetActionMessage from '@/Jetstream/ActionMessage'
+    import JetSecondaryButton from '@/Jetstream/SecondaryButton'
 
     export default {
         components: {
@@ -90,14 +90,16 @@
             JetSecondaryButton,
         },
 
-        props: ['name', 'email'],
+        props: {
+            user: Object,
+        },
 
         data() {
             return {
                 form: this.$inertia.form({
                     '_method': 'PUT',
-                    name: this.name,
-                    email: this.email,
+                    name: this.user.name,
+                    email: this.user.email,
                     photo: null,
                 }, {
                     bag: 'updateProfileInformation',

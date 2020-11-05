@@ -10,7 +10,7 @@
 
         <template #content>
             <div>
-                If necessary, you may logout of all of your other browser sessions across all of your devices. If you feel your account has been compromised, you should also update your password.
+                If necessary, you may logout of all of your other browser sessions across all of your devices. Some of your recent sessions are listed below; however, this list may not be exhaustive. If you feel your account has been compromised, you should also update your password.
             </div>
 
             <!-- Other Browser Sessions -->
@@ -65,6 +65,7 @@
                     <div class="mt-4">
                         <jet-input type="password" placeholder="Password"
                                     ref="password"
+                                    :class="{ 'is-invalid': form.error('password') }"
                                     v-model="form.password"
                                     @keyup.enter.native="logoutOtherBrowserSessions" />
 
@@ -87,13 +88,13 @@
 </template>
 
 <script>
-    import JetActionMessage from './../../Jetstream/ActionMessage'
-    import JetActionSection from './../../Jetstream/ActionSection'
-    import JetButton from './../../Jetstream/Button'
-    import JetDialogModal from './../../Jetstream/DialogModal'
-    import JetInput from './../../Jetstream/Input'
-    import JetInputError from './../../Jetstream/InputError'
-    import JetSecondaryButton from './../../Jetstream/SecondaryButton'
+    import JetActionMessage from '@/Jetstream/ActionMessage'
+    import JetActionSection from '@/Jetstream/ActionSection'
+    import JetButton from '@/Jetstream/Button'
+    import JetDialogModal from '@/Jetstream/DialogModal'
+    import JetInput from '@/Jetstream/Input'
+    import JetInputError from '@/Jetstream/InputError'
+    import JetSecondaryButton from '@/Jetstream/SecondaryButton'
 
     export default {
         props: ['sessions'],

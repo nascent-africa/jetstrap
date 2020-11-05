@@ -8,7 +8,7 @@
           <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
 
-        <jet-nav-link :href="route('dashboard')" :active="$page.currentRouteName == 'dashboard'">
+        <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
           Dashboard
         </jet-nav-link>
       </ul>
@@ -160,11 +160,11 @@
 </template>
 
 <script>
-    import JetApplicationLogo from './../Jetstream/ApplicationLogo'
-    import JetApplicationMark from './../Jetstream/ApplicationMark'
-    import JetDropdown from './../Jetstream/Dropdown'
-    import JetDropdownLink from './../Jetstream/DropdownLink'
-    import JetNavLink from './../Jetstream/NavLink'
+    import JetApplicationLogo from '@/Jetstream/ApplicationLogo'
+    import JetApplicationMark from '@/Jetstream/ApplicationMark'
+    import JetDropdown from '@/Jetstream/Dropdown'
+    import JetDropdownLink from '@/Jetstream/DropdownLink'
+    import JetNavLink from '@/Jetstream/NavLink'
 
     export default {
         components: {

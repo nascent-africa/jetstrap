@@ -7,8 +7,7 @@
         </template>
 
         <update-profile-information-form
-            :name="$page.user.name"
-            :email="$page.user.email" />
+            :user="$page.user" />
 
         <jet-section-border />
 
@@ -31,9 +30,9 @@
 </template>
 
 <script>
-    import AppLayout from './../../Layouts/AppLayout'
+    import AppLayout from '@/Layouts/AppLayout'
     import DeleteUserForm from './DeleteUserForm'
-    import JetSectionBorder from './../../Jetstream/SectionBorder'
+    import JetSectionBorder from '@/Jetstream/SectionBorder'
     import LogoutOtherBrowserSessionsForm from './LogoutOtherBrowserSessionsForm'
     import TwoFactorAuthenticationForm from './TwoFactorAuthenticationForm'
     import UpdatePasswordForm from './UpdatePasswordForm'
