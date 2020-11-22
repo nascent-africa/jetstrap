@@ -52,7 +52,7 @@
         @endif
 
         <div class="d-flex mt-3">
-            <x-jet-button wire:click="$emit('confirmLogout')" wire:loading.attr="disabled">
+            <x-jet-button wire:click="confirmLogout" wire:loading.attr="disabled">
                 {{ __('Logout Other Browser Sessions') }}
             </x-jet-button>
 
@@ -82,13 +82,11 @@
             </x-slot>
 
             <x-slot name="footer">
-                <x-jet-secondary-button wire:click="$toggle('confirmingLogout')" wire:loading.attr="disabled"
-                                        data-dismiss="modal">
+                <x-jet-secondary-button data-dismiss="modal">
                     {{ __('Nevermind') }}
                 </x-jet-secondary-button>
 
-                <x-jet-button class="ml-2" wire:click="logoutOtherBrowserSessions" wire:loading.attr="disabled"
-                              data-dismiss="modal">
+                <x-jet-button class="ml-2" wire:click="logoutOtherBrowserSessions" wire:loading.attr="disabled">
                     {{ __('Logout Other Browser Sessions') }}
                 </x-jet-button>
             </x-slot>
@@ -97,8 +95,14 @@
 
     @push('scripts')
         <script>
-            Livewire.on('confirmLogout', () => {
-                new Bootstrap.Modal(document.getElementById('confirmingLogoutModal')).toggle()
+            let confirmingLogoutModal = new Bootstrap.Modal(document.getElementById('confirmingLogoutModal'));
+
+            window.addEventListener('confirming-logout-other-browser-sessions', () => {
+                confirmingLogoutModal.show();
+            })
+
+            Livewire.on('loggedOut', () => {
+                confirmingLogoutModal.hide();
             })
         </script>
     @endpush
