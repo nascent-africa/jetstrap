@@ -13,14 +13,13 @@
         </div>
 
         <div class="mt-3">
-            <x-jet-danger-button wire:click="$emit('confirmingUserDeletion')"
-                                 wire:loading.attr="disabled">
+            <x-jet-danger-button wire:click="confirmUserDeletion" wire:loading.attr="disabled">
                 {{ __('Delete Account') }}
             </x-jet-danger-button>
         </div>
 
         <!-- Delete User Confirmation Modal -->
-        <x-jet-dialog-modal id="confirmingUserDeletionModal">
+        <x-jet-dialog-modal wire:model="confirmingUserDeletion">
             <x-slot name="title">
                 {{ __('Delete Account') }}
             </x-slot>
@@ -40,25 +39,15 @@
 
             <x-slot name="footer">
                 <x-jet-secondary-button wire:click="$toggle('confirmingUserDeletion')"
-                                        wire:loading.attr="disabled"
-                                        data-dismiss="modal">
+                                        wire:loading.attr="disabled">
                     {{ __('Nevermind') }}
                 </x-jet-secondary-button>
 
-                <x-jet-danger-button wire:click="deleteUser" wire:loading.attr="disabled"
-                                     data-dismiss="modal">
+                <x-jet-danger-button wire:click="deleteUser" wire:loading.attr="disabled">
                     {{ __('Delete Account') }}
                 </x-jet-danger-button>
             </x-slot>
         </x-jet-dialog-modal>
     </x-slot>
 
-    @push('scripts')
-        <script>
-            Livewire.on('confirmingUserDeletion', () => {
-                @this.confirmUserDeletion()
-                new Bootstrap.Modal(document.getElementById('confirmingUserDeletionModal')).toggle()
-            })
-        </script>
-    @endpush
 </x-jet-action-section>
