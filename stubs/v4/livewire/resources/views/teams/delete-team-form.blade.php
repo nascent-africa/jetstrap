@@ -13,13 +13,13 @@
         </div>
 
         <div class="mt-5">
-            <x-jet-danger-button wire:click="$emit('confirmingTeamDeletion')" wire:loading.attr="disabled">
+            <x-jet-danger-button wire:click="$toggle('confirmingTeamDeletion')" wire:loading.attr="disabled">
                 {{ __('Delete Team') }}
             </x-jet-danger-button>
         </div>
 
         <!-- Delete Team Confirmation Modal -->
-        <x-jet-confirmation-modal id="confirmingTeamDeletionModal">
+        <x-jet-confirmation-modal wire:model="confirmingTeamDeletion">
             <x-slot name="title">
                 {{ __('Delete Team') }}
             </x-slot>
@@ -31,8 +31,7 @@
             <x-slot name="footer">
                 <x-jet-secondary-button wire:click="$toggle('confirmingTeamDeletion')"
                                         wire:click="$toggle('confirmingTeamDeletion')"
-                                        wire:loading.attr="disabled"
-                                        data-dismiss="modal">
+                                        wire:loading.attr="disabled">
                     {{ __('Nevermind') }}
                 </x-jet-secondary-button>
 
@@ -42,12 +41,4 @@
             </x-slot>
         </x-jet-confirmation-modal>
     </x-slot>
-
-    @push('scripts')
-        <script>
-            Livewire.on('confirmingTeamDeletion', () => {
-                new Bootstrap.Modal(document.getElementById('confirmingTeamDeletionModal')).toggle()
-            })
-        </script>
-    @endpush
 </x-jet-action-section>

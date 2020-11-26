@@ -8,14 +8,14 @@
     {{ $attributes->wire('then') }}
     x-data
     x-ref="span"
-    wire:click="$emit('startConfirmingPassword', '{{ $confirmableId }}')"
+    x-on:click="$wire.startConfirmingPassword('{{ $confirmableId }}')"
     x-on:password-confirmed.window="setTimeout(() => $event.detail.id === '{{ $confirmableId }}' && $refs.span.dispatchEvent(new CustomEvent('then', { bubbles: false })), 250);"
 >
     {{ $slot }}
 </span>
 
 @once
-<x-jet-dialog-modal id="confirmingPasswordModal">
+<x-jet-dialog-modal wire:model="confirmingPassword">
     <x-slot name="title">
         {{ $title }}
     </x-slot>
@@ -34,8 +34,7 @@
     </x-slot>
 
     <x-slot name="footer">
-        <x-jet-secondary-button wire:click="stopConfirmingPassword" wire:loading.attr="disabled"
-                                data-dismiss="modal">
+        <x-jet-secondary-button wire:click="stopConfirmingPassword" wire:loading.attr="disabled">
             {{ __('Nevermind') }}
         </x-jet-secondary-button>
 
@@ -45,21 +44,3 @@
     </x-slot>
 </x-jet-dialog-modal>
 @endonce
-
-@push('scripts')
-    <script>
-        let modal = new Bootstrap.Modal(document.getElementById('confirmingPasswordModal'))
-
-        window.addEventListener('confirming-password', event => {
-            modal.toggle()
-        })
-        window.addEventListener('password-confirmed', event => {
-            modal.hide()
-        })
-
-        Livewire.on('startConfirmingPassword', (id) => {
-            @this.startConfirmingPassword(id)
-            modal.hide()
-        })
-    </script>
-@endpush

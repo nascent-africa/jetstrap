@@ -87,7 +87,7 @@
                                         <button class="btn btn-link text-secondary"
                                                 wire:loading.attr="disabled"
                                                 wire:target="updateApiToken"
-                                                wire:click="$emit('manageApiTokenPermissions', {{ $token->id }})">
+                                                wire:click="manageApiTokenPermissions({{ $token->id }})">
                                             {{ __('Permissions') }}
                                         </button>
                                     @endif
@@ -95,7 +95,7 @@
                                     <button class="btn btn-link text-danger text-decoration-none"
                                             wire:loading.attr="disabled"
                                             wire:target="deleteApiToken"
-                                            wire:click="$emit('confirmApiTokenDeletion', {{ $token->id }})">
+                                            wire:click="confirmApiTokenDeletion({{ $token->id }})">
                                         {{ __('Delete') }}
                                     </button>
                                 </div>
@@ -108,7 +108,7 @@
 @endif
 
 <!-- Token Value Modal -->
-    <x-jet-dialog-modal id="displayingToken">
+    <x-jet-dialog-modal wire:model="displayingToken">
         <x-slot name="title">
             {{ __('API Token') }}
         </x-slot>
@@ -124,16 +124,14 @@
         </x-slot>
 
         <x-slot name="footer">
-            <x-jet-secondary-button wire:click="$set('displayingToken', false)"
-                                    wire:loading.attr="disabled"
-                                    data-dismiss="modal">
+            <x-jet-secondary-button wire:click="$set('displayingToken', false)" wire:loading.attr="disabled">
                 {{ __('Close') }}
             </x-jet-secondary-button>
         </x-slot>
     </x-jet-dialog-modal>
 
     <!-- API Token Permissions Modal -->
-    <x-jet-dialog-modal id="managingApiTokenPermissionsModal">
+    <x-jet-dialog-modal wire:model="managingApiTokenPermissions">
         <x-slot name="title">
             {{ __('API Token Permissions') }}
         </x-slot>
@@ -155,8 +153,7 @@
         </x-slot>
 
         <x-slot name="footer">
-            <x-jet-secondary-button wire:click="$set('managingApiTokenPermissions', false)"
-                                    wire:loading.attr="disabled" data-dismiss="modal">
+            <x-jet-secondary-button wire:click="$set('managingApiTokenPermissions', false)" wire:loading.attr="disabled">
                 {{ __('Nevermind') }}
             </x-jet-secondary-button>
 
@@ -166,9 +163,7 @@
             --}}
             <div wire:loading.remove
                  wire:target="manageApiTokenPermissions">
-                <x-jet-button wire:click="updateApiToken"
-                              wire:loading.attr="disabled"
-                              data-dismiss="modal">
+                <x-jet-button wire:click="updateApiToken" wire:loading.attr="disabled">
                     {{ __('Save') }}
                 </x-jet-button>
             </div>
@@ -176,7 +171,7 @@
     </x-jet-dialog-modal>
 
     <!-- Delete Token Confirmation Modal -->
-    <x-jet-confirmation-modal id="confirmApiTokenDeletionModal">
+    <x-jet-confirmation-modal wire:model="confirmingApiTokenDeletion">
         <x-slot name="title">
             {{ __('Delete API Token') }}
         </x-slot>
@@ -186,37 +181,17 @@
         </x-slot>
 
         <x-slot name="footer">
-            <x-jet-secondary-button wire:click="$toggle('confirmingApiTokenDeletion')" wire:loading.attr="disabled" data-dismiss="modal">
+            <x-jet-secondary-button wire:click="$toggle('confirmingApiTokenDeletion')" wire:loading.attr="disabled">
                 {{ __('Nevermind') }}
             </x-jet-secondary-button>
 
 
             <div wire:loading.remove
                  wire:target="confirmApiTokenDeletion">
-                <x-jet-danger-button wire:loading.attr="disabled"
-                                     wire:click="deleteApiToken"
-                                     data-dismiss="modal">
+                <x-jet-danger-button wire:loading.attr="disabled" wire:click="deleteApiToken">
                     {{ __('Delete') }}
                 </x-jet-danger-button>
             </div>
         </x-slot>
     </x-jet-confirmation-modal>
 </div>
-
-@push('scripts')
-    <script>
-        Livewire.on('manageApiTokenPermissions', id => {
-            @this.manageApiTokenPermissions(id)
-            new Bootstrap.Modal(document.getElementById('managingApiTokenPermissionsModal')).toggle()
-        })
-
-        Livewire.on('confirmApiTokenDeletion', id => {
-            @this.confirmApiTokenDeletion(id)
-            new Bootstrap.Modal(document.getElementById('confirmApiTokenDeletionModal')).toggle()
-        })
-
-        Livewire.on('created', id => {
-            new Bootstrap.Modal(document.getElementById('displayingToken')).toggle()
-        })
-    </script>
-@endpush

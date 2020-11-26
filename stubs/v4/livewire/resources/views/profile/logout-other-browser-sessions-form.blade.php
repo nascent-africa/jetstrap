@@ -52,7 +52,7 @@
         @endif
 
         <div class="d-flex mt-3">
-            <x-jet-button wire:click="$emit('confirmLogout')" wire:loading.attr="disabled">
+            <x-jet-button wire:click="confirmLogout" wire:loading.attr="disabled">
                 {{ __('Logout Other Browser Sessions') }}
             </x-jet-button>
 
@@ -62,7 +62,7 @@
         </div>
 
         <!-- Logout Other Devices Confirmation Modal -->
-        <x-jet-dialog-modal id="confirmingLogoutModal">
+        <x-jet-dialog-modal wire:model="confirmingLogout">
             <x-slot name="title">
                 {{ __('Logout Other Browser Sessions') }}
             </x-slot>
@@ -82,24 +82,15 @@
             </x-slot>
 
             <x-slot name="footer">
-                <x-jet-secondary-button wire:click="$toggle('confirmingLogout')" wire:loading.attr="disabled"
-                                        data-dismiss="modal">
+                <x-jet-secondary-button wire:click="$toggle('confirmingLogout')" wire:loading.attr="disabled">
                     {{ __('Nevermind') }}
                 </x-jet-secondary-button>
 
-                <x-jet-button class="ml-2" wire:click="logoutOtherBrowserSessions" wire:loading.attr="disabled"
-                              data-dismiss="modal">
+                <x-jet-button class="ml-2" wire:click="logoutOtherBrowserSessions" wire:loading.attr="disabled">
                     {{ __('Logout Other Browser Sessions') }}
                 </x-jet-button>
             </x-slot>
         </x-jet-dialog-modal>
     </x-slot>
 
-    @push('scripts')
-        <script>
-            Livewire.on('confirmLogout', () => {
-                new Bootstrap.Modal(document.getElementById('confirmingLogoutModal')).toggle()
-            })
-        </script>
-    @endpush
 </x-jet-action-section>
