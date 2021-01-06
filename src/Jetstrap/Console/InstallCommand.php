@@ -6,7 +6,6 @@ use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use NascentAfrica\Jetstrap\Helpers;
 use NascentAfrica\Jetstrap\JetstrapFacade;
-use NascentAfrica\Jetstrap\JetstrapFacade as Jetstrap;
 use NascentAfrica\Jetstrap\Presets;
 
 class InstallCommand extends Command
@@ -24,7 +23,7 @@ class InstallCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Swap TailwindCss for Bootstrap 4 or 5.';
+    protected $description = 'Swap TailwindCss for Bootstrap 4.';
 
     /**
      * Execute the console command.
@@ -54,47 +53,25 @@ class InstallCommand extends Command
         (new Filesystem)->ensureDirectoryExists(resource_path('sass'));
         (new Filesystem)->ensureDirectoryExists(resource_path('js'));
 
-        if (Jetstrap::isBootstrap4()) {
-            $this->line('');
-            $this->info('Setting up bootstrap 4');
+        $this->line('');
+        $this->info('Setting up bootstrap 4');
 
-            copy(__DIR__.'/../../../resources/v4/views/components/dialog-modal.blade.php', resource_path('views/vendor/jetstream/components/dialog-modal.blade.php'));
-            copy(__DIR__.'/../../../resources/v4/views/components/label.blade.php', resource_path('views/vendor/jetstream/components/label.blade.php'));
+        copy(__DIR__.'/../../../resources/views/components/dialog-modal.blade.php', resource_path('views/vendor/jetstream/components/dialog-modal.blade.php'));
+        copy(__DIR__.'/../../../resources/views/components/label.blade.php', resource_path('views/vendor/jetstream/components/label.blade.php'));
 
-            (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/v4/resources/views/auth', resource_path('views/auth'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/resources/views/auth', resource_path('views/auth'));
 
-            copy(__DIR__.'/../../../stubs/v4/resources/js/bootstrap.js', resource_path('js/bootstrap.js'));
-            (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/v4/resources/sass', resource_path('sass'));
+        copy(__DIR__.'/../../../stubs/resources/js/bootstrap.js', resource_path('js/bootstrap.js'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/resources/sass', resource_path('sass'));
 
-            if ($this->argument('stack') === 'livewire') {
-                (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/v4/livewire/resources/views/api', resource_path('views/api'));
-                (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/v4/livewire/resources/views/profile', resource_path('views/profile'));
-                (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/v4/livewire/resources/views/teams', resource_path('views/teams'));
-            } elseif ($this->argument('stack') === 'inertia') {
-                (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/v4/inertia/resources/js/Pages/API', resource_path('js/Pages/API'));
-                (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/v4/inertia/resources/js/Pages/Profile', resource_path('js/Pages/Profile'));
-                (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/v4/inertia/resources/js/Pages/Teams', resource_path('js/Pages/Teams'));
-            }
-
-        } elseif (Jetstrap::isBootstrap5()) {
-            $this->line('');
-            $this->info('Setting up bootstrap 5');
-
-            copy(__DIR__.'/../../../stubs/resources/js/bootstrap.js', resource_path('js/bootstrap.js'));
-
-            if ($this->argument('stack') === 'livewire') {
-                (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/livewire/resources/views/api', resource_path('views/api'));
-                (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/livewire/resources/views/profile', resource_path('views/profile'));
-                (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/v4/livewire/resources/views/teams', resource_path('views/teams'));
-            } elseif ($this->argument('stack') === 'inertia') {
-                (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/inertia/resources/js/Pages/API', resource_path('js/Pages/API'));
-                (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/inertia/resources/js/Pages/Profile', resource_path('js/Pages/Profile'));
-                (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/inertia/resources/js/Pages/Teams', resource_path('js/Pages/Teams'));
-            }
-
-            (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/resources/views/auth', resource_path('views/auth'));
-            (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/resources/js', resource_path('js'));
-            (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/resources/sass', resource_path('sass'));
+        if ($this->argument('stack') === 'livewire') {
+            (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/livewire/resources/views/api', resource_path('views/api'));
+            (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/livewire/resources/views/profile', resource_path('views/profile'));
+            (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/livewire/resources/views/teams', resource_path('views/teams'));
+        } elseif ($this->argument('stack') === 'inertia') {
+            (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/inertia/resources/js/Pages/API', resource_path('js/Pages/API'));
+            (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/inertia/resources/js/Pages/Profile', resource_path('js/Pages/Profile'));
+            (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/inertia/resources/js/Pages/Teams', resource_path('js/Pages/Teams'));
         }
 
         // Install Stack...
@@ -120,24 +97,16 @@ class InstallCommand extends Command
         $this->line('');
         $this->info('Installing livewire stack...');
 
-        if (JetstrapFacade::isBootstrap4()) {
-            // NPM Packages...
-            Helpers::updateNodePackages(function ($packages) {
-                return [
-                        "bootstrap" => "^4.5.3",
-                        "jquery" => "^3.5.1",
-                        "popper.js" => "^1.16.1"
-                    ] + $packages;
-            });
-        } elseif (JetstrapFacade::isBootstrap5()) {
-            // NPM Packages...
-            Helpers::updateNodePackages(function ($packages) {
-                return [
-                        "bootstrap" => "^5.0.0-alpha2",
-                        "popper.js" => "^1.16.1"
-                    ] + $packages;
-            });
-        }
+        Helpers::updateNodePackages(function ($packages) {
+            return [
+                    'alpinejs' => '^2.7.3',
+                    'autoprefixer' => '^10.0.2',
+                    'bootstrap' => '^4.5.3',
+                    'jquery' => '^3.5.1',
+                    'popper.js' => '^1.16.1',
+                    'postcss-import' => '^12.0.1'
+                ] + $packages;
+        });
 
         // Layouts...This is wrong
         (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/livewire/resources/views/layouts', resource_path('views/layouts'));
@@ -173,11 +142,7 @@ class InstallCommand extends Command
         // Directories...
         (new Filesystem)->ensureDirectoryExists(resource_path('views/teams'));
 
-        if (JetstrapFacade::bootstrap4()) {
-            (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/v4/livewire/resources/views/teams', resource_path('views/teams'));
-        } elseif (JetstrapFacade::bootstrap5()) {
-            (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/livewire/resources/views/teams', resource_path('views/teams'));
-        }
+        (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/livewire/resources/views/teams', resource_path('views/teams'));
     }
 
     /**
@@ -190,36 +155,23 @@ class InstallCommand extends Command
         $this->line('');
         $this->info('Installing inertia stack...');
 
-        if (JetstrapFacade::bootstrap4()) {
-            // Install NPM packages...
-            Helpers::updateNodePackages(function ($packages) {
-                return [
-                        '@inertiajs/inertia' => '^0.3.0',
-                        '@inertiajs/inertia-vue' => '^0.2.0',
-                        "bootstrap" => "^4.5.3",
-                        "jquery" => "^3.5.1",
-                        'laravel-jetstream' => '^0.0.3',
-                        "popper.js" => "^1.16.1",
-                        'portal-vue' => '^2.1.7',
-                        'vue' => '^2.5.17',
-                        'vue-template-compiler' => '^2.6.10',
-                    ] + $packages;
-            });
-        } elseif (JetstrapFacade::bootstrap5()) {
-            // Install NPM packages...
-            Helpers::updateNodePackages(function ($packages) {
-                return [
-                        '@inertiajs/inertia' => '^0.1.7',
-                        '@inertiajs/inertia-vue' => '^0.1.2',
-                        "bootstrap" => "^5.0.0-alpha2",
-                        'laravel-jetstream' => '^0.0.3',
-                        "popper.js" => "^1.16.1",
-                        'portal-vue' => '^2.1.7',
-                        'vue' => '^2.5.17',
-                        'vue-template-compiler' => '^2.6.10',
-                    ] + $packages;
-            });
-        }
+        // Install NPM packages...
+        Helpers::updateNodePackages(function ($packages) {
+            return [
+                    '@inertiajs/inertia' => '^0.8.2',
+                    '@inertiajs/inertia-vue' => '^0.5.4',
+                    'bootstrap' => '^4.5.3',
+                    'jquery' => '^3.5.1',
+                    'laravel-jetstream' => '^0.0.3',
+                    'popper.js' => '^1.16.1',
+                    'portal-vue' => '^2.1.7',
+                    'postcss-import' => '^12.0.1',
+                    'autoprefixer' => '^10.0.2',
+                    'vue' => '^2.5.17',
+                    'vue-loader' => '^15.9.6',
+                    'vue-template-compiler' => '^2.6.10',
+                ] + $packages;
+        });
 
         // Blade Views...
         copy(__DIR__.'/../../../stubs/inertia/resources/views/app.blade.php', resource_path('views/app.blade.php'));
@@ -258,11 +210,7 @@ class InstallCommand extends Command
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Pages/Profile'));
 
         // Pages...
-        if (JetstrapFacade::bootstrap4()) {
-            (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/v4/inertia/resources/js/Pages/Teams', resource_path('js/Pages/Teams'));
-        } elseif (JetstrapFacade::bootstrap5()) {
-            (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/inertia/resources/js/Pages/Teams', resource_path('js/Pages/Teams'));
-        }
+        (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/inertia/resources/js/Pages/Teams', resource_path('js/Pages/Teams'));
     }
 
     /**

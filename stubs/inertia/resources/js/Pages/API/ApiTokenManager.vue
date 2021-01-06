@@ -13,7 +13,7 @@
             <template #form>
                 <div class="w-75">
                     <!-- Token Name -->
-                    <div class="mb-3">
+                    <div class="form-group">
                         <jet-label for="name" value="Name" />
                         <jet-input id="name" type="text" v-model="createApiTokenForm.name" autofocus
                                    :class="{ 'is-invalid': createApiTokenForm.error('name') }" />
@@ -171,18 +171,18 @@
 </template>
 
 <script>
-    import JetActionMessage from '@/Jetstream/ActionMessage'
-    import JetActionSection from '@/Jetstream/ActionSection'
-    import JetButton from '@/Jetstream/Button'
-    import JetConfirmationModal from '@/Jetstream/ConfirmationModal'
-    import JetDangerButton from '@/Jetstream/DangerButton'
-    import JetDialogModal from '@/Jetstream/DialogModal'
-    import JetFormSection from '@/Jetstream/FormSection'
-    import JetInput from '@/Jetstream/Input'
-    import JetInputError from '@/Jetstream/InputError'
-    import JetLabel from '@/Jetstream/Label'
-    import JetSecondaryButton from '@/Jetstream/SecondaryButton'
-    import JetSectionBorder from '@/Jetstream/SectionBorder'
+    import JetActionMessage from './../../Jetstream/ActionMessage'
+    import JetActionSection from './../../Jetstream/ActionSection'
+    import JetButton from './../../Jetstream/Button'
+    import JetConfirmationModal from './../../Jetstream/ConfirmationModal'
+    import JetDangerButton from './../../Jetstream/DangerButton'
+    import JetDialogModal from './../../Jetstream/DialogModal'
+    import JetFormSection from './../../Jetstream/FormSection'
+    import JetInput from './../../Jetstream/Input'
+    import JetInputError from './../../Jetstream/InputError'
+    import JetLabel from './../../Jetstream/Label'
+    import JetSecondaryButton from './../../Jetstream/SecondaryButton'
+    import JetSectionBorder from './../../Jetstream/SectionBorder'
 
     export default {
         components: {

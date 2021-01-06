@@ -10,21 +10,21 @@
 
         <template #form>
             <div class="w-75">
-                <div class="mb-3">
+                <div class="form-group">
                     <jet-label for="current_password" value="Current Password" />
                     <jet-input id="current_password" type="password"
                                :class="{ 'is-invalid': form.error('current_password') }" v-model="form.current_password" ref="current_password" autocomplete="current-password" />
                     <jet-input-error :message="form.error('current_password')" class="mt-2" />
                 </div>
 
-                <div class="mb-3">
+                <div class="form-group">
                     <jet-label for="password" value="New Password" />
                     <jet-input id="password" type="password"
                                :class="{ 'is-invalid': form.error('password') }" v-model="form.password" autocomplete="new-password" />
                     <jet-input-error :message="form.error('password')" class="mt-2" />
                 </div>
 
-                <div class="mb-3">
+                <div class="form-group">
                     <jet-label for="password_confirmation" value="Confirm Password" />
                     <jet-input id="password_confirmation" type="password"
                                :class="{ 'is-invalid': form.error('password_confirmation') }" v-model="form.password_confirmation" autocomplete="new-password" />

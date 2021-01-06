@@ -16,7 +16,7 @@
         <div class="card-body">
             <form method="POST" action="{{ route('login') }}">
                 @csrf
-                <div class="mb-3">
+                <div class="form-group">
                     <x-jet-label value="{{ __('Email') }}" />
 
                     <x-jet-input class="{{ $errors->has('email') ? 'is-invalid' : '' }}" type="email"
@@ -24,7 +24,7 @@
                     <x-jet-input-error for="email"></x-jet-input-error>
                 </div>
 
-                <div class="mb-3">
+                <div class="form-group">
                     <x-jet-label value="{{ __('Password') }}" />
 
                     <x-jet-input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" type="password"
@@ -32,7 +32,7 @@
                     <x-jet-input-error for="password"></x-jet-input-error>
                 </div>
 
-                <div class="mb-3">
+                <div class="form-group">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 

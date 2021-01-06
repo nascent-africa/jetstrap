@@ -23,12 +23,12 @@
             </div>
 
             <div class="w-75">
-                <div class="form-group">
-                    <jet-label for="name" value="Team Name" />
-                    <jet-input id="name" type="text" v-model="form.name" autofocus
-                               :class="{ 'is-invalid': form.error('name') }" />
-                    <jet-input-error :message="form.error('name')" />
-                </div>
+              <div class="form-group">
+                <jet-label for="name" value="Team Name" />
+                <jet-input id="name" type="text" v-model="form.name" autofocus
+                           :class="{ 'is-invalid': form.error('name') }" />
+                <jet-input-error :message="form.error('name')" />
+              </div>
             </div>
         </template>
 

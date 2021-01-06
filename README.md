@@ -20,7 +20,6 @@ Jetstrap focus is on the `VIEW` side of [Jetstream](https://github.com/laravel/j
       - [Install Jetstream With Livewire](#install-jetstream-with-livewire)
       - [Or, Install Jetstream With Inertia](#or--install-jetstream-with-inertia)
     + [Install Jetstrap](#install-jetstrap)
-    + [Choosing a Bootstrap version](#choosing-a-bootstrap-version)
     + [Finalizing The Installation](#finalizing-the-installation)
     + [Extras](#extras)
       - [Pagination](#pagination)
@@ -60,43 +59,6 @@ Use Composer to install Jetstream into your new Laravel project as dev dependenc
 
 ```
 composer require nascent-africa/jetstrap --dev
-```
-
-### Choosing a Bootstrap version
-
-Jetstrap supports two different versions of Bootstrap, version 4 and 5. Version 5 is set as the default version, 
-but you can easily switch to version 4 by using the Jetstrap's bootstrap4 method within your AppServiceProvider before performing a swap:
-
-```php
-<?php
-
-namespace App\Providers;
-
-use Illuminate\Support\ServiceProvider;
-use NascentAfrica\Jetstrap\JetstrapFacade;
-
-class AppServiceProvider extends ServiceProvider
-{
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        //
-    }
-
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        JetstrapFacade::bootstrap4();
-    }
-}
 ```
 
 Regardless how you install Jetstream, Jetstrap commands are very similar to that
@@ -205,7 +167,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        JetstrapFacade::bootstrap4();
         JetstrapFacade::useCoreUi3();
     }
 }
@@ -244,7 +205,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        JetstrapFacade::bootstrap4();
         JetstrapFacade::useAdminLte3();
     }
 }
