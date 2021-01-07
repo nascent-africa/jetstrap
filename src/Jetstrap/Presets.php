@@ -35,21 +35,23 @@ class Presets
 
         copy(__DIR__ . '/../../presets/CoreUi/resources/js/core-ui.js', resource_path('js/core-ui.js'));
 
-        copy(__DIR__ . '/../../presets/CoreUi/resources/views/auth/login.blade.php', resource_path('views/auth/login.blade.php'));
-        copy(__DIR__ . '/../../presets/CoreUi/resources/views/auth/register.blade.php', resource_path('views/auth/register.blade.php'));
-
-        copy(__DIR__ . '/../../presets/CoreUi/resources/views/components/authentication-card.blade.php', resource_path('views/vendor/jetstream/components/authentication-card.blade.php'));
-        copy(__DIR__ . '/../../presets/CoreUi/resources/views/components/button.blade.php', resource_path('views/vendor/jetstream/components/button.blade.php'));
-        copy(__DIR__ . '/../../presets/CoreUi/resources/views/components/dropdown.blade.php', resource_path('views/vendor/jetstream/components/dropdown.blade.php'));
-        copy(__DIR__ . '/../../presets/CoreUi/resources/views/components/dropdown-link.blade.php', resource_path('views/vendor/jetstream/components/dropdown-link.blade.php'));
-        copy(__DIR__ . '/../../presets/CoreUi/resources/views/components/nav-link.blade.php', resource_path('views/vendor/jetstream/components/nav-link.blade.php'));
-        copy(__DIR__ . '/../../presets/CoreUi/resources/views/components/welcome.blade.php', resource_path('views/vendor/jetstream/components/welcome.blade.php'));
-
-        copy(__DIR__ . '/../../presets/CoreUi/resources/views/layouts/guest.blade.php', resource_path('views/layouts/guest.blade.php'));
-
         if ($stack == 'livewire') {
+
+            copy(__DIR__ . '/../../presets/CoreUi/resources/views/auth/login.blade.php', resource_path('views/auth/login.blade.php'));
+            copy(__DIR__ . '/../../presets/CoreUi/resources/views/auth/register.blade.php', resource_path('views/auth/register.blade.php'));
             copy(__DIR__ . '/../../presets/CoreUi/resources/views/layouts/app.blade.php', resource_path('views/layouts/app.blade.php'));
+
+            copy(__DIR__ . '/../../presets/CoreUi/resources/views/components/authentication-card.blade.php', resource_path('views/vendor/jetstream/components/authentication-card.blade.php'));
+            copy(__DIR__ . '/../../presets/CoreUi/resources/views/components/button.blade.php', resource_path('views/vendor/jetstream/components/button.blade.php'));
+            copy(__DIR__ . '/../../presets/CoreUi/resources/views/components/dropdown.blade.php', resource_path('views/vendor/jetstream/components/dropdown.blade.php'));
+            copy(__DIR__ . '/../../presets/CoreUi/resources/views/components/dropdown-link.blade.php', resource_path('views/vendor/jetstream/components/dropdown-link.blade.php'));
+            copy(__DIR__ . '/../../presets/CoreUi/resources/views/components/nav-link.blade.php', resource_path('views/vendor/jetstream/components/nav-link.blade.php'));
+            copy(__DIR__ . '/../../presets/CoreUi/resources/views/components/welcome.blade.php', resource_path('views/vendor/jetstream/components/welcome.blade.php'));
+
+            copy(__DIR__ . '/../../presets/CoreUi/resources/views/layouts/guest.blade.php', resource_path('views/layouts/guest.blade.php'));
+
         } elseif ($stack == 'inertia') {
+
             copy(__DIR__ . '/../../presets/CoreUi/inertia/resources/views/app.blade.php', resource_path('views/app.blade.php'));
             copy(__DIR__ . '/../../presets/CoreUi/inertia/resources/js/Layouts/AppLayout.vue', resource_path('js/Layouts/AppLayout.vue'));
 
@@ -84,10 +86,6 @@ class Presets
         copy(__DIR__ . '/../../presets/AdminLte/resources/js/admin-lte.js', resource_path('js/admin-lte.js'));
         copy(__DIR__ . '/../../presets/AdminLte/resources/sass/admin-lte.scss', resource_path('sass/admin-lte.scss'));
 
-        copy(__DIR__ . '/../../presets/AdminLte/resources/views/layouts/guest.blade.php', resource_path('views/layouts/guest.blade.php'));
-
-        (new Filesystem)->copyDirectory(__DIR__.'/../../presets/AdminLte/resources/views/auth', resource_path('views/auth'));
-
         copy(__DIR__.'/../../presets/AdminLte/webpack.mix.js', base_path('webpack.mix.js'));
 
         // NPM Packages...
@@ -98,15 +96,20 @@ class Presets
                 ] + $packages;
         });
 
-        copy(__DIR__ . '/../../presets/AdminLte/resources/views/components/authentication-card.blade.php', resource_path('views/vendor/jetstream/components/authentication-card.blade.php'));
-        copy(__DIR__ . '/../../presets/AdminLte/resources/views/components/dropdown.blade.php', resource_path('views/vendor/jetstream/components/dropdown.blade.php'));
-        copy(__DIR__ . '/../../presets/AdminLte/resources/views/components/nav-link.blade.php', resource_path('views/vendor/jetstream/components/nav-link.blade.php'));
-        copy(__DIR__ . '/../../presets/AdminLte/resources/views/components/welcome.blade.php', resource_path('views/vendor/jetstream/components/welcome.blade.php'));
-
-        copy(__DIR__ . '/../../presets/AdminLte/resources/views/layouts/guest.blade.php', resource_path('views/layouts/guest.blade.php'));
-
         if ($stack == 'livewire') {
+
+            copy(__DIR__ . '/../../presets/AdminLte/resources/views/layouts/guest.blade.php', resource_path('views/layouts/guest.blade.php'));
+            (new Filesystem)->copyDirectory(__DIR__.'/../../presets/AdminLte/resources/views/auth', resource_path('views/auth'));
+
             copy(__DIR__ . '/../../presets/AdminLte/resources/views/layouts/app.blade.php', resource_path('views/layouts/app.blade.php'));
+
+            copy(__DIR__ . '/../../presets/AdminLte/resources/views/components/authentication-card.blade.php', resource_path('views/vendor/jetstream/components/authentication-card.blade.php'));
+            copy(__DIR__ . '/../../presets/AdminLte/resources/views/components/dropdown.blade.php', resource_path('views/vendor/jetstream/components/dropdown.blade.php'));
+            copy(__DIR__ . '/../../presets/AdminLte/resources/views/components/nav-link.blade.php', resource_path('views/vendor/jetstream/components/nav-link.blade.php'));
+            copy(__DIR__ . '/../../presets/AdminLte/resources/views/components/welcome.blade.php', resource_path('views/vendor/jetstream/components/welcome.blade.php'));
+
+            copy(__DIR__ . '/../../presets/AdminLte/resources/views/layouts/guest.blade.php', resource_path('views/layouts/guest.blade.php'));
+
         } elseif ($stack == 'inertia') {
             copy(__DIR__ . '/../../presets/AdminLte/inertia/resources/views/app.blade.php', resource_path('views/app.blade.php'));
             copy(__DIR__ . '/../../presets/AdminLte/inertia/resources/js/Layouts/AppLayout.vue', resource_path('js/Layouts/AppLayout.vue'));

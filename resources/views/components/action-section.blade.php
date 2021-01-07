@@ -5,6 +5,7 @@
             <x-slot name="description">{{ $description }}</x-slot>
         </x-jet-section-title>
     </div>
+
     <div class="col-md-8">
         <div class="card shadow-sm">
             <div class="card-body">

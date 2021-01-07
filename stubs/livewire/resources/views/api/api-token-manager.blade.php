@@ -28,8 +28,7 @@
                             @foreach (Laravel\Jetstream\Jetstream::$permissions as $permission)
                                 <div class="col-6">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="{{ $permission }}"
-                                               wire:model.defer="createApiTokenForm.permissions">
+                                        <x-jet-checkbox wire:model.defer="createApiTokenForm.permissions" :value="$permission"/>
                                         <label class="form-check-label">
                                             {{ $permission }}
                                         </label>
@@ -84,18 +83,12 @@
                                     @endif
 
                                     @if (Laravel\Jetstream\Jetstream::hasPermissions())
-                                        <button class="btn btn-link text-secondary"
-                                                wire:loading.attr="disabled"
-                                                wire:target="updateApiToken"
-                                                wire:click="manageApiTokenPermissions({{ $token->id }})">
+                                        <button class="btn btn-link text-secondary" wire:loading.attr="disabled" wire:target="updateApiToken" wire:click="manageApiTokenPermissions({{ $token->id }})">
                                             {{ __('Permissions') }}
                                         </button>
                                     @endif
 
-                                    <button class="btn btn-link text-danger text-decoration-none"
-                                            wire:loading.attr="disabled"
-                                            wire:target="deleteApiToken"
-                                            wire:click="confirmApiTokenDeletion({{ $token->id }})">
+                                    <button class="btn btn-link text-danger text-decoration-none" wire:loading.attr="disabled" wire:target="deleteApiToken" wire:click="confirmApiTokenDeletion({{ $token->id }})">
                                         {{ __('Delete') }}
                                     </button>
                                 </div>
@@ -105,9 +98,9 @@
                 </x-slot>
             </x-jet-action-section>
         </div>
-@endif
+    @endif
 
-<!-- Token Value Modal -->
+    <!-- Token Value Modal -->
     <x-jet-dialog-modal wire:model="displayingToken">
         <x-slot name="title">
             {{ __('API Token') }}
@@ -186,8 +179,7 @@
             </x-jet-secondary-button>
 
 
-            <div wire:loading.remove
-                 wire:target="confirmApiTokenDeletion">
+            <div wire:loading.remove wire:target="confirmApiTokenDeletion">
                 <x-jet-danger-button wire:loading.attr="disabled" wire:click="deleteApiToken">
                     {{ __('Delete') }}
                 </x-jet-danger-button>

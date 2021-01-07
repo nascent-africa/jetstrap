@@ -141,7 +141,6 @@ class TestCase extends \Orchestra\Testbench\TestCase
     protected function basicTests()
     {
         $this->assertFalse($this->filesystem->exists(base_path('tailwind.config.js')));
-        $this->assertFalse($this->filesystem->exists(resource_path('navigation-dropdown.blade.php')));
         $this->assertFalse($this->filesystem->exists(resource_path('css')));
         $this->assertTrue($this->filesystem->exists(base_path('webpack.mix.js')));
     }
@@ -156,6 +155,9 @@ class TestCase extends \Orchestra\Testbench\TestCase
         $this->assertTrue($this->filesystem->exists(resource_path('views/layouts/app.blade.php')));
         $this->assertTrue($this->filesystem->exists(resource_path('views/layouts/guest.blade.php')));
         $this->assertTrue($this->filesystem->exists(resource_path('views/dashboard.blade.php')));
+        $this->assertTrue($this->filesystem->exists(resource_path('views/terms.blade.php')));
+        $this->assertTrue($this->filesystem->exists(resource_path('views/policy.blade.php')));
+        $this->assertTrue($this->filesystem->exists(resource_path('views/navigation-menu.blade.php')));
         $this->assertTrue($this->filesystem->exists(resource_path('views/api/api-token-manager.blade.php')));
         $this->assertTrue($this->filesystem->exists(resource_path('views/api/index.blade.php')));
         $this->assertTrue($this->filesystem->exists(resource_path('views/profile/delete-user-form.blade.php')));
