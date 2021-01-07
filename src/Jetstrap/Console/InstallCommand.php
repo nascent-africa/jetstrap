@@ -34,9 +34,6 @@ class InstallCommand extends Command
     {
         $this->info('Performing swap...');
 
-        // Publish...
-        $this->callSilent('vendor:publish', ['--tag' => 'jetstrap-views', '--force' => true]);
-
         copy(__DIR__.'/../../../stubs/resources/views/welcome.blade.php', resource_path('views/welcome.blade.php'));
 
         // Remove Tailwind Configuration...
@@ -105,6 +102,9 @@ class InstallCommand extends Command
 
         // Assets...
         (new Filesystem)->copy(__DIR__.'/../../../stubs/resources/js/app.js', resource_path('js/app.js'));
+
+        // Publish...
+        $this->callSilent('vendor:publish', ['--tag' => 'jetstrap-views', '--force' => true]);
 
         // Teams...
         if ($this->option('teams')) {

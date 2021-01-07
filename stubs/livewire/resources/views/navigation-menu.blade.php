@@ -20,7 +20,7 @@
             <ul class="navbar-nav ml-auto">
                 <!-- Teams Dropdown -->
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
-                    <x-jet-dropdown id="navbarDropdown">
+                    <x-jet-dropdown id="teamManagementDropdown">
                         <x-slot name="trigger">{{ Auth::user()->currentTeam->name }}</x-slot>
 
                         <x-slot name="content">
@@ -56,7 +56,7 @@
 
                 <!-- Settings Dropdown -->
                 @auth
-                    <x-jet-dropdown id="navbarDropdown">
+                    <x-jet-dropdown id="settingsDropdown">
                         <x-slot name="trigger">
                             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                                 <img class="rounded-circle" width="32" height="32" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
