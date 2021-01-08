@@ -174,7 +174,9 @@ class TestCase extends \Orchestra\Testbench\TestCase
         $this->assertTrue($this->filesystem->exists(resource_path('views/vendor/jetstream/components/authentication-card.blade.php')));
         $this->assertTrue($this->filesystem->exists(resource_path('views/vendor/jetstream/components/authentication-card-logo.blade.php')));
         $this->assertTrue($this->filesystem->exists(resource_path('views/vendor/jetstream/components/button.blade.php')));
+        $this->assertTrue($this->filesystem->exists(resource_path('views/vendor/jetstream/components/banner.blade.php')));
         $this->assertTrue($this->filesystem->exists(resource_path('views/vendor/jetstream/components/confirmation-modal.blade.php')));
+        $this->assertTrue($this->filesystem->exists(resource_path('views/vendor/jetstream/components/checkbox.blade.php')));
         $this->assertTrue($this->filesystem->exists(resource_path('views/vendor/jetstream/components/danger-button.blade.php')));
         $this->assertTrue($this->filesystem->exists(resource_path('views/vendor/jetstream/components/dialog-modal.blade.php')));
         $this->assertTrue($this->filesystem->exists(resource_path('views/vendor/jetstream/components/dropdown.blade.php')));
@@ -205,8 +207,10 @@ class TestCase extends \Orchestra\Testbench\TestCase
         $this->assertTrue($this->filesystem->exists(resource_path('js/Jetstream/ActionSection.vue')));
         $this->assertTrue($this->filesystem->exists(resource_path('js/Jetstream/ApplicationLogo.vue')));
         $this->assertTrue($this->filesystem->exists(resource_path('js/Jetstream/ApplicationMark.vue')));
+        $this->assertTrue($this->filesystem->exists(resource_path('js/Jetstream/Banner.vue')));
         $this->assertTrue($this->filesystem->exists(resource_path('js/Jetstream/Button.vue')));
         $this->assertTrue($this->filesystem->exists(resource_path('js/Jetstream/ConfirmationModal.vue')));
+        $this->assertTrue($this->filesystem->exists(resource_path('js/Jetstream/Checkbox.vue')));
         $this->assertTrue($this->filesystem->exists(resource_path('js/Jetstream/DangerButton.vue')));
         $this->assertTrue($this->filesystem->exists(resource_path('js/Jetstream/DialogModal.vue')));
         $this->assertTrue($this->filesystem->exists(resource_path('js/Jetstream/Dropdown.vue')));
