@@ -73,12 +73,17 @@ export default {
 
   data() {
     return {
+      modal: null,
       confirmingUserDeletion: false,
 
       form: this.$inertia.form({
         password: '',
       })
     }
+  },
+
+  created() {
+    this.modal = new Bootstrap.Modal(document.getElementById('confirmingUserDeletionModal'))
   },
 
   methods: {
@@ -104,6 +109,8 @@ export default {
       this.confirmingUserDeletion = false
 
       this.form.reset()
+
+      this.modal.toggle()
     },
   },
 }
