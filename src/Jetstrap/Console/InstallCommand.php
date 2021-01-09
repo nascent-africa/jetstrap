@@ -148,6 +148,7 @@ class InstallCommand extends Command
             return [
                     '@inertiajs/inertia' => '^0.8.2',
                     '@inertiajs/inertia-vue' => '^0.5.4',
+                    '@inertiajs/progress' => '^0.2.4',
                     'bootstrap' => '^4.5.3',
                     'jquery' => '^3.5.1',
                     'laravel-jetstream' => '^0.0.3',
