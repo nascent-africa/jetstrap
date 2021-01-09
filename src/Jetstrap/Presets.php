@@ -30,7 +30,6 @@ class Presets
     public static function setupCoreUi3(string $stack)
     {
         (new Filesystem)->copyDirectory(__DIR__.'/../../presets/CoreUi/public/assets', public_path('/assets'));
-
         (new Filesystem)->copyDirectory(__DIR__.'/../../presets/CoreUi/resources/sass', resource_path('sass/core-ui'));
 
         copy(__DIR__ . '/../../presets/CoreUi/resources/js/core-ui.js', resource_path('js/core-ui.js'));
@@ -91,6 +90,7 @@ class Presets
         // NPM Packages...
         Helpers::updateNodePackages(function ($packages) {
             return [
+                    "@fortawesome/fontawesome-free" => "^5.15.1",
                     "admin-lte" => "^3.0.5",
                     "overlayscrollbars" => "^1.13.0"
                 ] + $packages;
@@ -114,6 +114,7 @@ class Presets
             copy(__DIR__ . '/../../presets/AdminLte/inertia/resources/views/app.blade.php', resource_path('views/app.blade.php'));
             copy(__DIR__ . '/../../presets/AdminLte/inertia/resources/js/Layouts/AppLayout.vue', resource_path('js/Layouts/AppLayout.vue'));
 
+            copy(__DIR__ . '/../../presets/AdminLte/inertia/resources/js/Jetstream/AuthenticationCard.vue', resource_path('js/Jetstream/AuthenticationCard.vue'));
             copy(__DIR__ . '/../../presets/AdminLte/inertia/resources/js/Jetstream/Dropdown.vue', resource_path('js/Jetstream/Dropdown.vue'));
             copy(__DIR__ . '/../../presets/AdminLte/inertia/resources/js/Jetstream/NavLink.vue', resource_path('js/Jetstream/NavLink.vue'));
             copy(__DIR__ . '/../../presets/AdminLte/inertia/resources/js/Jetstream/Welcome.vue', resource_path('js/Jetstream/Welcome.vue'));

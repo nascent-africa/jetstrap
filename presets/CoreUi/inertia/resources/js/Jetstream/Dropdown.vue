@@ -4,7 +4,7 @@
             <slot name="trigger"></slot>
         </a>
 
-        <div class="dropdown-menu dropdown-menu-right pt-0" :aria-labelledby="id">
+        <div class="dropdown-menu dropdown-menu-right animate slideIn pt-0" :aria-labelledby="id">
             <slot name="content"></slot>
         </div>
     </li>

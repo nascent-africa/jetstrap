@@ -12,8 +12,6 @@ As a backend developer, Livewire was a dream come true, and since the inception 
 
 Jetstrap focus is on the `VIEW` side of [Jetstream](https://github.com/laravel/jetstream) package installed in your Laravel application, so when a swap is performed, the `Action`, `MODEL`, `CONTROLLER` even the `Component` and `Action` classes of your project is still 100% Jetstream with no added layer of complexity.
 
-> This package offers an option for of Bootstrap 5 by default so check out the [Bootstrap 5](https://v5.getbootstrap.com/docs/5.0/getting-started/introduction/) documentation for more details.
-
 ## Table of Content
   * [Installation](#installation)
     + [Installing Jetstream](#installing-jetstream)

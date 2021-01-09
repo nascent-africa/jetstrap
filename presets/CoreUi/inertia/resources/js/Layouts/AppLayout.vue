@@ -33,13 +33,56 @@
         </ul>
 
         <ul class="c-header-nav ml-auto mr-4">
-          <!-- Authentication Links -->
-          <jet-dropdown id="navbarDropdown">
+          <!-- Team Management -->
+          <jet-dropdown id="teamManagementDropdown">
             <template #trigger>
-              <div v-if="$page.jetstream.managesProfilePhotos" class="c-avatar">
-                <img class="c-avatar-img" width="32" height="32" :src="$page.user.profile_photo_url" :alt="$page.user.name" />
+              {{ $page.props.user.current_team.name }}
+            </template>
+
+            <template #content>
+              <template v-if="$page.props.jetstream.hasTeamFeatures">
+
+                <div class="dropdown-header bg-light py-2">
+                  <strong>Manage Team</strong>
+                </div>
+
+                <!-- Team Settings -->
+                <jet-dropdown-link :href="route('teams.show', $page.props.user.current_team)">
+                  Team Settings
+                </jet-dropdown-link>
+
+                <jet-dropdown-link :href="route('teams.create')" v-if="$page.props.jetstream.canCreateTeams">
+                  Create New Team
+                </jet-dropdown-link>
+
+                <!-- Team Switcher -->
+                <div class="dropdown-header bg-light py-2">
+                  <strong>Switch Teams</strong>
+                </div>
+
+                <template v-for="team in $page.props.user.all_teams">
+                  <form @submit.prevent="switchToTeam(team)">
+                    <jet-dropdown-link as="button">
+                      <div class="d-flex">
+                        <svg v-if="team.id == $page.props.user.current_team_id" class="mr-1 text-success" width="20" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24">
+                          <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span>{{ team.name }}</span>
+                      </div>
+                    </jet-dropdown-link>
+                  </form>
+                </template>
+              </template>
+            </template>
+          </jet-dropdown>
+
+          <!-- Authentication Links -->
+          <jet-dropdown id="settingsDropdown">
+            <template #trigger>
+              <div v-if="$page.props.jetstream.managesProfilePhotos" class="c-avatar">
+                <img class="c-avatar-img" width="32" height="32" :src="$page.props.user.profile_photo_url" :alt="$page.props.user.name" />
               </div>
-              <span v-else>{{ $page.user.name }}</span>
+              <span v-else>{{ $page.props.user.name }}</span>
             </template>
 
             <template #content>
@@ -52,46 +95,9 @@
                 Profile
               </jet-dropdown-link>
 
-              <jet-dropdown-link :href="route('api-tokens.index')" v-if="$page.jetstream.hasApiFeatures">
+              <jet-dropdown-link :href="route('api-tokens.index')" v-if="$page.props.jetstream.hasApiFeatures">
                 API Tokens
               </jet-dropdown-link>
-
-              <!-- Team Management -->
-              <template v-if="$page.jetstream.hasTeamFeatures">
-
-                <div class="dropdown-header bg-light py-2">
-                  <strong>Manage Team</strong>
-                </div>
-
-                <!-- Team Settings -->
-                <jet-dropdown-link :href="route('teams.show', $page.user.current_team)">
-                  Team Settings
-                </jet-dropdown-link>
-
-                <jet-dropdown-link :href="route('teams.create')" v-if="$page.jetstream.canCreateTeams">
-                  Create New Team
-                </jet-dropdown-link>
-
-                <!-- Team Switcher -->
-                <div class="dropdown-header bg-light py-2">
-                  <strong>Switch Teams</strong>
-                </div>
-
-                <template v-for="team in $page.user.all_teams">
-                  <form @submit.prevent="switchToTeam(team)">
-                    <jet-dropdown-link as="button">
-                      <div class="d-flex">
-                        <svg v-if="team.id == $page.user.current_team_id" class="mr-1 text-success" width="20" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24">
-                          <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                        <span>{{ team.name }}</span>
-                      </div>
-                    </jet-dropdown-link>
-                  </form>
-                </template>
-              </template>
-
-              <hr class="dropdown-divider">
 
               <!-- Authentication -->
               <form @submit.prevent="logout">
@@ -143,51 +149,49 @@
 </template>
 
 <script>
-    import JetApplicationLogo from '@/Jetstream/ApplicationLogo'
-    import JetApplicationMark from '@/Jetstream/ApplicationMark'
-    import JetDropdown from '@/Jetstream/Dropdown'
-    import JetDropdownLink from '@/Jetstream/DropdownLink'
-    import JetNavLink from '@/Jetstream/NavLink'
+import JetApplicationLogo from '@/Jetstream/ApplicationLogo'
+import JetApplicationMark from '@/Jetstream/ApplicationMark'
+import JetDropdown from '@/Jetstream/Dropdown'
+import JetDropdownLink from '@/Jetstream/DropdownLink'
+import JetNavLink from '@/Jetstream/NavLink'
 
-    export default {
-        components: {
-            JetApplicationLogo,
-            JetApplicationMark,
-            JetDropdown,
-            JetDropdownLink,
-            JetNavLink,
-        },
+export default {
+  components: {
+    JetApplicationLogo,
+    JetApplicationMark,
+    JetDropdown,
+    JetDropdownLink,
+    JetNavLink,
+  },
 
-        data() {
-            return {
-                showingNavigationDropdown: false,
-            }
-        },
-
-        methods: {
-            switchToTeam(team) {
-                this.$inertia.put(route('current-team.update'), {
-                    'team_id': team.id
-                }, {
-                    preserveState: false
-                })
-            },
-
-            logout() {
-                axios.post(route('logout').url()).then(response => {
-                    window.location = '/';
-                })
-            },
-
-            hasSlot (name = 'default') {
-              return !!this.$slots[ name ] || !!this.$scopedSlots[ name ];
-            },
-        },
-
-        computed: {
-            path() {
-                return window.location.pathname
-            }
-        }
+  data() {
+    return {
+      showingNavigationDropdown: false,
     }
+  },
+
+  methods: {
+    switchToTeam(team) {
+      this.$inertia.put(route('current-team.update'), {
+        'team_id': team.id
+      }, {
+        preserveState: false
+      })
+    },
+
+    logout() {
+      this.$inertia.post(route('logout'));
+    },
+
+    hasSlot (name = 'default') {
+      return !!this.$slots[ name ] || !!this.$scopedSlots[ name ];
+    },
+  },
+
+  computed: {
+    path() {
+      return window.location.pathname
+    }
+  }
+}
 </script>
