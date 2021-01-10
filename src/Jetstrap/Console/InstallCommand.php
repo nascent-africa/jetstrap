@@ -60,6 +60,9 @@ class InstallCommand extends Command
         } elseif ($this->argument('stack') === 'inertia') {
 
             $this->installInertiaStack();
+        } elseif ($this->argument('stack') === 'breeze') {
+
+            $this->swapBreezeStack();
         }
     }
 
@@ -160,6 +163,9 @@ class InstallCommand extends Command
                 ] + $packages;
         });
 
+        // Necessary for vue compilation
+        copy(__DIR__.'/../../../stubs/inertia/webpack.mix.js', base_path('webpack.mix.js'));
+
         // Blade Views...
         copy(__DIR__.'/../../../stubs/inertia/resources/views/app.blade.php', resource_path('views/app.blade.php'));
 
@@ -217,6 +223,43 @@ class InstallCommand extends Command
 
         // Pages...
         (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/inertia/resources/js/Pages/Teams', resource_path('js/Pages/Teams'));
+    }
+
+    /**
+     * Swap TailwindCss resources in Laravel Breeze.
+     *
+     * @return void
+     */
+    protected function swapBreezeStack()
+    {
+        // NPM Packages...
+        Helpers::updateNodePackages(function ($packages) {
+            return [
+                    'alpinejs' => '^2.7.3',
+                    'bootstrap' => '^4.5.3',
+                    'jquery' => '^3.5.1',
+                    'popper.js' => '^1.16.1'
+                ] + $packages;
+        });
+
+        // Views...
+        (new Filesystem)->ensureDirectoryExists(resource_path('views/auth'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('views/layouts'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('views/components'));
+
+        (new Filesystem)->copyDirectory(__DIR__.'/../../../breeze/resources/views/auth', resource_path('views/auth'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../../breeze/resources/views/layouts', resource_path('views/layouts'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../../breeze/resources/views/components', resource_path('views/components'));
+
+        copy(__DIR__.'/../../../breeze/resources/views/dashboard.blade.php', resource_path('views/dashboard.blade.php'));
+        copy(__DIR__.'/../../../stubs/resources/views/welcome.blade.php', resource_path('views/welcome.blade.php'));
+
+        $this->line('');
+        $this->info('Rounding up...');
+        $this->installPreset();
+
+        $this->info('Breeze scaffolding swapped successfully.');
+        $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
     }
 
     /**

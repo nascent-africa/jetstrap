@@ -11,13 +11,9 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
+mix.js('resources/js/app.js', 'public/js').vue()
     .sass('resources/sass/app.scss', 'public/css')
     .webpackConfig(require('./webpack.config'));
-
-// Core Ui assets...
-mix.js('resources/js/admin-lte.js', 'public/js')
-    .sass('resources/sass/admin-lte.scss', 'public/css');
 
 if (mix.inProduction()) {
     mix.version();

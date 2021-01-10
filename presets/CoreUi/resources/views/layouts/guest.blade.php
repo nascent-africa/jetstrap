@@ -16,7 +16,7 @@
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
-    <body class="c-app flex-row align-items-center">
+    <body class="c-app flex-row align-items-center font-sans antialiased">
         {{ $slot }}
 
         @stack('scripts')

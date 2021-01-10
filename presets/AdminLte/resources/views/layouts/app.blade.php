@@ -19,7 +19,7 @@
         <script src="{{ mix('js/app.js') }}" defer></script>
         <script src="{{ mix('js/admin-lte.js') }}" defer></script>
     </head>
-    <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed">
+    <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed font-sans antialiased">
         <div class="wrapper">
             <!-- Navbar -->
             <nav class="main-header navbar navbar-expand navbar-white navbar-light">

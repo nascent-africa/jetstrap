@@ -17,7 +17,7 @@
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
 </head>
-<body {{ $attributes->merge(['class' => 'hold-transition']) }}>
+<body {{ $attributes->merge(['class' => 'hold-transition font-sans antialiased']) }}>
     {{ $slot }}
     @stack('scripts')
 </body>

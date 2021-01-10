@@ -29,6 +29,19 @@ class Presets
      */
     public static function setupCoreUi3(string $stack)
     {
+
+        // NPM Packages...
+        Helpers::updateNodePackages(function ($packages) {
+            return [
+                    "@coreui/coreui" => "^3.3.0",
+                    "@fortawesome/fontawesome-free" => "^5.15.1",
+                    "@popperjs/core" => "^2.5.3",
+                    "perfect-scrollbar" => "^1.5.0"
+                ] + $packages;
+        });
+
+        copy(__DIR__.'/../../presets/CoreUi/webpack.mix.js', base_path('webpack.mix.js'));
+
         (new Filesystem)->copyDirectory(__DIR__.'/../../presets/CoreUi/public/assets', public_path('/assets'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../presets/CoreUi/resources/sass', resource_path('sass/core-ui'));
 
@@ -51,6 +64,9 @@ class Presets
 
         } elseif ($stack == 'inertia') {
 
+            // Necessary for vue compilation
+            copy(__DIR__.'/../../presets/CoreUi/inertia/webpack.mix.js', base_path('webpack.mix.js'));
+
             copy(__DIR__ . '/../../presets/CoreUi/inertia/resources/views/app.blade.php', resource_path('views/app.blade.php'));
             copy(__DIR__ . '/../../presets/CoreUi/inertia/resources/js/Layouts/AppLayout.vue', resource_path('js/Layouts/AppLayout.vue'));
 
@@ -59,19 +75,18 @@ class Presets
             copy(__DIR__ . '/../../presets/CoreUi/inertia/resources/js/Jetstream/DropdownLink.vue', resource_path('js/Jetstream/DropdownLink.vue'));
             copy(__DIR__ . '/../../presets/CoreUi/inertia/resources/js/Jetstream/NavLink.vue', resource_path('js/Jetstream/NavLink.vue'));
             copy(__DIR__ . '/../../presets/CoreUi/inertia/resources/js/Jetstream/Welcome.vue', resource_path('js/Jetstream/Welcome.vue'));
+
+        } elseif ($stack == 'breeze') {
+
+            copy(__DIR__ . '/../../presets/CoreUi/breeze/resources/views/layouts/app.blade.php', resource_path('views/layouts/app.blade.php'));
+            copy(__DIR__ . '/../../presets/CoreUi/breeze/resources/views/layouts/navigation.blade.php', resource_path('views/layouts/navigation.blade.php'));
+
+            copy(__DIR__ . '/../../presets/CoreUi/resources/views/components/dropdown.blade.php', resource_path('views/components/dropdown.blade.php'));
+            copy(__DIR__ . '/../../presets/CoreUi/resources/views/components/dropdown-link.blade.php', resource_path('views/components/dropdown-link.blade.php'));
+            copy(__DIR__ . '/../../presets/CoreUi/resources/views/components/nav-link.blade.php', resource_path('views/components/nav-link.blade.php'));
+            copy(__DIR__ . '/../../presets/CoreUi/resources/views/components/button.blade.php', resource_path('views/components/button.blade.php'));
+
         }
-
-        copy(__DIR__.'/../../presets/CoreUi/webpack.mix.js', base_path('webpack.mix.js'));
-
-        // NPM Packages...
-        Helpers::updateNodePackages(function ($packages) {
-            return [
-                    "@coreui/coreui" => "^3.3.0",
-                    "@fortawesome/fontawesome-free" => "^5.15.1",
-                    "@popperjs/core" => "^2.5.3",
-                    "perfect-scrollbar" => "^1.5.0"
-                ] + $packages;
-        });
     }
 
     /**
@@ -111,6 +126,10 @@ class Presets
             copy(__DIR__ . '/../../presets/AdminLte/resources/views/layouts/guest.blade.php', resource_path('views/layouts/guest.blade.php'));
 
         } elseif ($stack == 'inertia') {
+
+            // Necessary for vue compilation
+            copy(__DIR__.'/../../presets/AdminLte/inertia/webpack.mix.js', base_path('webpack.mix.js'));
+
             copy(__DIR__ . '/../../presets/AdminLte/inertia/resources/views/app.blade.php', resource_path('views/app.blade.php'));
             copy(__DIR__ . '/../../presets/AdminLte/inertia/resources/js/Layouts/AppLayout.vue', resource_path('js/Layouts/AppLayout.vue'));
 
@@ -118,6 +137,16 @@ class Presets
             copy(__DIR__ . '/../../presets/AdminLte/inertia/resources/js/Jetstream/Dropdown.vue', resource_path('js/Jetstream/Dropdown.vue'));
             copy(__DIR__ . '/../../presets/AdminLte/inertia/resources/js/Jetstream/NavLink.vue', resource_path('js/Jetstream/NavLink.vue'));
             copy(__DIR__ . '/../../presets/AdminLte/inertia/resources/js/Jetstream/Welcome.vue', resource_path('js/Jetstream/Welcome.vue'));
+
+        } elseif ($stack == 'breeze') {
+
+            copy(__DIR__ . '/../../presets/AdminLte/breeze/resources/views/layouts/app.blade.php', resource_path('views/layouts/app.blade.php'));
+            copy(__DIR__ . '/../../presets/AdminLte/breeze/resources/views/layouts/navigation.blade.php', resource_path('views/layouts/navigation.blade.php'));
+
+            copy(__DIR__ . '/../../presets/AdminLte/resources/views/components/authentication-card.blade.php', resource_path('views/components/auth-card.blade.php'));
+            copy(__DIR__ . '/../../presets/AdminLte/resources/views/components/dropdown.blade.php', resource_path('views/components/dropdown.blade.php'));
+            copy(__DIR__ . '/../../presets/AdminLte/resources/views/components/nav-link.blade.php', resource_path('views/components/nav-link.blade.php'));
+
         }
     }
 }

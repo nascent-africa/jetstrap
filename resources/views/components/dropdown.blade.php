@@ -5,7 +5,7 @@
         {{ $trigger }}
     </a>
 
-    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="{{ $id }}">
+    <div class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="{{ $id }}">
         {{ $content }}
     </div>
 </li>

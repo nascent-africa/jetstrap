@@ -70,17 +70,20 @@ class TestCase extends \Orchestra\Testbench\TestCase
      */
     protected function cleanResourceDirectory(Filesystem $filesystem)
     {
-        if ($this->filesystem->exists(base_path('webpack.mix.js'))) {
+        if ($filesystem->exists(base_path('webpack.mix.js'))) {
             unlink(base_path('webpack.mix.js'));
         }
-        if ($this->filesystem->isDirectory(resource_path('views/auth'))) {
-            $this->filesystem->deleteDirectory(resource_path('views/auth'));
+        if ($filesystem->isDirectory(resource_path('views/auth'))) {
+            $filesystem->deleteDirectory(resource_path('views/auth'));
         }
-        if ($this->filesystem->isDirectory(resource_path('views/layouts'))) {
-            $this->filesystem->deleteDirectory(resource_path('views/layouts'));
+        if ($filesystem->isDirectory(resource_path('views/layouts'))) {
+            $filesystem->deleteDirectory(resource_path('views/layouts'));
         }
-        if ($this->filesystem->isDirectory(base_path('public/css'))) {
-            $this->filesystem->deleteDirectory(base_path('public/css'));
+        if ($filesystem->isDirectory(resource_path('views/components'))) {
+            $filesystem->deleteDirectory(resource_path('views/components'));
+        }
+        if ($filesystem->isDirectory(base_path('public/css'))) {
+            $filesystem->deleteDirectory(base_path('public/css'));
         }
         if ($filesystem->isDirectory(resource_path('sass'))) {
             $filesystem->deleteDirectory(resource_path('sass'));

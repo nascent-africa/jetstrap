@@ -16,7 +16,7 @@
         <script src="{{ mix('js/app.js') }}" defer></script>
         <script src="{{ mix('js/core-ui.js') }}" defer></script>
     </head>
-    <body class="c-app">
+    <body class="c-app font-sans antialiased">
         <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
             <div class="c-sidebar-brand">
                 <a href="/">

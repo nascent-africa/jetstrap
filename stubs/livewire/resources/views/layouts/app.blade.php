@@ -18,7 +18,7 @@
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
-    <body class="bg-light">
+    <body class="font-sans antialiased bg-light">
         @livewire('navigation-menu')
 
         <!-- Page Heading -->
