@@ -25,6 +25,8 @@ Jetstrap focus is on the `VIEW` side of [Jetstream](https://github.com/laravel/j
   * [Presets](#presets)
     + [Core Ui](#core-ui)
     + [AdminLTE](#adminlte)
+  * [Breeze](#breeze)
+    + [Swapping Breeze resources](#swapping-breeze-resources)
   * [Testing](#testing)
   * [License](#license)
   
@@ -209,7 +211,38 @@ class AppServiceProvider extends ServiceProvider
 }
 ```
 
+## Breeze
+
+According to the documentation, "Breeze provides a minimal and simple starting point for building a Laravel application with authentication.", but personally I'd like to think of it as Laravel Ui without Vue and Bootstrap.
+Recently I worked on a project that didn't use Vue or require a complex authentication system, so Breeze seemed like a good idea, but again I was faced with the TailwindCSS problem, so I figured why not include it to the Jetstrap package.
+
+> Before proceeding please familiarize yourself with the Breeze via the official documentation [documentation](https://github.com/laravel/breeze/blob/1.x/README.md).
+
+Again Jetstrap does not affect the Model / Controller portion of Breeze, just the View.
+
+### Swapping Breeze resources
+
+To swap tailwind resource for bootstrap in a breeze configured laravel, simply run:
+
+```bash
+
+php artisan jetstrap:swap breeze
+```
+
+Next you have to clean up your `package.json` file to make sure we don't install unnecessary packages.
+
+After that run:
+
+```
+npm install && npm run dev
+```
+
+...and you're done!
+
+Using the `JetstrapFacade::useCoreUi3()` or `JetstrapFacade::useAdminLte3();` in your service provider while swapping breeze assets will work as expected.
+
 ## Testing
+
 Run the tests with:
 
 ```bash
