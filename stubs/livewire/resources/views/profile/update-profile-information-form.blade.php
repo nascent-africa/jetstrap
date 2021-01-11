@@ -50,7 +50,7 @@
             </div>
         @endif
 
-        <div class="w-75">
+        <div class="w-md-75">
             <!-- Name -->
             <div class="form-group">
                 <x-jet-label for="name" value="{{ __('Name') }}" />

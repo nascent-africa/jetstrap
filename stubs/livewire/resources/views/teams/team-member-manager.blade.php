@@ -19,7 +19,7 @@
                     </div>
 
                     <!-- Member Email -->
-                    <div class="mb-2 w-75">
+                    <div class="mb-2 w-md-75">
                         <div class="form-group">
                             <x-jet-label for="email" value="{{ __('Email') }}" />
                             <x-jet-input id="name" type="email" class="{{ $errors->has('email') ? 'is-invalid' : '' }}"
@@ -30,7 +30,7 @@
 
                     <!-- Role -->
                     @if (count($this->roles) > 0)
-                        <div class="my-3 w-75">
+                        <div class="my-3 w-md-75">
                             <div class="form-group">
                                 <x-jet-label for="role" value="{{ __('Role') }}" />
 
@@ -75,6 +75,39 @@
         </div>
     @endif
 
+    @if ($team->teamInvitations->isNotEmpty() && Gate::check('addTeamMember', $team))
+        <x-jet-section-border />
+
+        <!-- Team Member Invitations -->
+        <x-jet-action-section>
+            <x-slot name="title">
+                {{ __('Pending Team Invitations') }}
+            </x-slot>
+
+            <x-slot name="description">
+                {{ __('These people have been invited to your team and have been sent an invitation email. They may join the team by accepting the email invitation.') }}
+            </x-slot>
+
+            <x-slot name="content">
+                @foreach ($team->teamInvitations as $invitation)
+                    <div class="d-flex align-items-center justify-content-between mt-2 mb-2">
+                        <div class="">{{ $invitation->email }}</div>
+
+                        <div class="d-flex align-items-center">
+                            @if (Gate::check('removeTeamMember', $team))
+                                <!-- Cancel Team Invitation -->
+                                <button class="btn btn-link text-danger text-decoration-none"
+                                                    wire:click="cancelTeamInvitation({{ $invitation->id }})">
+                                    {{ __('Cancel') }}
+                                </button>
+                            @endif
+                        </div>
+                    </div>
+                @endforeach
+            </x-slot>
+        </x-jet-action-section>
+    @endif
+
     @if ($team->users->isNotEmpty())
         <x-jet-section-border />
 
@@ -91,8 +124,8 @@
             <!-- Team Member List -->
             <x-slot name="content">
                 @foreach ($team->users->sortBy('name') as $user)
-                    <div class="d-flex justify-content-between mb-3">
-                        <div class="d-flex justify-content-start">
+                    <div class="d-flex justify-content-between mt-2 mb-2">
+                        <div class="d-flex align-items-center">
                             <div class="pr-3">
                                 <img width="32" class="rounded-circle" src="{{ $user->profile_photo_url }}">
                             </div>

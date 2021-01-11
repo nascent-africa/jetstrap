@@ -8,7 +8,7 @@
     </x-slot>
 
     <x-slot name="form">
-        <div class="w-75">
+        <div class="w-md-75">
             <div class="form-group">
                 <x-jet-label for="current_password" value="{{ __('Current Password') }}" />
                 <x-jet-input id="current_password" type="password" class="{{ $errors->has('current_password') ? 'is-invalid' : '' }}"
