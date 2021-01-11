@@ -124,8 +124,8 @@
             <!-- Team Member List -->
             <x-slot name="content">
                 @foreach ($team->users->sortBy('name') as $user)
-                    <div class="d-flex justify-content-between mb-3">
-                        <div class="d-flex justify-content-start">
+                    <div class="d-flex justify-content-between mt-2 mb-2">
+                        <div class="d-flex align-items-center">
                             <div class="pr-3">
                                 <img width="32" class="rounded-circle" src="{{ $user->profile_photo_url }}">
                             </div>
