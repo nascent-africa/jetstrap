@@ -24,7 +24,7 @@
         </div>
 
         <!-- Team Name -->
-        <div class="w-75">
+        <div class="w-md-75">
             <div class="form-group">
                 <x-jet-label for="name" value="{{ __('Team Name') }}" />
 

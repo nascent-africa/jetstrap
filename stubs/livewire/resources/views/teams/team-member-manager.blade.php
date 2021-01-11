@@ -19,7 +19,7 @@
                     </div>
 
                     <!-- Member Email -->
-                    <div class="mb-2 w-75">
+                    <div class="mb-2 w-md-75">
                         <div class="form-group">
                             <x-jet-label for="email" value="{{ __('Email') }}" />
                             <x-jet-input id="name" type="email" class="{{ $errors->has('email') ? 'is-invalid' : '' }}"
@@ -30,7 +30,7 @@
 
                     <!-- Role -->
                     @if (count($this->roles) > 0)
-                        <div class="my-3 w-75">
+                        <div class="my-3 w-md-75">
                             <div class="form-group">
                                 <x-jet-label for="role" value="{{ __('Role') }}" />
 
