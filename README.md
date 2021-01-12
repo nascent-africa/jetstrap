@@ -7,11 +7,8 @@
   
 ## Description
 
-On September 8th after spending some time with my fresh sandbox installation of Laravel 8 the first question I asked myself was, "Am I going to learn a new CSS framework or convert the jetstream resources back to Bootstrap", I also tried to let the two co-exist but that created more chaos than the problem it solved.
+Jetstrap is a lightweight laravel 8 package that focuses on the `VIEW` side of [Jetstream](https://github.com/laravel/jetstream) / [Breeze](https://github.com/laravel/breeze) package installed in your Laravel application, so when a swap is performed, the `Action`, `MODEL`, `CONTROLLER`, `Component` and `Action` classes of your project is still 100% handled by Laravel development team with no added layer of complexity.
 
-As a backend developer, Livewire was a dream come true, and since the inception of Vue I've been moving away from jquery so AlpineJS was a welcomed idea, but with Bootstrap 5 on the horizon promising everything that makes Tailwind special I couldn't find a strong reason to commit to learning a new CSS framework also considering the fact that am not supposed to be meddling with front end codes, to begin with.
-
-Jetstrap focus is on the `VIEW` side of [Jetstream](https://github.com/laravel/jetstream) package installed in your Laravel application, so when a swap is performed, the `Action`, `MODEL`, `CONTROLLER` even the `Component` and `Action` classes of your project is still 100% Jetstream with no added layer of complexity.
 
 ## Table of Content
   * [Installation](#installation)
@@ -29,6 +26,7 @@ Jetstrap focus is on the `VIEW` side of [Jetstream](https://github.com/laravel/j
     + [Swapping Breeze resources](#swapping-breeze-resources)
   * [Testing](#testing)
   * [License](#license)
+  
   
 ## Installation
 
@@ -93,6 +91,7 @@ npm install && npm run dev
 php artisan migrate
 ```
 
+
 ### Extras
 
 #### Pagination
@@ -129,11 +128,12 @@ class AppServiceProvider extends ServiceProvider
 }
 ```
 
+
 ## Presets
 
 Presets are custom third party templates built using bootstrap. We've thought about it, what are the chances that you're going to use the default template provided by Laravel or Laravel Jetstream.
 
-> Presets are only supported in Bootstrap 4 at the moment.
+> Please visit the CoreUI [documentation](https://coreui.io/docs/getting-started/introduction/) for more details on how to use it.
 
 ### Core Ui
 
@@ -177,6 +177,8 @@ class AppServiceProvider extends ServiceProvider
 
 [AdminLTE](https://adminlte.io/) is an open source admin dashboard & control panel theme. Built on top of Bootstrap, AdminLTE provides a range of responsive, reusable, and commonly used components.
 
+> Please visit the AdminLTE [documentation](https://adminlte.io/themes/v3/) for more details on how to use it.
+
 To use AdminLte presets, simply call the `useAdminLte3` method within your AppServiceProvider:
 
 ```php
@@ -211,6 +213,7 @@ class AppServiceProvider extends ServiceProvider
 }
 ```
 
+
 ## Breeze
 
 According to the documentation, "Breeze provides a minimal and simple starting point for building a Laravel application with authentication.", but personally I'd like to think of it as Laravel Ui without Vue and Bootstrap.
@@ -241,6 +244,7 @@ npm install && npm run dev
 
 Using the `JetstrapFacade::useCoreUi3()` or `JetstrapFacade::useAdminLte3();` in your service provider while swapping breeze assets will work as expected.
 
+
 ## Testing
 
 Run the tests with:
@@ -254,6 +258,7 @@ or
 ```bash
 composer tests
 ```
+
 
 ## License
 Jetstrap is open-sourced software licensed under the [MIT license](https://github.com/nascent-africa/jetstrap/blob/master/LICENSE).
