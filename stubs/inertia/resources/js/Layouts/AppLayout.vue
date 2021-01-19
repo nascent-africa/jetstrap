@@ -163,9 +163,7 @@ export default {
     },
 
     logout() {
-      axios.post(route('logout').url()).then(response => {
-        window.location = '/';
-      })
+      this.$inertia.post(route('logout'));
     },
   },
 
