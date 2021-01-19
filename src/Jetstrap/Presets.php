@@ -101,7 +101,7 @@ class Presets
         Helpers::updateNodePackages(function ($packages) {
             return [
                     "@fortawesome/fontawesome-free" => "^5.15.1",
-                    "admin-lte" => "^3.0.5",
+                    "admin-lte" => "^3.1.0-rc",
                     "overlayscrollbars" => "^1.13.0"
                 ] + $packages;
         });
