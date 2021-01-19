@@ -15,9 +15,9 @@ mix.js('resources/js/app.js', 'public/js').vue()
     .sass('resources/sass/app.scss', 'public/css')
     .webpackConfig(require('./webpack.config'));
 
-// Core Ui assets...
-mix.js('resources/js/core-ui.js', 'public/js')
-    .sass('resources/sass/core-ui/core-ui.scss', 'public/css');
+// Dashboard theme assets...
+mix.js('resources/js/dashboard.js', 'public/js')
+    .sass('resources/sass/dashboard/dashboard.scss', 'public/css');
 
 if (mix.inProduction()) {
     mix.version();

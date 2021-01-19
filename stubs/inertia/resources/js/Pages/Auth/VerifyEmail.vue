@@ -5,7 +5,7 @@
         </template>
 
         <div class="card-body">
-            <div class="mb-4 small text-muted">
+            <div class="mb-3 small text-muted">
                 Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn't receive the email, we will gladly send you another.
             </div>
 
@@ -15,7 +15,7 @@
 
             <form @submit.prevent="submit">
                 <div class="mt-4 d-flex justify-content-between">
-                    <jet-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                    <jet-button :class="{ 'text-white-50': form.processing }" :disabled="form.processing">
                         Resend Verification Email
                     </jet-button>
 

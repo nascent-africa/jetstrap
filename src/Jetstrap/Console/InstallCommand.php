@@ -34,8 +34,6 @@ class InstallCommand extends Command
     {
         $this->info('Performing swap...');
 
-        copy(__DIR__.'/../../../stubs/resources/views/welcome.blade.php', resource_path('views/welcome.blade.php'));
-
         // Remove Tailwind Configuration...
         if ((new Filesystem)->exists(base_path('tailwind.config.js'))) {
             (new Filesystem)->delete(base_path('tailwind.config.js'));
@@ -49,17 +47,20 @@ class InstallCommand extends Command
         (new Filesystem)->deleteDirectory(resource_path('css'));
         (new Filesystem)->ensureDirectoryExists(resource_path('sass'));
         (new Filesystem)->ensureDirectoryExists(resource_path('js'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('views'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/resources/js', resource_path('js'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/resources/sass', resource_path('sass'));
+
+        copy(__DIR__.'/../../../stubs/resources/views/welcome.blade.php', resource_path('views/welcome.blade.php'));
 
         // Install Stack...
         if ($this->argument('stack') === 'livewire') {
 
-            $this->installLivewireStack();
+            $this->swapLivewireStack();
 
         } elseif ($this->argument('stack') === 'inertia') {
 
-            $this->installInertiaStack();
+            $this->swapInertiaStack();
         } elseif ($this->argument('stack') === 'breeze') {
 
             $this->swapBreezeStack();
@@ -67,11 +68,11 @@ class InstallCommand extends Command
     }
 
     /**
-     * Install the Livewire stack into the application.
+     * Swap the Livewire stack into the application.
      *
      * @return void
      */
-    protected function installLivewireStack()
+    protected function swapLivewireStack()
     {
         $this->line('');
         $this->info('Installing livewire stack...');
@@ -111,7 +112,7 @@ class InstallCommand extends Command
 
         // Teams...
         if ($this->option('teams')) {
-            $this->installLivewireTeamStack();
+            $this->swapLivewireTeamStack();
         }
 
         $this->line('');
@@ -124,11 +125,11 @@ class InstallCommand extends Command
     }
 
     /**
-     * Install the Livewire team stack into the application.
+     * Swap the Livewire team stack into the application.
      *
      * @return void
      */
-    protected function installLivewireTeamStack()
+    protected function swapLivewireTeamStack()
     {
         // Directories...
         (new Filesystem)->ensureDirectoryExists(resource_path('views/teams'));
@@ -137,11 +138,11 @@ class InstallCommand extends Command
     }
 
     /**
-     * Install the Inertia stack into the application.
+     * Swap the Inertia stack into the application.
      *
      * @return void
      */
-    protected function installInertiaStack()
+    protected function swapInertiaStack()
     {
         $this->line('');
         $this->info('Installing inertia stack...');
@@ -152,6 +153,7 @@ class InstallCommand extends Command
                     '@inertiajs/inertia' => '^0.8.2',
                     '@inertiajs/inertia-vue' => '^0.5.4',
                     '@inertiajs/progress' => '^0.2.4',
+                    'alpinejs' => '^2.7.3',
                     'bootstrap' => '^4.5.3',
                     'jquery' => '^3.5.1',
                     'laravel-jetstream' => '^0.0.3',
@@ -199,7 +201,7 @@ class InstallCommand extends Command
 
         // Teams...
         if ($this->option('teams')) {
-            $this->installInertiaTeamStack();
+            $this->swapInertiaTeamStack();
         }
 
         $this->line('');
@@ -212,11 +214,11 @@ class InstallCommand extends Command
     }
 
     /**
-     * Install the Inertia team stack into the application.
+     * Swap the Inertia team stack into the application.
      *
      * @return void
      */
-    protected function installInertiaTeamStack()
+    protected function swapInertiaTeamStack()
     {
         // Directories...
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Pages/Profile'));

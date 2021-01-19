@@ -46,7 +46,7 @@
                             <div class="flex items-center">
                                 <x-jet-checkbox name="terms" id="terms"/>
 
-                                <div class="ml-2">
+                                <div class="ml-2 text-sm">
                                     {!! __('I agree to the :terms_of_service and :privacy_policy', [
                                             'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'">'.__('Terms of Service').'</a>',
                                             'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'">'.__('Privacy Policy').'</a>',

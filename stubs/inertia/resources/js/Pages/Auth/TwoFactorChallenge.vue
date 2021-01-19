@@ -5,7 +5,8 @@
         </template>
 
       <div class="card-body">
-          <div class="mb-4">
+
+          <div class="mb-3">
               <template v-if="! recovery">
                   Please confirm access to your account by entering the authentication code provided by your authenticator application.
               </template>
@@ -15,7 +16,7 @@
               </template>
           </div>
 
-          <jet-validation-errors class="mb-4" />
+          <jet-validation-errors class="mb-3" />
 
           <form @submit.prevent="submit">
             <div class="form-group" v-if="! recovery">
@@ -39,7 +40,7 @@
                     </template>
                 </button>
 
-                <jet-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                <jet-button :class="{ 'text-white-50': form.processing }" :disabled="form.processing">
                     Login
                 </jet-button>
             </div>

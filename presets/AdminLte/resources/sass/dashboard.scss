@@ -3,11 +3,8 @@
 @import "~@fortawesome/fontawesome-free/scss/solid.scss";
 @import "~@fortawesome/fontawesome-free/scss/brands.scss";
 @import "~@fortawesome/fontawesome-free/scss/regular.scss";
+
 @import '~overlayscrollbars/css/OverlayScrollbars.min.css';
 @import '~admin-lte/dist/css/adminlte.min.css';
-
-.navbar-nav>.user-menu>.dropdown-menu {
-  width: 210px;
-}
 
 @import 'custom';

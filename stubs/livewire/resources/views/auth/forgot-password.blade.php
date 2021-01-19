@@ -5,7 +5,8 @@
         </x-slot>
 
         <div class="card-body">
-            <div class="mb-4">
+
+            <div class="mb-3">
                 {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
             </div>
 
@@ -15,7 +16,7 @@
                 </div>
             @endif
 
-            <x-jet-validation-errors class="mb-4" />
+            <x-jet-validation-errors class="mb-3" />
 
             <form method="POST" action="/forgot-password">
                 @csrf

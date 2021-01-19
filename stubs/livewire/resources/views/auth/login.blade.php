@@ -4,16 +4,16 @@
             <x-jet-authentication-card-logo />
         </x-slot>
 
-
-        <x-jet-validation-errors class="mb-3 rounded-0" />
-
-        @if (session('status'))
-            <div class="alert alert-success mb-3 rounded-0" role="alert">
-                {{ session('status') }}
-            </div>
-        @endif
-
         <div class="card-body">
+
+            <x-jet-validation-errors class="mb-3 rounded-0" />
+
+            @if (session('status'))
+                <div class="alert alert-success mb-3 rounded-0" role="alert">
+                    {{ session('status') }}
+                </div>
+            @endif
+
             <form method="POST" action="{{ route('login') }}">
                 @csrf
                 <div class="form-group">

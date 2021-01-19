@@ -8,13 +8,13 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Styles -->
-        <link rel="stylesheet" href="{{ mix('css/core-ui.css') }}">
+        <link rel="stylesheet" href="{{ mix('css/dashboard.css') }}">
 
         @routes
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
-        <script src="{{ mix('js/core-ui.js') }}" defer></script>
+        <script src="{{ mix('js/dashboard.js') }}" defer></script>
     </head>
     <body class="c-app font-sans antialiased">
         @inertia

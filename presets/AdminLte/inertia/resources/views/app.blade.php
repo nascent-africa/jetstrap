@@ -11,15 +11,15 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 
         <!-- Styles -->
-        <link rel="stylesheet" href="{{ mix('css/admin-lte.css') }}">
+        <link rel="stylesheet" href="{{ mix('css/dashboard.css') }}">
 
         @routes
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
-        <script src="{{ mix('js/admin-lte.js') }}" defer></script>
+        <script src="{{ mix('js/dashboard.js') }}" defer></script>
     </head>
-    <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed bg-light font-sans antialiased">
+    <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed bg-light font-sans antialiased text-sm">
         @inertia
     </body>
 </html>

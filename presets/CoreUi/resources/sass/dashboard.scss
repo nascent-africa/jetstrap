@@ -9,13 +9,4 @@
 // Import styles
 @import '~@coreui/coreui/scss/coreui';
 
-.c-header.c-header-fixed{
-  top:0px;
-}
-
-.click-file{
-  cursor:pointer;
-}
-
-// If you want to add something do it here
 @import "custom";

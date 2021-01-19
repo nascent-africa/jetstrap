@@ -6,7 +6,7 @@
 
         <div class="card-body">
 
-            <x-jet-validation-errors class="mb-4" />
+            <x-jet-validation-errors class="mb-3" />
 
             <form method="POST" action="/reset-password">
                 @csrf
