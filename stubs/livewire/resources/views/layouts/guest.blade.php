@@ -12,6 +12,9 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
+        <!-- Scripts -->
+        <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
     <body class="bg-light">
         {{ $slot }}
