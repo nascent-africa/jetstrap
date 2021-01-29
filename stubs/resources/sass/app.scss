@@ -18,5 +18,16 @@
   }
 }
 
+$theme-colors: map-merge(
+  (
+    "indigo": $indigo,
+  ),
+  $theme-colors
+);
+
+@each $color, $value in $theme-colors {
+  @include bg-variant(".bg-#{$color}", $value, true);
+}
+
 // Custom
 @import "custom";
