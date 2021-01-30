@@ -12,9 +12,9 @@
             ">
     <div class="container mx-auto py-2 px-md-2 px-sm-3">
         <div class="d-flex align-items-center justify-content-between flex-wrap">
-            <div style="flex: 1 1 0%;" class="d-flex align-items-center">
+            <div class="d-flex align-items-center flex-1">
                 <span class="d-flex p-2 rounded-lg" :class="{ 'bg-indigo': style == 'success', 'bg-danger': style == 'danger' }">
-                    <svg style="width: 1.25rem; height: 1.25rem" class="text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg class="text-white h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                 </span>
@@ -28,7 +28,7 @@
                     class="btn btn-link d-flex p-2 rounded-md"
                     aria-label="Dismiss"
                     x-on:click="show = false">
-                    <svg style="width: 1.25rem; height: 1.25rem" class="text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg class="text-white h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
