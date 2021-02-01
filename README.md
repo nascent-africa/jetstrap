@@ -99,6 +99,8 @@ php artisan migrate
 It is also important to point out that Laravel 8 still includes pagination views built using Bootstrap CSS. To use these views instead of the default Tailwind views, you may call the paginator's useBootstrap method within your AppServiceProvider:
 
 ```php
+<?php
+
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
@@ -133,11 +135,16 @@ class AppServiceProvider extends ServiceProvider
 
 Presets are custom third party templates built using bootstrap. We've thought about it, what are the chances that you're going to use the default template provided by Laravel or Laravel Jetstream.
 
-> Please visit the CoreUI [documentation](https://coreui.io/docs/getting-started/introduction/) for more details on how to use it.
+With the assumption you already know which way you want to go before running any type of scaffolding, so if you want to use CoreUi or AdminLte presets then the choice should be specified in your service provider (`JetstrapFacade::useCoreUi3()` or `JetstrapFacade::useAdminLte3()`) the first time you run any `swap` command.
+
+And if you change your mind after you've run a swap command and decide to use a preset, then run the `jetstrap:swap` command again.
+
 
 ### Core Ui
 
 [Core Ui](https://coreui.io/) lets you save thousands of priceless hours because it offers everything you need to create modern, beautiful, and responsive applications as stated on their website.
+
+> Please visit the CoreUI [documentation](https://coreui.io/docs/getting-started/introduction/) for more details on how to use it.
 
 To use Core Ui presets, simply call the `useCoreUi3` method within your AppServiceProvider:
 
