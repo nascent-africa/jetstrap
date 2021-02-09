@@ -25,7 +25,9 @@
 
     @livewire('profile.logout-other-browser-sessions-form')
 
-    <x-jet-section-border />
+    @if (Laravel\Jetstream\Jetstream::hasAccountDeletionFeatures())
+        <x-jet-section-border />
 
-    @livewire('profile.delete-user-form')
+        @livewire('profile.delete-user-form')
+    @endif
 </x-app-layout>
