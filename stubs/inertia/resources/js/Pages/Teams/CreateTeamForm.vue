@@ -9,11 +9,11 @@
         </template>
 
         <template #form>
-            <div class="mb-4">
+            <div class="mb-3">
                 <jet-label value="Team Owner" />
 
                 <div class="d-flex mt-2">
-                    <img class="rounded-circle" width="48" :src="$page.props.user.profile_photo_url" :alt="$page.props.user.name">
+                    <img v-if="$page.props.jetstream.managesProfilePhotos" class="rounded-circle" width="48" :src="$page.props.user.profile_photo_url" :alt="$page.props.user.name">
 
                     <div class="ml-2">
                         <div>{{ $page.props.user.name }}</div>

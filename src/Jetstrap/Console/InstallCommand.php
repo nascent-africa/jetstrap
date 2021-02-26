@@ -79,11 +79,11 @@ class InstallCommand extends Command
 
         Helpers::updateNodePackages(function ($packages) {
             return [
-                    'alpinejs' => '^2.7.3',
-                    'bootstrap' => '^4.5.3',
-                    'jquery' => '^3.5.1',
-                    'popper.js' => '^1.16.1'
-                ] + $packages;
+                'alpinejs' => '^2.7.3',
+                'bootstrap' => '^4.6.0',
+                'jquery' => '^3.5.1',
+                'popper.js' => '^1.16.1'
+            ] + $packages;
         });
 
         // Directories...
@@ -150,19 +150,18 @@ class InstallCommand extends Command
         // Install NPM packages...
         Helpers::updateNodePackages(function ($packages) {
             return [
-                    '@inertiajs/inertia' => '^0.8.2',
-                    '@inertiajs/inertia-vue' => '^0.5.4',
-                    '@inertiajs/progress' => '^0.2.4',
-                    'alpinejs' => '^2.7.3',
-                    'bootstrap' => '^4.5.3',
-                    'jquery' => '^3.5.1',
-                    'laravel-jetstream' => '^0.0.3',
-                    'popper.js' => '^1.16.1',
-                    'portal-vue' => '^2.1.7',
-                    'vue' => '^2.5.17',
-                    'vue-loader' => '^15.9.6',
-                    'vue-template-compiler' => '^2.6.10',
-                ] + $packages;
+                '@inertiajs/inertia' => '^0.8.2',
+                '@inertiajs/inertia-vue' => '^0.5.4',
+                '@inertiajs/inertia-vue3' => '^0.3.5',
+                'alpinejs' => '^2.7.3',
+                'bootstrap' => '^4.6.0',
+                'jquery' => '^3.5.1',
+                'laravel-jetstream' => '^0.0.3',
+                'popper.js' => '^1.16.1',
+                'vue' => '^3.0.5',
+                '@vue/compiler-sfc' => '^3.0.5',
+                'vue-loader' => '^16.1.2',
+            ] + $packages;
         });
 
         // Necessary for vue compilation
@@ -238,7 +237,7 @@ class InstallCommand extends Command
         Helpers::updateNodePackages(function ($packages) {
             return [
                     'alpinejs' => '^2.7.3',
-                    'bootstrap' => '^4.5.3',
+                    'bootstrap' => '^4.6.0',
                     'jquery' => '^3.5.1',
                     'popper.js' => '^1.16.1'
                 ] + $packages;

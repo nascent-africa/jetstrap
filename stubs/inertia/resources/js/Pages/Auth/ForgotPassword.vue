@@ -5,7 +5,7 @@
     </template>
 
     <div class="card-body">
-      <div class="mb-3">
+      <div class="mb-2">
         Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.
       </div>
 
@@ -13,7 +13,7 @@
         {{ status }}
       </div>
 
-      <jet-validation-errors class="mb-3" />
+      <jet-validation-errors class="mb-2" />
 
       <form @submit.prevent="submit">
         <div>

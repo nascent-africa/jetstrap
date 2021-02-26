@@ -11,6 +11,10 @@
       </template>
 
       <template #form>
+        <jet-action-message :on="createApiTokenForm.recentlySuccessful">
+          Created.
+        </jet-action-message>
+
         <div class="w-75">
           <!-- Token Name -->
           <div class="form-group">
@@ -26,11 +30,13 @@
 
             <div class="mt-2 row">
               <div class="col-6" v-for="permission in availablePermissions" :key="permission">
-                <div class="form-check">
-                  <jet-checkbox :value="permission" v-model="createApiTokenForm.permissions"/>
-                  <label class="form-check-label" :for="`check-permissions-${permission}`">
-                    {{ permission }}
-                  </label>
+                <div class="form-group">
+                  <div class="custom-control custom-checkbox">
+                    <jet-checkbox :value="permission" v-model:checked="createApiTokenForm.permissions" :id="`create-${permission}`"/>
+                    <label class="custom-control-label" :for="`create-${permission}`">
+                      {{ permission }}
+                    </label>
+                  </div>
                 </div>
               </div>
             </div>
@@ -39,10 +45,6 @@
       </template>
 
       <template #actions>
-        <jet-action-message :on="createApiTokenForm.recentlySuccessful" class="mr-3">
-          Created.
-        </jet-action-message>
-
         <jet-button :class="{ 'text-white-50': createApiTokenForm.processing }" :disabled="createApiTokenForm.processing">
           Create
         </jet-button>
@@ -110,7 +112,7 @@
       </template>
 
       <template #footer>
-        <jet-secondary-button @click.native="displayingToken = false" data-dismiss="modal">
+        <jet-secondary-button @click="displayingToken = false" data-dismiss="modal">
           Close
         </jet-secondary-button>
       </template>
@@ -125,22 +127,24 @@
       <template #content>
         <div class="mt-2 row">
           <div class="col-6" v-for="permission in availablePermissions" :key="permission">
-            <div class="form-check">
-              <jet-checkbox :value="permission" v-model="updateApiTokenForm.permissions"/>
-              <label class="form-check-label">
-                {{ permission }}
-              </label>
+            <div class="form-group">
+              <div class="custom-control custom-checkbox">
+                <jet-checkbox :value="permission" v-model:checked="updateApiTokenForm.permissions" :id="`update-${permission}`"/>
+                <label class="custom-control-label" :for="`update-${permission}`">
+                  {{ permission }}
+                </label>
+              </div>
             </div>
           </div>
         </div>
       </template>
 
       <template #footer>
-        <jet-secondary-button data-dismiss="modal" @click.native="managingPermissionsFor = null">
-          Nevermind
+        <jet-secondary-button data-dismiss="modal" @click="managingPermissionsFor = null">
+          Cancel
         </jet-secondary-button>
 
-        <jet-button class="ml-2" @click.native="updateApiToken" :class="{ 'text-black-50': updateApiTokenForm.processing }" :disabled="updateApiTokenForm.processing">
+        <jet-button class="ml-2" @click="updateApiToken" :class="{ 'text-black-50': updateApiTokenForm.processing }" :disabled="updateApiTokenForm.processing">
           Save
         </jet-button>
       </template>
@@ -157,11 +161,11 @@
       </template>
 
       <template #footer>
-        <jet-secondary-button data-dismiss="modal">
-          Nevermind
+        <jet-secondary-button @click="apiTokenBeingDeleted = null" data-dismiss="modal">
+          Cancel
         </jet-secondary-button>
 
-        <jet-danger-button class="ml-2" @click.native="deleteApiToken" :class="{ 'text-white-50': deleteApiTokenForm.processing }" :disabled="deleteApiTokenForm.processing">
+        <jet-danger-button class="ml-2" @click="deleteApiToken" :class="{ 'text-white-50': deleteApiTokenForm.processing }" :disabled="deleteApiTokenForm.processing">
           Delete
         </jet-danger-button>
       </template>
@@ -233,6 +237,9 @@
           onSuccess: () => {
             this.displayingToken = true
             this.createApiTokenForm.reset()
+
+            this.modal = new Bootstrap.Modal(document.getElementById('displayingTokenModal'))
+            this.modal.toggle()
           }
         })
       },
@@ -241,6 +248,9 @@
         this.updateApiTokenForm.permissions = token.abilities
 
         this.managingPermissionsFor = token
+
+        this.modal = new Bootstrap.Modal(document.getElementById('managingPermissionsForModal'))
+        this.modal.toggle()
       },
 
       updateApiToken() {
@@ -253,13 +263,19 @@
 
       confirmApiTokenDeletion(token) {
         this.apiTokenBeingDeleted = token
+
+        this.modal = new Bootstrap.Modal(document.getElementById('apiTokenBeingDeletedModal'))
+        this.modal.toggle()
       },
 
       deleteApiToken() {
         this.deleteApiTokenForm.delete(route('api-tokens.destroy', this.apiTokenBeingDeleted), {
           preserveScroll: true,
           preserveState: true,
-          onSuccess: () => (this.apiTokenBeingDeleted = null),
+          onSuccess: () => {
+            this.apiTokenBeingDeleted = null
+            this.modal.toggle()
+          },
         })
       },
     },

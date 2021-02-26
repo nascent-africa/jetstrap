@@ -16,33 +16,27 @@
             @endif
         </h3>
 
-        <div class="mt-3">
-            <p>
-                {{ __('When two factor authentication is enabled, you will be prompted for a secure, random token during authentication. You may retrieve this token from your phone\'s Google Authenticator application.') }}
-            </p>
-        </div>
+        <p class="mt-3">
+            {{ __('When two factor authentication is enabled, you will be prompted for a secure, random token during authentication. You may retrieve this token from your phone\'s Google Authenticator application.') }}
+        </p>
 
         @if ($this->enabled)
             @if ($showingQrCode)
-                <div class="mt-3">
-                    <p>
-                        {{ __('Two factor authentication is now enabled. Scan the following QR code using your phone\'s authenticator application.') }}
-                    </p>
-                </div>
+                <p class="mt-3">
+                    {{ __('Two factor authentication is now enabled. Scan the following QR code using your phone\'s authenticator application.') }}
+                </p>
 
-                <div class="mt-4">
+                <div class="mt-3">
                     {!! $this->user->twoFactorQrCodeSvg() !!}
                 </div>
             @endif
 
             @if ($showingRecoveryCodes)
-                <div class="mt-4">
-                    <p>
-                        {{ __('Store these recovery codes in a secure password manager. They can be used to recover access to your account if your two factor authentication device is lost.') }}
-                    </p>
-                </div>
+                <p class="mt-3">
+                    {{ __('Store these recovery codes in a secure password manager. They can be used to recover access to your account if your two factor authentication device is lost.') }}
+                </p>
 
-                <div class="w-md-75 bg-light rounded p-3">
+                <div class="bg-light rounded p-3">
                     @foreach (json_decode(decrypt($this->user->two_factor_recovery_codes), true) as $code)
                         <div>{{ $code }}</div>
                     @endforeach

@@ -4,7 +4,7 @@
             <x-jet-authentication-card-logo />
         </x-slot>
 
-        <x-jet-validation-errors class="mb-4" />
+        <x-jet-validation-errors class="mb-3" />
 
         <div class="card-body">
             <form method="POST" action="{{ route('register') }}">
@@ -41,19 +41,16 @@
                 </div>
 
                 @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
-                    <div class="form-group px-3">
-                        <x-jet-label for="terms">
-                            <div class="flex items-center">
-                                <x-jet-checkbox name="terms" id="terms"/>
-
-                                <div class="ml-2 text-sm">
-                                    {!! __('I agree to the :terms_of_service and :privacy_policy', [
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            <x-jet-checkbox id="terms" name="terms" />
+                            <label class="custom-control-label" for="terms">
+                                {!! __('I agree to the :terms_of_service and :privacy_policy', [
                                             'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'">'.__('Terms of Service').'</a>',
                                             'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'">'.__('Privacy Policy').'</a>',
                                     ]) !!}
-                                </div>
-                            </div>
-                        </x-jet-label>
+                            </label>
+                        </div>
                     </div>
                 @endif
 

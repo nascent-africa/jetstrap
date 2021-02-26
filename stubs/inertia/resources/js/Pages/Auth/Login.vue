@@ -24,10 +24,10 @@
         </div>
 
         <div class="form-group">
-          <div class="form-check">
-            <jet-checkbox id="remember_me" name="remember" v-model="form.remember" />
+          <div class="custom-control custom-checkbox">
+            <jet-checkbox id="remember_me" name="remember" v-model:checked="form.remember" />
 
-            <label class="form-check-label" for="remember_me">
+            <label class="custom-control-label" for="remember_me">
               Remember Me
             </label>
           </div>

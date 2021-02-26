@@ -8,11 +8,13 @@
     </x-slot>
 
     <x-slot name="form">
-        <div class="mb-4">
+        <div class="mb-3">
             <x-jet-label value="{{ __('Team Owner') }}" />
 
             <div class="d-flex mt-2">
-                <img class="rounded-circle" width="48" src="{{ $this->user->profile_photo_url }}">
+                @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
+                    <img class="rounded-circle" width="48" src="{{ $this->user->profile_photo_url }}">
+                @endif
 
                 <div class="ml-2">
                     <div>{{ $this->user->name }}</div>

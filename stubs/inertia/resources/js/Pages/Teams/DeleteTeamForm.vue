@@ -14,7 +14,7 @@
       </div>
 
       <div class="mt-3">
-        <jet-danger-button @click.native="confirmTeamDeletion">
+        <jet-danger-button @click="confirmTeamDeletion">
           Delete Team
         </jet-danger-button>
       </div>
@@ -30,11 +30,11 @@
         </template>
 
         <template #footer>
-          <jet-secondary-button data-dismiss="modal" @click.native="confirmingTeamDeletion = false">
-            Nevermind
+          <jet-secondary-button data-dismiss="modal" @click="confirmingTeamDeletion = false">
+            Cancel
           </jet-secondary-button>
 
-          <jet-danger-button class="ml-2" @click.native="deleteTeam" :class="{ 'text-white-50': form.processing }" :disabled="form.processing">
+          <jet-danger-button class="ml-2" @click="deleteTeam" :class="{ 'text-white-50': form.processing }" :disabled="form.processing">
             Delete Team
           </jet-danger-button>
         </template>

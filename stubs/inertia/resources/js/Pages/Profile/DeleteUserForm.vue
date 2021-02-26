@@ -14,7 +14,7 @@
       </div>
 
       <div class="mt-3">
-        <jet-danger-button @click.native="confirmUserDeletion">
+        <jet-danger-button @click="confirmUserDeletion">
           Delete Account
         </jet-danger-button>
       </div>
@@ -33,18 +33,18 @@
                        ref="password"
                        v-model="form.password"
                        :class="{ 'is-invalid': form.errors.password }"
-                       @keyup.enter.native="deleteUser" />
+                       @keyup.enter="deleteUser" />
 
             <jet-input-error :message="form.errors.password" />
           </div>
         </template>
 
         <template #footer>
-          <jet-secondary-button data-dismiss="modal" @click.native="closeModal">
-            Nevermind
+          <jet-secondary-button data-dismiss="modal" @click="closeModal">
+            Cancel
           </jet-secondary-button>
 
-          <jet-danger-button @click.native="deleteUser" :class="{ 'text-white-50': form.processing }" :disabled="form.processing">
+          <jet-danger-button @click="deleteUser" :class="{ 'text-white-50': form.processing }" :disabled="form.processing">
             Delete Account
           </jet-danger-button>
         </template>
@@ -80,10 +80,6 @@ export default {
         password: '',
       })
     }
-  },
-
-  created() {
-    this.modal = new Bootstrap.Modal(document.getElementById('confirmingUserDeletionModal'))
   },
 
   methods: {

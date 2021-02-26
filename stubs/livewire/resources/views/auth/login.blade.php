@@ -33,10 +33,9 @@
                 </div>
 
                 <div class="form-group">
-                    <div class="form-check">
+                    <div class="custom-control custom-checkbox">
                         <x-jet-checkbox id="remember_me" name="remember" />
-
-                        <label class="form-check-label" for="remember">
+                        <label class="custom-control-label" for="remember_me">
                             {{ __('Remember Me') }}
                         </label>
                     </div>

@@ -1,16 +1,18 @@
 <template>
-    <input class="form-control" :value="value" @input="$emit('input', $event.target.value)" ref="input">
+  <input class="form-control" :value="modelValue" @input="$emit('update:modelValue', $event.target.value)" ref="input">
 </template>
 
 <script>
-    export default {
-        props: ['value', 'classes'],
+  export default {
+    props: ['modelValue'],
 
-        methods: {
-            focus() {
-                this.$refs.input.focus()
-            }
-        }
+    emits: ['update:modelValue'],
+
+    methods: {
+      focus() {
+        this.$refs.input.focus()
+      }
     }
+  }
 </script>
 

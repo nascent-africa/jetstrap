@@ -9,6 +9,10 @@
     </template>
 
     <template #form>
+      <jet-action-message :on="form.recentlySuccessful">
+        Saved.
+      </jet-action-message>
+
       <!-- Profile Photo -->
       <div class="form-group" v-if="$page.props.jetstream.managesProfilePhotos">
         <!-- Profile Photo File Input -->
@@ -28,11 +32,11 @@
           <img :src="photoPreview" class="rounded-circle" width="80px" height="80px">
         </div>
 
-        <jet-secondary-button class="mt-2 mr-2" type="button" @click.native.prevent="selectNewPhoto">
+        <jet-secondary-button class="mt-2 mr-2" type="button" @click.prevent="selectNewPhoto">
           Select A New Photo
         </jet-secondary-button>
 
-        <jet-secondary-button type="button" class="mt-2" @click.native.prevent="deletePhoto" v-if="user.profile_photo_path">
+        <jet-secondary-button type="button" class="mt-2" @click.prevent="deletePhoto" v-if="user.profile_photo_path">
           Remove Photo
         </jet-secondary-button>
 
@@ -59,10 +63,6 @@
     </template>
 
     <template #actions>
-      <jet-action-message :on="form.recentlySuccessful" class="mr-3">
-        Saved.
-      </jet-action-message>
-
       <jet-button :class="{ 'text-white-50': form.processing }" :disabled="form.processing">
         Save
       </jet-button>

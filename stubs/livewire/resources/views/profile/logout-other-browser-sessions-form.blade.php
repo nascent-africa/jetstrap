@@ -8,6 +8,10 @@
     </x-slot>
 
     <x-slot name="content">
+        <x-jet-action-message on="loggedOut">
+            {{ __('Done.') }}
+        </x-jet-action-message>
+
         <div>
             {{ __('If necessary, you may logout of all of your other browser sessions across all of your devices. Some of your recent sessions are listed below; however, this list may not be exhaustive. If you feel your account has been compromised, you should also update your password.') }}
         </div>
@@ -55,10 +59,6 @@
             <x-jet-button wire:click="confirmLogout" wire:loading.attr="disabled">
                 {{ __('Logout Other Browser Sessions') }}
             </x-jet-button>
-
-            <x-jet-action-message class="ml-3" on="loggedOut">
-                {{ __('Done.') }}
-            </x-jet-action-message>
         </div>
 
         <!-- Logout Other Devices Confirmation Modal -->
@@ -70,7 +70,7 @@
             <x-slot name="content">
                 {{ __('Please enter your password to confirm you would like to logout of your other browser sessions across all of your devices.') }}
 
-                <div class="mt-4" x-data="{}" x-on:confirming-logout-other-browser-sessions.window="setTimeout(() => $refs.password.focus(), 250)">
+                <div class="mt-3 w-md-75" x-data="{}" x-on:confirming-logout-other-browser-sessions.window="setTimeout(() => $refs.password.focus(), 250)">
                     <x-jet-input type="password" placeholder="{{ __('Password') }}"
                                  x-ref="password"
                                  class="{{ $errors->has('password') ? 'is-invalid' : '' }}"
@@ -83,11 +83,11 @@
 
             <x-slot name="footer">
                 <x-jet-secondary-button wire:click="$toggle('confirmingLogout')" wire:loading.attr="disabled">
-                    {{ __('Nevermind') }}
+                    {{ __('Cancel') }}
                 </x-jet-secondary-button>
 
                 <x-jet-button class="ml-2" wire:click="logoutOtherBrowserSessions" wire:loading.attr="disabled">
-                    {{ __('Logout Other Browser Sessions') }}
+                    {{ __('Log out Other Browser Sessions') }}
                 </x-jet-button>
             </x-slot>
         </x-jet-dialog-modal>

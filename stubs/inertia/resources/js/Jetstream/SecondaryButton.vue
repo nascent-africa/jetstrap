@@ -1,16 +1,16 @@
 <template>
-    <button :type="type" class="btn btn-outline-secondary">
-        <slot></slot>
-    </button>
+  <button :type="type" class="btn btn-outline-secondary text-uppercase">
+    <slot></slot>
+  </button>
 </template>
 
 <script>
-    export default {
-        props: {
-            type: {
-                type: String,
-                default: 'button',
-            },
-        }
+  export default {
+    props: {
+      type: {
+        type: String,
+        default: 'button',
+      },
     }
+  }
 </script>

@@ -1,1 +1,1 @@
-<input type="checkbox" {!! $attributes->merge(['class' => 'form-check-input']) !!}>
+<input type="checkbox" {!! $attributes->merge(['class' => 'custom-control-input']) !!}>

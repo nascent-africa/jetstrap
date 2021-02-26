@@ -23,21 +23,21 @@
 </template>
 
 <script>
-import Modal from './Modal'
+  import Modal from './Modal'
 
-export default {
-  components: {
-    Modal,
-  },
-
-  props: {
-    id: {
-      type: String,
-      required: true
+  export default {
+    components: {
+      Modal,
     },
-    maxWidth: {
-      default: '2xl'
+
+    props: {
+      id: {
+        type: String,
+        required: true
+      },
+      maxWidth: {
+        default: '2xl'
+      }
     }
   }
-}
 </script>

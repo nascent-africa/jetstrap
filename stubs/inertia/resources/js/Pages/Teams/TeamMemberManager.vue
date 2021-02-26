@@ -14,6 +14,10 @@
         </template>
 
         <template #form>
+          <jet-action-message :on="addTeamMemberForm.recentlySuccessful">
+            Added.
+          </jet-action-message>
+
           <div class="mb-3">
             Please provide the email address of the person you would like to add to this team. The email address must be associated with an existing account.
           </div>
@@ -38,11 +42,12 @@
             <div class="list-group">
               <a href="#" class="list-group-item list-group-item-action" :class="{'text-black-50': addTeamMemberForm.role && addTeamMemberForm.role != role.key}"
                  @click.prevent="addTeamMemberForm.role = role.key"
-                 v-for="(role, i) in availableRoles">
+                 v-for="(role, i) in availableRoles"
+                 :key="role.key">
                 <div>
-                                    <span :class="{'font-weight-bold': addTeamMemberForm.role == role.key}">
-                                        {{ role.name }}
-                                    </span>
+                  <span :class="{'font-weight-bold': addTeamMemberForm.role == role.key}">
+                      {{ role.name }}
+                  </span>
 
                   <svg v-if="addTeamMemberForm.role == role.key" class="ml-1 text-success font-weight-light" width="20" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 </div>
@@ -57,10 +62,6 @@
         </template>
 
         <template #actions>
-          <jet-action-message :on="addTeamMemberForm.recentlySuccessful" class="mr-3">
-            Added.
-          </jet-action-message>
-
           <jet-button :class="{ 'text-white-50': addTeamMemberForm.processing }" :disabled="addTeamMemberForm.processing">
             Add
           </jet-button>
@@ -166,9 +167,9 @@
              v-for="(role, i) in availableRoles"
              :key="role.key">
             <div>
-                            <span :class="{'font-weight-bold': updateRoleForm.role == role.key}">
-                                {{ role.name }}
-                            </span>
+              <span :class="{'font-weight-bold': updateRoleForm.role == role.key}">
+                  {{ role.name }}
+              </span>
 
               <svg v-if="updateRoleForm.role == role.key" class="ml-1 text-success font-weight-light" width="20" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
             </div>
@@ -183,10 +184,10 @@
 
       <template #footer>
         <jet-secondary-button data-dismiss="modal">
-          Nevermind
+          Cancel
         </jet-secondary-button>
 
-        <jet-button class="ml-2" @click.native="updateRole" :class="{ 'text-black-50': updateRoleForm.processing }" :disabled="updateRoleForm.processing">
+        <jet-button class="ml-2" @click="updateRole" :class="{ 'text-black-50': updateRoleForm.processing }" :disabled="updateRoleForm.processing">
           Save
         </jet-button>
       </template>
@@ -204,10 +205,10 @@
 
       <template #footer>
         <jet-secondary-button data-dismiss="modal">
-          Nevermind
+          Cancel
         </jet-secondary-button>
 
-        <jet-danger-button class="ml-2" @click.native="leaveTeam" :class="{ 'text-white-50': leaveTeamForm.processing }" :disabled="leaveTeamForm.processing">
+        <jet-danger-button class="ml-2" @click="leaveTeam" :class="{ 'text-white-50': leaveTeamForm.processing }" :disabled="leaveTeamForm.processing">
           Leave
         </jet-danger-button>
       </template>
@@ -225,10 +226,10 @@
 
       <template #footer>
         <jet-secondary-button data-dismiss="modal">
-          Nevermind
+          Cancel
         </jet-secondary-button>
 
-        <jet-danger-button class="ml-2" @click.native="removeTeamMember" :class="{ 'text-white-50': removeTeamMemberForm.processing }" :disabled="removeTeamMemberForm.processing">
+        <jet-danger-button class="ml-2" @click="removeTeamMember" :class="{ 'text-white-50': removeTeamMemberForm.processing }" :disabled="removeTeamMemberForm.processing">
           Remove
         </jet-danger-button>
       </template>

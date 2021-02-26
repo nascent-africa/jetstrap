@@ -150,6 +150,8 @@
       <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
+          <jet-banner />
+
           <div class="row">
             <div class="col">
               <slot></slot>

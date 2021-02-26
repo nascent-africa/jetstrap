@@ -16,7 +16,7 @@
 
                 <x-jet-validation-errors class="mb-3" />
 
-                <form method="POST" action="/two-factor-challenge">
+                <form method="POST" action="{{ route('two-factor.login') }}">
                     @csrf
 
                     <div class="form-group" x-show="! recovery">
@@ -53,7 +53,7 @@
                         </button>
 
                         <x-jet-button>
-                            {{ __('Login') }}
+                            {{ __('Log in') }}
                         </x-jet-button>
                     </div>
                 </form>

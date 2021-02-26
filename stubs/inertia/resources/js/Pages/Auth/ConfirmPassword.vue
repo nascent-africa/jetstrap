@@ -6,11 +6,11 @@
 
     <div class="card-body">
 
-      <div class="mb-4">
+      <div class="mb-2">
         This is a secure area of the application. Please confirm your password before continuing.
       </div>
 
-      <jet-validation-errors class="mb-4" />
+      <jet-validation-errors class="mb-2" />
 
       <form @submit.prevent="submit">
         <div class="form-group">
@@ -18,7 +18,7 @@
           <jet-input id="password" type="password" v-model="form.password" required autocomplete="current-password" autofocus />
         </div>
 
-        <div class="flex justify-end mt-4">
+        <div class="flex justify-end mt-2">
           <jet-button class="ml-4" :class="{ 'text-white-50': form.processing }" :disabled="form.processing">
             Confirm
           </jet-button>

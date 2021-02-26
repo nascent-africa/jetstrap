@@ -29,16 +29,14 @@
           <jet-input id="password_confirmation" type="password" v-model="form.password_confirmation" required autocomplete="new-password" />
         </div>
 
-        <div class="form-group px-3" v-if="$page.props.jetstream.hasTermsAndPrivacyPolicyFeature">
-          <jet-label for="terms">
-            <div class="flex items-center">
-              <jet-checkbox name="terms" id="terms" v-model="form.terms" />
+        <div class="form-group" v-if="$page.props.jetstream.hasTermsAndPrivacyPolicyFeature">
+          <div class="custom-control custom-checkbox">
+            <jet-checkbox name="terms" id="terms" v-model:checked="form.terms" />
 
-              <div class="ml-2 text-sm">
-                I agree to the <a target="_blank" :href="route('terms.show')">Terms of Service</a> and <a target="_blank" :href="route('policy.show')">Privacy Policy</a>
-              </div>
-            </div>
-          </jet-label>
+            <label class="custom-control-label" for="terms">
+              I agree to the <a target="_blank" :href="route('terms.show')">Terms of Service</a> and <a target="_blank" :href="route('policy.show')">Privacy Policy</a>
+            </label>
+          </div>
         </div>
 
         <div class="mb-0">

@@ -9,8 +9,12 @@
     </template>
 
     <template #form>
+      <jet-action-message :on="form.recentlySuccessful">
+        Saved.
+      </jet-action-message>
+
       <!-- Team Owner Information -->
-      <div class="mb-4">
+      <div class="mb-3">
         <jet-label value="Team Owner" />
 
         <div class="d-flex items-center mt-2">
@@ -41,10 +45,6 @@
     </template>
 
     <template #actions v-if="permissions.canUpdateTeam">
-      <jet-action-message :on="form.recentlySuccessful" class="mr-3">
-        Saved.
-      </jet-action-message>
-
       <jet-button :class="{ 'text-white-50': form.processing }" :disabled="form.processing">
         Save
       </jet-button>

@@ -5,5 +5,7 @@
         </h2>
     </x-slot>
 
-    @livewire('api.api-token-manager')
+    <div>
+        @livewire('api.api-token-manager')
+    </div>
 </x-app-layout>

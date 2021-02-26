@@ -9,6 +9,11 @@
     </template>
 
     <template #content>
+
+      <jet-action-message :on="form.recentlySuccessful">
+        Done.
+      </jet-action-message>
+
       <div>
         If necessary, you may logout of all of your other browser sessions across all of your devices. Some of your recent sessions are listed below; however, this list may not be exhaustive. If you feel your account has been compromised, you should also update your password.
       </div>
@@ -44,42 +49,38 @@
       </div>
 
       <div class="d-flex mt-3">
-        <jet-button @click.native="confirmLogout">
-          Logout Other Browser Sessions
+        <jet-button @click="confirmLogout">
+          Log out Other Browser Sessions
         </jet-button>
-
-        <jet-action-message :on="form.recentlySuccessful" class="ml-3">
-          Done.
-        </jet-action-message>
       </div>
 
       <!-- Logout Other Devices Confirmation Modal -->
       <jet-dialog-modal id="confirmingLogoutModal">
         <template #title>
-          Logout Other Browser Sessions
+          Log out Other Browser Sessions
         </template>
 
         <template #content>
           Please enter your password to confirm you would like to logout of your other browser sessions across all of your devices.
 
-          <div class="form-group">
+          <div class="form-group mt-3 w-md-75">
             <jet-input type="password" placeholder="Password"
                        ref="password"
                        :class="{ 'is-invalid': form.errors.password }"
                        v-model="form.password"
-                       @keyup.enter.native="logoutOtherBrowserSessions" />
+                       @keyup.enter="logoutOtherBrowserSessions" />
 
             <jet-input-error :message="form.errors.password" />
           </div>
         </template>
 
         <template #footer>
-          <jet-secondary-button data-dismiss="modal" @click.native="closeModal">
-            Nevermind
+          <jet-secondary-button data-dismiss="modal" @click="closeModal">
+            Cancel
           </jet-secondary-button>
 
-          <jet-button class="ml-2" @click.native="logoutOtherBrowserSessions" :class="{ 'text-white-50': form.processing }" :disabled="form.processing">
-            Logout Other Browser Sessions
+          <jet-button class="ml-2" @click="logoutOtherBrowserSessions" :class="{ 'text-white-50': form.processing }" :disabled="form.processing">
+            Log out Other Browser Sessions
           </jet-button>
         </template>
       </jet-dialog-modal>

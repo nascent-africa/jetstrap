@@ -1,7 +1,7 @@
 @props(['id' => 'navbarDropdown'])
 
 <li {!! $attributes->merge(['class' => 'nav-item dropdown']) !!}>
-    <a id="{{ $id }}" href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="false">
+    <a id="{{ $id }}" href="#" class="nav-link" role="button" data-toggle="dropdown" aria-expanded="false">
         {{ $trigger }}
     </a>
 

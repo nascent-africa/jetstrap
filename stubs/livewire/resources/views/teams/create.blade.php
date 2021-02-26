@@ -5,5 +5,7 @@
         </h2>
     </x-slot>
 
-    @livewire('teams.create-team-form')
+    <div>
+        @livewire('teams.create-team-form')
+    </div>
 </x-app-layout>

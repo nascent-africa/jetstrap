@@ -8,6 +8,11 @@
     </x-slot>
 
     <x-slot name="form">
+
+        <x-jet-action-message on="saved">
+            {{ __('Saved.') }}
+        </x-jet-action-message>
+
         <!-- Profile Photo -->
         @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
             <div class="form-group" x-data="{photoName: null, photoPreview: null}">
@@ -69,10 +74,6 @@
 
     <x-slot name="actions">
 		<div class="d-flex align-items-baseline">
-			<x-jet-action-message class="mr-3" on="saved">
-				{{ __('Saved.') }}
-			</x-jet-action-message>
-
 			<x-jet-button>
 				{{ __('Save') }}
 			</x-jet-button>

@@ -9,6 +9,10 @@
     </template>
 
     <template #form>
+      <jet-action-message :on="form.recentlySuccessful">
+        Saved.
+      </jet-action-message>
+
       <div class="w-75">
         <div class="form-group">
           <jet-label for="current_password" value="Current Password" />
@@ -34,10 +38,6 @@
     </template>
 
     <template #actions>
-      <jet-action-message :on="form.recentlySuccessful" class="mr-3">
-        Saved.
-      </jet-action-message>
-
       <jet-button :class="{ 'text-white-50': form.processing }" :disabled="form.processing">
         Save
       </jet-button>

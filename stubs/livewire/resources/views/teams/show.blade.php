@@ -5,13 +5,17 @@
         </h2>
     </x-slot>
 
-    @livewire('teams.update-team-name-form', ['team' => $team])
+    <div>
+        @livewire('teams.update-team-name-form', ['team' => $team])
 
-    @livewire('teams.team-member-manager', ['team' => $team])
+        @livewire('teams.team-member-manager', ['team' => $team])
 
-    @if (Gate::check('delete', $team) && ! $team->personal_team)
-        <x-jet-section-border />
+        @if (Gate::check('delete', $team) && ! $team->personal_team)
+            <x-jet-section-border />
 
-        @livewire('teams.delete-team-form', ['team' => $team])
-    @endif
+            <div>
+                @livewire('teams.delete-team-form', ['team' => $team])
+            </div>
+        @endif
+    </div>
 </x-app-layout>
