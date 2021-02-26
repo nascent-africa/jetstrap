@@ -50,6 +50,7 @@ class Presets
         if ($stack == 'livewire') {
 
             copy(__DIR__ . '/../../presets/CoreUi/resources/views/layouts/app.blade.php', resource_path('views/layouts/app.blade.php'));
+            copy(__DIR__ . '/../../presets/CoreUi/resources/views/navigation-menu.blade.php', resource_path('views/navigation-menu.blade.php'));
 
             copy(__DIR__ . '/../../presets/CoreUi/resources/views/components/button.blade.php', resource_path('views/vendor/jetstream/components/button.blade.php'));
             copy(__DIR__ . '/../../presets/CoreUi/resources/views/components/dropdown.blade.php', resource_path('views/vendor/jetstream/components/dropdown.blade.php'));
@@ -111,6 +112,7 @@ class Presets
             (new Filesystem)->copyDirectory(__DIR__.'/../../presets/AdminLte/resources/views/auth', resource_path('views/auth'));
 
             copy(__DIR__ . '/../../presets/AdminLte/resources/views/layouts/app.blade.php', resource_path('views/layouts/app.blade.php'));
+            copy(__DIR__ . '/../../presets/AdminLte/resources/views/navigation-menu.blade.php', resource_path('views/navigation-menu.blade.php'));
 
             copy(__DIR__ . '/../../presets/AdminLte/resources/views/components/dropdown.blade.php', resource_path('views/vendor/jetstream/components/dropdown.blade.php'));
             copy(__DIR__ . '/../../presets/AdminLte/resources/views/components/nav-link.blade.php', resource_path('views/vendor/jetstream/components/nav-link.blade.php'));
