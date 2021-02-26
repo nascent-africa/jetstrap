@@ -10,7 +10,8 @@
   "authors": [
     {
       "name": "Anitche Chisom",
-      "email": "anitchec.dev@gmail.com"
+      "email": "anitchec.dev@gmail.com",
+      "role": "Developer"
     }
   ],
   "require": {
