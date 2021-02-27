@@ -151,7 +151,6 @@ class InstallCommand extends Command
         Helpers::updateNodePackages(function ($packages) {
             return [
                 '@inertiajs/inertia' => '^0.8.2',
-                '@inertiajs/inertia-vue' => '^0.5.4',
                 '@inertiajs/inertia-vue3' => '^0.3.5',
                 'alpinejs' => '^2.7.3',
                 'bootstrap' => '^4.6.0',
