@@ -9,7 +9,6 @@
 
 Jetstrap is a lightweight laravel 8 package that focuses on the `VIEW` side of [Jetstream](https://github.com/laravel/jetstream) / [Breeze](https://github.com/laravel/breeze) package installed in your Laravel application, so when a swap is performed, the `Action`, `MODEL`, `CONTROLLER`, `Component` and `Action` classes of your project is still 100% handled by Laravel development team with no added layer of complexity.
 
-
 ## Table of Content
   * [Installation](#installation)
     + [Installing Jetstream](#installing-jetstream)
@@ -24,6 +23,7 @@ Jetstrap is a lightweight laravel 8 package that focuses on the `VIEW` side of [
     + [AdminLTE](#adminlte)
   * [Breeze](#breeze)
     + [Swapping Breeze resources](#swapping-breeze-resources)
+    + [Swapping Breeze inertia resources](#swapping-breeze-inertia-resources)
   * [Testing](#testing)
   * [License](#license)
   
@@ -237,6 +237,15 @@ To swap tailwind resource for bootstrap in a breeze configured laravel, simply r
 ```bash
 
 php artisan jetstrap:swap breeze
+```
+
+### Swapping Breeze inertia resources
+
+Laravel Breeze now comes with stubs for inertia scaffolding and so dose Jetstrap. To use a Bootstrap scaffold for your laravel project running on Breeze alongside inertia, simply run the code below:
+
+```bash
+
+php artisan jetstrap:swap breeze-inertia
 ```
 
 Next you have to clean up your `package.json` file to make sure we don't install unnecessary packages.
