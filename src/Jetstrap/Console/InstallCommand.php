@@ -56,14 +56,17 @@ class InstallCommand extends Command
         // Install Stack...
         if ($this->argument('stack') === 'livewire') {
 
-            $this->swapLivewireStack();
+            $this->swapJetstreamLivewireStack();
 
         } elseif ($this->argument('stack') === 'inertia') {
 
-            $this->swapInertiaStack();
+            $this->swapJetstreamInertiaStack();
         } elseif ($this->argument('stack') === 'breeze') {
 
             $this->swapBreezeStack();
+        } elseif ($this->argument('stack') === 'breeze-inertia') {
+
+            $this->swapBreezeInertiaStack();
         }
     }
 
@@ -72,7 +75,7 @@ class InstallCommand extends Command
      *
      * @return void
      */
-    protected function swapLivewireStack()
+    protected function swapJetstreamLivewireStack()
     {
         $this->line('');
         $this->info('Installing livewire stack...');
@@ -112,7 +115,7 @@ class InstallCommand extends Command
 
         // Teams...
         if ($this->option('teams')) {
-            $this->swapLivewireTeamStack();
+            $this->swapJetstreamLivewireTeamStack();
         }
 
         $this->line('');
@@ -129,7 +132,7 @@ class InstallCommand extends Command
      *
      * @return void
      */
-    protected function swapLivewireTeamStack()
+    protected function swapJetstreamLivewireTeamStack()
     {
         // Directories...
         (new Filesystem)->ensureDirectoryExists(resource_path('views/teams'));
@@ -142,7 +145,7 @@ class InstallCommand extends Command
      *
      * @return void
      */
-    protected function swapInertiaStack()
+    protected function swapJetstreamInertiaStack()
     {
         $this->line('');
         $this->info('Installing inertia stack...');
@@ -169,6 +172,8 @@ class InstallCommand extends Command
         // Blade Views...
         copy(__DIR__.'/../../../stubs/inertia/resources/views/app.blade.php', resource_path('views/app.blade.php'));
 
+        // Assets...
+        copy(__DIR__.'/../../../stubs/inertia/resources/js/app.js', resource_path('js/app.js'));
 
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Jetstream'));
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Layouts'));
@@ -194,12 +199,10 @@ class InstallCommand extends Command
         (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/inertia/resources/js/Pages/Auth', resource_path('js/Pages/Auth'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/inertia/resources/js/Pages/Profile', resource_path('js/Pages/Profile'));
 
-        // Assets...
-        copy(__DIR__.'/../../../stubs/inertia/resources/js/app.js', resource_path('js/app.js'));
 
         // Teams...
         if ($this->option('teams')) {
-            $this->swapInertiaTeamStack();
+            $this->swapJetstreamInertiaTeamStack();
         }
 
         $this->line('');
@@ -216,7 +219,7 @@ class InstallCommand extends Command
      *
      * @return void
      */
-    protected function swapInertiaTeamStack()
+    protected function swapJetstreamInertiaTeamStack()
     {
         // Directories...
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Pages/Profile'));
@@ -253,6 +256,67 @@ class InstallCommand extends Command
 
         copy(__DIR__.'/../../../breeze/resources/views/dashboard.blade.php', resource_path('views/dashboard.blade.php'));
         copy(__DIR__.'/../../../stubs/resources/views/welcome.blade.php', resource_path('views/welcome.blade.php'));
+
+        $this->line('');
+        $this->info('Rounding up...');
+        $this->installPreset();
+
+        $this->info('Breeze scaffolding swapped successfully.');
+        $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
+    }
+
+    /**
+     * Install the Inertia Breeze stack.
+     *
+     * @return void
+     */
+    protected function swapBreezeInertiaStack()
+    {
+        // NPM Packages...
+        Helpers::updateNodePackages(function ($packages) {
+            return [
+                '@inertiajs/inertia' => '^0.8.2',
+                '@inertiajs/inertia-vue3' => '^0.3.5',
+                'alpinejs' => '^2.7.3',
+                'bootstrap' => '^4.6.0',
+                'jquery' => '^3.5.1',
+                'popper.js' => '^1.16.1',
+                'vue' => '^3.0.5',
+                '@vue/compiler-sfc' => '^3.0.5',
+                'vue-loader' => '^16.1.2',
+            ] + $packages;
+        });
+
+        // Views...
+        copy(__DIR__.'/../../../stubs/inertia/resources/views/app.blade.php', resource_path('views/app.blade.php'));
+
+        copy(__DIR__.'/../../../stubs/inertia/webpack.mix.js', base_path('webpack.mix.js'));
+
+        // Assets...
+        copy(__DIR__.'/../../../stubs/inertia/resources/js/app.js', resource_path('js/app.js'));
+
+        // Components + Pages...
+        (new Filesystem)->ensureDirectoryExists(resource_path('js/Components'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('js/Layouts'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('js/Pages'));
+
+        (new Filesystem)->copyDirectory(__DIR__.'/../../../breeze/inertia/resources/js/Components', resource_path('js/Components'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../../breeze/inertia/resources/js/Layouts', resource_path('js/Layouts'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../../breeze/inertia/resources/js/Pages', resource_path('js/Pages'));
+
+        if ((new Filesystem)->exists(resource_path('js/Components/ResponsiveNavLink.vue'))) {
+            (new Filesystem)->delete(resource_path('js/Components/ResponsiveNavLink.vue'));
+        }
+
+        copy(__DIR__.'/../../../stubs/inertia/resources/js/Jetstream/Button.vue', resource_path('js/Components/Button.vue'));
+        copy(__DIR__.'/../../../stubs/inertia/resources/js/Jetstream/Checkbox.vue', resource_path('js/Components/Checkbox.vue'));
+        copy(__DIR__.'/../../../stubs/inertia/resources/js/Jetstream/Dropdown.vue', resource_path('js/Components/Dropdown.vue'));
+        copy(__DIR__.'/../../../stubs/inertia/resources/js/Jetstream/DropdownLink.vue', resource_path('js/Components/DropdownLink.vue'));
+        copy(__DIR__.'/../../../stubs/inertia/resources/js/Jetstream/Input.vue', resource_path('js/Components/Input.vue'));
+        copy(__DIR__.'/../../../stubs/inertia/resources/js/Jetstream/InputError.vue', resource_path('js/Components/InputError.vue'));
+        copy(__DIR__.'/../../../stubs/inertia/resources/js/Jetstream/Label.vue', resource_path('js/Components/Label.vue'));
+        copy(__DIR__.'/../../../stubs/inertia/resources/js/Jetstream/NavLink.vue', resource_path('js/Components/NavLink.vue'));
+        copy(__DIR__.'/../../../stubs/inertia/resources/js/Jetstream/ValidationErrors.vue', resource_path('js/Components/ValidationErrors.vue'));
 
         $this->line('');
         $this->info('Rounding up...');

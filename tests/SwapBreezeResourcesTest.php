@@ -46,6 +46,18 @@ class SwapBreezeResourcesTest extends TestCase
     }
 
     /** @test */
+    public function breeze_inertia_swapped()
+    {
+        // Run the make command
+        $this->artisan('jetstrap:swap breeze-inertia')
+            ->expectsOutput('Breeze scaffolding swapped successfully.')
+            ->expectsOutput('Please execute the "npm install && npm run dev" command to build your assets.')
+            ->assertExitCode(0);
+
+        $this->basicTests();
+    }
+
+    /** @test */
     public function breeze_admin_lte_swapped()
     {
         JetstrapFacade::useAdminLte3();
@@ -60,12 +72,40 @@ class SwapBreezeResourcesTest extends TestCase
     }
 
     /** @test */
+    public function breeze_inertia_admin_lte_swapped()
+    {
+        JetstrapFacade::useAdminLte3();
+
+        // Run the make command
+        $this->artisan('jetstrap:swap breeze-inertia')
+            ->expectsOutput('Breeze scaffolding swapped successfully.')
+            ->expectsOutput('Please execute the "npm install && npm run dev" command to build your assets.')
+            ->assertExitCode(0);
+
+        $this->basicTests();
+    }
+
+    /** @test */
     public function breeze_core_ui_swapped()
     {
         JetstrapFacade::useCoreUi3();
 
         // Run the make command
         $this->artisan('jetstrap:swap breeze')
+            ->expectsOutput('Breeze scaffolding swapped successfully.')
+            ->expectsOutput('Please execute the "npm install && npm run dev" command to build your assets.')
+            ->assertExitCode(0);
+
+        $this->basicTests();
+    }
+
+    /** @test */
+    public function breeze_inertia_core_ui_swapped()
+    {
+        JetstrapFacade::useCoreUi3();
+
+        // Run the make command
+        $this->artisan('jetstrap:swap breeze-inertia')
             ->expectsOutput('Breeze scaffolding swapped successfully.')
             ->expectsOutput('Please execute the "npm install && npm run dev" command to build your assets.')
             ->assertExitCode(0);

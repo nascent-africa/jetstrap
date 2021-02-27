@@ -17,7 +17,7 @@
   "require": {
     "php": "^7.3|^8.0",
     "illuminate/support": "^8.0",
-    "laravel/breeze": "^1.0",
+    "laravel/breeze": "^1.1",
     "laravel/jetstream": "^2.2",
     "inertiajs/inertia-laravel": "^0.3"
   },
