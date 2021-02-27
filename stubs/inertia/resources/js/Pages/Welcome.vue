@@ -126,7 +126,7 @@
             </div>
 
             <div class="text-sm text-muted">
-              Build v{{ laravelVersion }}
+              Laravel v{{ laravelVersion }} (PHP v{{ phpVersion }})
             </div>
           </div>
         </div>
@@ -140,11 +140,12 @@
 </style>
 
 <script>
-    export default {
-        props: {
-            canLogin: Boolean,
-            canRegister: Boolean,
-            laravelVersion: String,
-        }
-    }
+export default {
+  props: {
+    canLogin: Boolean,
+    canRegister: Boolean,
+    laravelVersion: String,
+    phpVersion: String,
+  }
+}
 </script>
