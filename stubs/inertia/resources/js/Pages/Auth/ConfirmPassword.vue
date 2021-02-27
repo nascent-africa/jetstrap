@@ -18,7 +18,7 @@
           <jet-input id="password" type="password" v-model="form.password" required autocomplete="current-password" autofocus />
         </div>
 
-        <div class="flex justify-end mt-2">
+        <div class="d-flex justify-content-end mt-2">
           <jet-button class="ml-4" :class="{ 'text-white-50': form.processing }" :disabled="form.processing">
             Confirm
           </jet-button>
