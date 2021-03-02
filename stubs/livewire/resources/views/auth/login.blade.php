@@ -50,7 +50,7 @@
                         @endif
 
                         <x-jet-button>
-                            {{ __('Login') }}
+                            {{ __('Log in') }}
                         </x-jet-button>
                     </div>
                 </div>

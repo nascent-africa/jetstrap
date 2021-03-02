@@ -5,7 +5,7 @@
     </template>
 
     <template #description>
-      Manage and logout your active sessions on other browsers and devices.
+      Manage and log out your active sessions on other browsers and devices.
     </template>
 
     <template #content>
@@ -15,7 +15,7 @@
       </jet-action-message>
 
       <div>
-        If necessary, you may logout of all of your other browser sessions across all of your devices. Some of your recent sessions are listed below; however, this list may not be exhaustive. If you feel your account has been compromised, you should also update your password.
+        If necessary, you may log out of all of your other browser sessions across all of your devices. Some of your recent sessions are listed below; however, this list may not be exhaustive. If you feel your account has been compromised, you should also update your password.
       </div>
 
       <!-- Other Browser Sessions -->
@@ -54,14 +54,14 @@
         </jet-button>
       </div>
 
-      <!-- Logout Other Devices Confirmation Modal -->
+      <!-- Log out Other Devices Confirmation Modal -->
       <jet-dialog-modal id="confirmingLogoutModal">
         <template #title>
           Log out Other Browser Sessions
         </template>
 
         <template #content>
-          Please enter your password to confirm you would like to logout of your other browser sessions across all of your devices.
+          Please enter your password to confirm you would like to log out of your other browser sessions across all of your devices.
 
           <div class="form-group mt-3 w-md-75">
             <jet-input type="password" placeholder="Password"

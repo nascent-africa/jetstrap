@@ -40,7 +40,7 @@
             </inertia-link>
 
             <jet-button class="ml-4" :class="{ 'text-white-50': form.processing }" :disabled="form.processing">
-              Login
+              Log in
             </jet-button>
           </div>
         </div>
