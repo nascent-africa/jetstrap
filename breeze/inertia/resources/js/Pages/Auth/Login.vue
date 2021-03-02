@@ -35,7 +35,7 @@
           </inertia-link>
 
           <breeze-button class="ml-4" :class="{ 'text-white-50': form.processing }" :disabled="form.processing">
-            Login
+            Log in
           </breeze-button>
         </div>
       </div>

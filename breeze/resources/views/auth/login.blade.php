@@ -52,7 +52,7 @@
                         @endif
 
                         <x-button>
-                            {{ __('Login') }}
+                            {{ __('Log in') }}
                         </x-button>
                     </div>
                 </div>
