@@ -26,7 +26,7 @@ switch ($maxWidth ?? '') {
 <!-- Modal -->
 <div 
     x-data="{
-        show: @entangle($attributes->wire('model')),
+        show: @entangle($attributes->wire('model')).defer,
     }"
     x-init="() => {
         let modal = $('#{{ $id }}');
