@@ -172,15 +172,12 @@
       </div>
       <strong>Powered by</strong> <a href="https://adminlte.io">AdminLTE</a>
     </footer>
-
-    <!-- Modal Portal -->
-    <portal-target name="modal" multiple>
-    </portal-target>
   </div>
 </template>
 
 <script>
 import JetApplicationLogo from '@/Jetstream/ApplicationLogo'
+import JetBanner from '@/Jetstream/Banner'
 import JetApplicationMark from '@/Jetstream/ApplicationMark'
 import JetDropdown from '@/Jetstream/Dropdown'
 import JetDropdownLink from '@/Jetstream/DropdownLink'
@@ -190,6 +187,7 @@ export default {
   components: {
     JetApplicationLogo,
     JetApplicationMark,
+    JetBanner,
     JetDropdown,
     JetDropdownLink,
     JetNavLink,
@@ -215,7 +213,7 @@ export default {
     },
 
     hasSlot (name = 'default') {
-      return !!this.$slots[ name ] || !!this.$scopedSlots[ name ];
+      return !!this.$slots[ name ];
     },
   },
 

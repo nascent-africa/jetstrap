@@ -148,10 +148,6 @@
           <div class="ml-auto">Powered by&nbsp;<a href="https://coreui.io/">CoreUI</a></div>
         </footer>
       </div>
-
-      <!-- Modal Portal -->
-      <portal-target name="modal" multiple>
-      </portal-target>
     </div>
   </div>
 </template>
@@ -192,7 +188,7 @@ export default {
     },
 
     hasSlot (name = 'default') {
-      return !!this.$slots[ name ] || !!this.$scopedSlots[ name ];
+      return !!this.$slots[ name ];
     },
   },
 
