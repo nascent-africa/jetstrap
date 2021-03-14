@@ -19,7 +19,7 @@
         <script src="{{ mix('js/app.js') }}" defer></script>
         <script src="{{ mix('js/dashboard.js') }}" defer></script>
     </head>
-    <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed bg-light font-sans antialiased text-sm">
+    <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed bg-light font-sans antialiased">
         @inertia
     </body>
 </html>
