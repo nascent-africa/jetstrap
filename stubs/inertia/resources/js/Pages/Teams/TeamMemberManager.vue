@@ -291,7 +291,7 @@ export default {
       managingRoleFor: null,
       confirmingLeavingTeam: false,
       teamMemberBeingRemoved: null,
-      modal: null
+      bootstrap: null
     }
   },
 
@@ -315,8 +315,8 @@ export default {
       this.updateRoleForm.role = teamMember.membership.role
       this.currentlyManagingRole = true
 
-      this.modal = new Bootstrap.Modal(document.getElementById('currentlyManagingRoleModal'))
-      this.modal.toggle()
+      this.bootstrap = $('#currentlyManagingRoleModal')
+      this.bootstrap.modal('toggle')
     },
 
     updateRole() {
@@ -328,8 +328,8 @@ export default {
 
     confirmLeavingTeam() {
       this.confirmingLeavingTeam = true
-      this.modal = new Bootstrap.Modal(document.getElementById('confirmingLeavingTeamModal'))
-      this.modal.toggle()
+      this.bootstrap = $('#confirmingLeavingTeamModal')
+      this.bootstrap.modal('toggle')
     },
 
     leaveTeam() {
@@ -340,8 +340,8 @@ export default {
 
     confirmTeamMemberRemoval(teamMember) {
       this.teamMemberBeingRemoved = teamMember
-      this.modal = new Bootstrap.Modal(document.getElementById('teamMemberBeingRemovedModal'))
-      this.modal.toggle()
+      this.bootstrap = $('#teamMemberBeingRemovedModal')
+      this.bootstrap.modal('toggle')
     },
 
     removeTeamMember() {
@@ -350,7 +350,7 @@ export default {
         preserveState: true,
       }).then(() => {
         this.teamMemberBeingRemoved = null
-        this.modal.toggle()
+        this.bootstrap.modal('toggle')
       })
     },
 

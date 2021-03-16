@@ -30,7 +30,7 @@
         </template>
 
         <template #footer>
-          <jet-secondary-button data-dismiss="modal" @click="confirmingTeamDeletion = false">
+          <jet-secondary-button data-dismiss="modal">
             Cancel
           </jet-secondary-button>
 
@@ -63,8 +63,7 @@ export default {
 
   data() {
     return {
-      modal: null,
-      confirmingTeamDeletion: false,
+      bootstrap: null,
       deleting: false,
 
       form: this.$inertia.form()
@@ -73,14 +72,14 @@ export default {
 
   methods: {
     confirmTeamDeletion() {
-      this.confirmingTeamDeletion = true
-      this.modal = new Bootstrap.Modal(document.getElementById('confirmingTeamDeletionModal'))
-      this.modal.toggle()
+      this.bootstrap = $('#confirmingTeamDeletionModal')
+      this.bootstrap.modal('toggle')
     },
 
     deleteTeam() {
       this.form.delete(route('teams.destroy', this.team), {
-        errorBag: 'deleteTeam'
+        errorBag: 'deleteTeam',
+        onSuccess: () => this.bootstrap.modal('toggle')
       });
     },
   },

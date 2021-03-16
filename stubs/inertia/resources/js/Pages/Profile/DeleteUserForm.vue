@@ -73,9 +73,7 @@ export default {
 
   data() {
     return {
-      modal: null,
-      confirmingUserDeletion: false,
-
+      bootstrap: null,
       form: this.$inertia.form({
         password: '',
       })
@@ -86,8 +84,8 @@ export default {
     confirmUserDeletion() {
       this.form.password = '';
 
-      this.modal = new Bootstrap.Modal(document.getElementById('confirmingUserDeletionModal'))
-      this.modal.toggle()
+      this.bootstrap = $('#confirmingUserDeletionModal')
+      this.bootstrap.modal('toggle')
 
       setTimeout(() => this.$refs.password.focus(), 250)
     },
@@ -102,11 +100,9 @@ export default {
     },
 
     closeModal() {
-      this.confirmingUserDeletion = false
-
       this.form.reset()
 
-      this.modal.toggle()
+      this.bootstrap.modal('toggle')
     },
   },
 }

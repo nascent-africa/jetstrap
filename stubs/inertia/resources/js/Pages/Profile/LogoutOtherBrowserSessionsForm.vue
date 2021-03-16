@@ -112,8 +112,6 @@ export default {
 
   data() {
     return {
-      confirmingLogout: false,
-
       form: this.$inertia.form({
         password: '',
       })
@@ -124,8 +122,8 @@ export default {
     confirmLogout() {
       this.form.password = ''
 
-      this.modal = new Bootstrap.Modal(document.getElementById('confirmingLogoutModal'))
-      this.modal.toggle()
+      this.bootstrap = $('#confirmingLogoutModal')
+      this.bootstrap.modal('toggle')
 
       setTimeout(() => this.$refs.password.focus(), 250)
     },
@@ -140,10 +138,10 @@ export default {
     },
 
     closeModal() {
-      this.confirmingLogout = false
+      this.bootstrap.modal('toggle')
 
       this.form.reset()
     },
-  },
+  }
 }
 </script>

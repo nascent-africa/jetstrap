@@ -224,9 +224,9 @@
 
         deleteApiTokenForm: this.$inertia.form(),
 
-        displayingToken: false,
         managingPermissionsFor: null,
         apiTokenBeingDeleted: null,
+        bootstrap: null
       }
     },
 
@@ -235,22 +235,18 @@
         this.createApiTokenForm.post(route('api-tokens.store'), {
           preserveScroll: true,
           onSuccess: () => {
-            this.displayingToken = true
             this.createApiTokenForm.reset()
-
-            this.modal = new Bootstrap.Modal(document.getElementById('displayingTokenModal'))
-            this.modal.toggle()
+            this.bootstrap = $('#displayingTokenModal')
+            this.bootstrap.modal('toggle')
           }
         })
       },
 
       manageApiTokenPermissions(token) {
         this.updateApiTokenForm.permissions = token.abilities
-
         this.managingPermissionsFor = token
-
-        this.modal = new Bootstrap.Modal(document.getElementById('managingPermissionsForModal'))
-        this.modal.toggle()
+        this.bootstrap = $('#managingPermissionsForModal')
+        this.bootstrap.modal('toggle')
       },
 
       updateApiToken() {
@@ -263,9 +259,8 @@
 
       confirmApiTokenDeletion(token) {
         this.apiTokenBeingDeleted = token
-
-        this.modal = new Bootstrap.Modal(document.getElementById('apiTokenBeingDeletedModal'))
-        this.modal.toggle()
+        this.bootstrap = $('#apiTokenBeingDeletedModal')
+        this.bootstrap.modal('toggle')
       },
 
       deleteApiToken() {
@@ -274,10 +269,10 @@
           preserveState: true,
           onSuccess: () => {
             this.apiTokenBeingDeleted = null
-            this.modal.toggle()
+            this.bootstrap.modal('toggle')
           },
         })
       },
-    },
+    }
   }
 </script>
