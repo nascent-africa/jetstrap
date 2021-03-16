@@ -89,7 +89,7 @@
 
             <div>
               <!-- Cancel Team Invitation -->
-              <button class="text-danger"
+              <button class="btn btn-link text-danger"
                       @click="cancelTeamInvitation(invitation)"
                       v-if="userPermissions.canRemoveTeamMembers">
                 Cancel
