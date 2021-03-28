@@ -82,13 +82,13 @@
     methods: {
       startConfirmingPassword() {
         this.form.error = '';
-        this.modal = new Bootstrap.Modal(document.getElementById('confirmingPasswordModal'))
+        this.modal = $('#confirmingPasswordModal');
 
         axios.get(route('password.confirmation')).then(response => {
           if (response.data.confirmed) {
             this.$emit('confirmed');
           } else {
-            this.modal.show()
+            this.modal.modal('toggle');
             this.form.password = '';
 
             setTimeout(() => {
@@ -104,7 +104,7 @@
         axios.post(route('password.confirm'), {
           password: this.form.password,
         }).then(response => {
-          this.modal.hide()
+          this.modal.modal('hide');
           this.form.password = '';
           this.form.error = '';
           this.form.processing = false;
