@@ -68,7 +68,7 @@
 
     data() {
       return {
-        modal: null,
+        bootstrap: null,
 
         form: this.$inertia.form({
           password: '',
@@ -82,13 +82,13 @@
     methods: {
       startConfirmingPassword() {
         this.form.error = '';
-        this.modal = new Bootstrap.Modal(document.getElementById('confirmingPasswordModal'))
+        this.bootstrap = $('#confirmingPasswordModal');
 
         axios.get(route('password.confirmation')).then(response => {
           if (response.data.confirmed) {
             this.$emit('confirmed');
           } else {
-            this.modal.show()
+            this.bootstrap.modal('toggle');
             this.form.password = '';
 
             setTimeout(() => {
@@ -104,7 +104,7 @@
         axios.post(route('password.confirm'), {
           password: this.form.password,
         }).then(response => {
-          this.modal.hide()
+          this.bootstrap.modal('hide');
           this.form.password = '';
           this.form.error = '';
           this.form.processing = false;
