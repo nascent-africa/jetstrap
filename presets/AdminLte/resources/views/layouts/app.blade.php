@@ -22,7 +22,9 @@
     <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed font-sans antialiased">
         <div class="wrapper">
             
+            <!-- Navbar -->
             @livewire('navigation-menu')
+            <!-- /.navbar -->
 
             <!-- Main Sidebar Container -->
             <aside class="main-sidebar sidebar-dark-warning elevation-2">
