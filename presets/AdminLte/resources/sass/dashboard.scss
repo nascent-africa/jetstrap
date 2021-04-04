@@ -5,6 +5,31 @@
 @import "~@fortawesome/fontawesome-free/scss/regular.scss";
 
 @import '~overlayscrollbars/css/OverlayScrollbars.min.css';
-@import '~admin-lte/dist/css/adminlte.min.css';
 
+// Bootstrap
+// ---------------------------------------------------
+@import '~bootstrap/scss/functions';
+@import '~admin-lte/build/scss/bootstrap-variables';
+
+// Custom Theme Color START
+
+// Custom Theme Color END
+
+// Variables and Mixins
+// ---------------------------------------------------
+@import '~admin-lte/build/scss/variables';
+@import '~admin-lte/build/scss/variables-alt';
+@import '~admin-lte/build/scss/mixins';
+
+@import '~bootstrap/scss/bootstrap';
+
+@import '~admin-lte/build/scss/parts/core';
+@import '~admin-lte/build/scss/parts/components';
+@import '~admin-lte/build/scss/parts/extra-components';
+@import '~admin-lte/build/scss/parts/pages';
+@import '~admin-lte/build/scss/parts/plugins';
+@import '~admin-lte/build/scss/parts/miscellaneous';
+
+// Custom Style START
 @import 'custom';
+// Custom Style END
