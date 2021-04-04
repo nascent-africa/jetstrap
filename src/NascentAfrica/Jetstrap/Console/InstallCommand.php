@@ -40,18 +40,18 @@ class InstallCommand extends Command
         }
 
         // Bootstrap Configuration...
-        copy(__DIR__.'/../../../stubs/webpack.mix.js', base_path('webpack.mix.js'));
-        copy(__DIR__.'/../../../stubs/webpack.config.js', base_path('webpack.config.js'));
+        copy(__DIR__.'/../../../../stubs/webpack.mix.js', base_path('webpack.mix.js'));
+        copy(__DIR__.'/../../../../stubs/webpack.config.js', base_path('webpack.config.js'));
 
         // Assets...
         (new Filesystem)->deleteDirectory(resource_path('css'));
         (new Filesystem)->ensureDirectoryExists(resource_path('sass'));
         (new Filesystem)->ensureDirectoryExists(resource_path('js'));
         (new Filesystem)->ensureDirectoryExists(resource_path('views'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/resources/js', resource_path('js'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/resources/sass', resource_path('sass'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../../../stubs/resources/js', resource_path('js'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../../../stubs/resources/sass', resource_path('sass'));
 
-        copy(__DIR__.'/../../../stubs/resources/views/welcome.blade.php', resource_path('views/welcome.blade.php'));
+        copy(__DIR__.'/../../../../stubs/resources/views/welcome.blade.php', resource_path('views/welcome.blade.php'));
 
         // Install Stack...
         if ($this->argument('stack') === 'livewire') {
@@ -96,19 +96,19 @@ class InstallCommand extends Command
         (new Filesystem)->ensureDirectoryExists(resource_path('views/profile'));
 
         // Layouts
-        (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/livewire/resources/views/layouts', resource_path('views/layouts'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/livewire/resources/views/api', resource_path('views/api'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/livewire/resources/views/profile', resource_path('views/profile'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/livewire/resources/views/auth', resource_path('views/auth'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../../../stubs/livewire/resources/views/layouts', resource_path('views/layouts'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../../../stubs/livewire/resources/views/api', resource_path('views/api'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../../../stubs/livewire/resources/views/profile', resource_path('views/profile'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../../../stubs/livewire/resources/views/auth', resource_path('views/auth'));
 
         // Single Blade Views...
-        copy(__DIR__.'/../../../stubs/livewire/resources/views/dashboard.blade.php', resource_path('views/dashboard.blade.php'));
-        copy(__DIR__.'/../../../stubs/livewire/resources/views/navigation-menu.blade.php', resource_path('views/navigation-menu.blade.php'));
-        copy(__DIR__.'/../../../stubs/livewire/resources/views/terms.blade.php', resource_path('views/terms.blade.php'));
-        copy(__DIR__.'/../../../stubs/livewire/resources/views/policy.blade.php', resource_path('views/policy.blade.php'));
+        copy(__DIR__.'/../../../../stubs/livewire/resources/views/dashboard.blade.php', resource_path('views/dashboard.blade.php'));
+        copy(__DIR__.'/../../../../stubs/livewire/resources/views/navigation-menu.blade.php', resource_path('views/navigation-menu.blade.php'));
+        copy(__DIR__.'/../../../../stubs/livewire/resources/views/terms.blade.php', resource_path('views/terms.blade.php'));
+        copy(__DIR__.'/../../../../stubs/livewire/resources/views/policy.blade.php', resource_path('views/policy.blade.php'));
 
         // Assets...
-        (new Filesystem)->copy(__DIR__.'/../../../stubs/resources/js/app.js', resource_path('js/app.js'));
+        (new Filesystem)->copy(__DIR__.'/../../../../stubs/resources/js/app.js', resource_path('js/app.js'));
 
         // Publish...
         $this->callSilent('vendor:publish', ['--tag' => 'jetstrap-views', '--force' => true]);
@@ -137,7 +137,7 @@ class InstallCommand extends Command
         // Directories...
         (new Filesystem)->ensureDirectoryExists(resource_path('views/teams'));
 
-        (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/livewire/resources/views/teams', resource_path('views/teams'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../../../stubs/livewire/resources/views/teams', resource_path('views/teams'));
     }
 
     /**
@@ -167,13 +167,13 @@ class InstallCommand extends Command
         });
 
         // Necessary for vue compilation
-        copy(__DIR__.'/../../../stubs/inertia/webpack.mix.js', base_path('webpack.mix.js'));
+        copy(__DIR__.'/../../../../stubs/inertia/webpack.mix.js', base_path('webpack.mix.js'));
 
         // Blade Views...
-        copy(__DIR__.'/../../../stubs/inertia/resources/views/app.blade.php', resource_path('views/app.blade.php'));
+        copy(__DIR__.'/../../../../stubs/inertia/resources/views/app.blade.php', resource_path('views/app.blade.php'));
 
         // Assets...
-        copy(__DIR__.'/../../../stubs/inertia/resources/js/app.js', resource_path('js/app.js'));
+        copy(__DIR__.'/../../../../stubs/inertia/resources/js/app.js', resource_path('js/app.js'));
 
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Jetstream'));
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Layouts'));
@@ -188,16 +188,16 @@ class InstallCommand extends Command
         }
 
         // Inertia Pages...
-        copy(__DIR__.'/../../../stubs/inertia/resources/js/Pages/Dashboard.vue', resource_path('js/Pages/Dashboard.vue'));
-        copy(__DIR__.'/../../../stubs/inertia/resources/js/Pages/PrivacyPolicy.vue', resource_path('js/Pages/PrivacyPolicy.vue'));
-        copy(__DIR__.'/../../../stubs/inertia/resources/js/Pages/TermsOfService.vue', resource_path('js/Pages/TermsOfService.vue'));
-        copy(__DIR__.'/../../../stubs/inertia/resources/js/Pages/Welcome.vue', resource_path('js/Pages/Welcome.vue'));
+        copy(__DIR__.'/../../../../stubs/inertia/resources/js/Pages/Dashboard.vue', resource_path('js/Pages/Dashboard.vue'));
+        copy(__DIR__.'/../../../../stubs/inertia/resources/js/Pages/PrivacyPolicy.vue', resource_path('js/Pages/PrivacyPolicy.vue'));
+        copy(__DIR__.'/../../../../stubs/inertia/resources/js/Pages/TermsOfService.vue', resource_path('js/Pages/TermsOfService.vue'));
+        copy(__DIR__.'/../../../../stubs/inertia/resources/js/Pages/Welcome.vue', resource_path('js/Pages/Welcome.vue'));
 
-        (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/inertia/resources/js/Jetstream', resource_path('js/Jetstream'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/inertia/resources/js/Layouts', resource_path('js/Layouts'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/inertia/resources/js/Pages/API', resource_path('js/Pages/API'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/inertia/resources/js/Pages/Auth', resource_path('js/Pages/Auth'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/inertia/resources/js/Pages/Profile', resource_path('js/Pages/Profile'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../../../stubs/inertia/resources/js/Jetstream', resource_path('js/Jetstream'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../../../stubs/inertia/resources/js/Layouts', resource_path('js/Layouts'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../../../stubs/inertia/resources/js/Pages/API', resource_path('js/Pages/API'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../../../stubs/inertia/resources/js/Pages/Auth', resource_path('js/Pages/Auth'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../../../stubs/inertia/resources/js/Pages/Profile', resource_path('js/Pages/Profile'));
 
 
         // Teams...
@@ -225,7 +225,7 @@ class InstallCommand extends Command
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Pages/Profile'));
 
         // Pages...
-        (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/inertia/resources/js/Pages/Teams', resource_path('js/Pages/Teams'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../../../stubs/inertia/resources/js/Pages/Teams', resource_path('js/Pages/Teams'));
     }
 
     /**
@@ -250,12 +250,12 @@ class InstallCommand extends Command
         (new Filesystem)->ensureDirectoryExists(resource_path('views/layouts'));
         (new Filesystem)->ensureDirectoryExists(resource_path('views/components'));
 
-        (new Filesystem)->copyDirectory(__DIR__.'/../../../breeze/resources/views/auth', resource_path('views/auth'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../../breeze/resources/views/layouts', resource_path('views/layouts'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../../breeze/resources/views/components', resource_path('views/components'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../../../breeze/resources/views/auth', resource_path('views/auth'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../../../breeze/resources/views/layouts', resource_path('views/layouts'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../../../breeze/resources/views/components', resource_path('views/components'));
 
-        copy(__DIR__.'/../../../breeze/resources/views/dashboard.blade.php', resource_path('views/dashboard.blade.php'));
-        copy(__DIR__.'/../../../stubs/resources/views/welcome.blade.php', resource_path('views/welcome.blade.php'));
+        copy(__DIR__.'/../../../../breeze/resources/views/dashboard.blade.php', resource_path('views/dashboard.blade.php'));
+        copy(__DIR__.'/../../../../stubs/resources/views/welcome.blade.php', resource_path('views/welcome.blade.php'));
 
         $this->line('');
         $this->info('Rounding up...');
@@ -288,35 +288,35 @@ class InstallCommand extends Command
         });
 
         // Views...
-        copy(__DIR__.'/../../../stubs/inertia/resources/views/app.blade.php', resource_path('views/app.blade.php'));
+        copy(__DIR__.'/../../../../stubs/inertia/resources/views/app.blade.php', resource_path('views/app.blade.php'));
 
-        copy(__DIR__.'/../../../stubs/inertia/webpack.mix.js', base_path('webpack.mix.js'));
+        copy(__DIR__.'/../../../../stubs/inertia/webpack.mix.js', base_path('webpack.mix.js'));
 
         // Assets...
-        copy(__DIR__.'/../../../stubs/inertia/resources/js/app.js', resource_path('js/app.js'));
+        copy(__DIR__.'/../../../../stubs/inertia/resources/js/app.js', resource_path('js/app.js'));
 
         // Components + Pages...
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Components'));
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Layouts'));
         (new Filesystem)->ensureDirectoryExists(resource_path('js/Pages'));
 
-        (new Filesystem)->copyDirectory(__DIR__.'/../../../breeze/inertia/resources/js/Components', resource_path('js/Components'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../../breeze/inertia/resources/js/Layouts', resource_path('js/Layouts'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../../breeze/inertia/resources/js/Pages', resource_path('js/Pages'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../../../breeze/inertia/resources/js/Components', resource_path('js/Components'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../../../breeze/inertia/resources/js/Layouts', resource_path('js/Layouts'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../../../breeze/inertia/resources/js/Pages', resource_path('js/Pages'));
 
         if ((new Filesystem)->exists(resource_path('js/Components/ResponsiveNavLink.vue'))) {
             (new Filesystem)->delete(resource_path('js/Components/ResponsiveNavLink.vue'));
         }
 
-        copy(__DIR__.'/../../../stubs/inertia/resources/js/Jetstream/Button.vue', resource_path('js/Components/Button.vue'));
-        copy(__DIR__.'/../../../stubs/inertia/resources/js/Jetstream/Checkbox.vue', resource_path('js/Components/Checkbox.vue'));
-        copy(__DIR__.'/../../../stubs/inertia/resources/js/Jetstream/Dropdown.vue', resource_path('js/Components/Dropdown.vue'));
-        copy(__DIR__.'/../../../stubs/inertia/resources/js/Jetstream/DropdownLink.vue', resource_path('js/Components/DropdownLink.vue'));
-        copy(__DIR__.'/../../../stubs/inertia/resources/js/Jetstream/Input.vue', resource_path('js/Components/Input.vue'));
-        copy(__DIR__.'/../../../stubs/inertia/resources/js/Jetstream/InputError.vue', resource_path('js/Components/InputError.vue'));
-        copy(__DIR__.'/../../../stubs/inertia/resources/js/Jetstream/Label.vue', resource_path('js/Components/Label.vue'));
-        copy(__DIR__.'/../../../stubs/inertia/resources/js/Jetstream/NavLink.vue', resource_path('js/Components/NavLink.vue'));
-        copy(__DIR__.'/../../../stubs/inertia/resources/js/Jetstream/ValidationErrors.vue', resource_path('js/Components/ValidationErrors.vue'));
+        copy(__DIR__.'/../../../../stubs/inertia/resources/js/Jetstream/Button.vue', resource_path('js/Components/Button.vue'));
+        copy(__DIR__.'/../../../../stubs/inertia/resources/js/Jetstream/Checkbox.vue', resource_path('js/Components/Checkbox.vue'));
+        copy(__DIR__.'/../../../../stubs/inertia/resources/js/Jetstream/Dropdown.vue', resource_path('js/Components/Dropdown.vue'));
+        copy(__DIR__.'/../../../../stubs/inertia/resources/js/Jetstream/DropdownLink.vue', resource_path('js/Components/DropdownLink.vue'));
+        copy(__DIR__.'/../../../../stubs/inertia/resources/js/Jetstream/Input.vue', resource_path('js/Components/Input.vue'));
+        copy(__DIR__.'/../../../../stubs/inertia/resources/js/Jetstream/InputError.vue', resource_path('js/Components/InputError.vue'));
+        copy(__DIR__.'/../../../../stubs/inertia/resources/js/Jetstream/Label.vue', resource_path('js/Components/Label.vue'));
+        copy(__DIR__.'/../../../../stubs/inertia/resources/js/Jetstream/NavLink.vue', resource_path('js/Components/NavLink.vue'));
+        copy(__DIR__.'/../../../../stubs/inertia/resources/js/Jetstream/ValidationErrors.vue', resource_path('js/Components/ValidationErrors.vue'));
 
         $this->line('');
         $this->info('Rounding up...');
