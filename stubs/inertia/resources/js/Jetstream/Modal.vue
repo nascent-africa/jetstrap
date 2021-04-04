@@ -1,7 +1,7 @@
 <template>
   <teleport to="body">
     <div class="modal fade" tabindex="-1" :id="id" :aria-labelledby="id" aria-hidden="true">
-      <div class="modal-dialog" :class="maxWidth">
+      <div class="modal-dialog" :class="maxWidthClass">
         <slot></slot>
       </div>
     </div>
