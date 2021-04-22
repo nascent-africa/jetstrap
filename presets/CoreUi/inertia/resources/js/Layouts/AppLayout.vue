@@ -64,7 +64,7 @@
                   <strong>Switch Teams</strong>
                 </div>
 
-                <template v-for="team in $page.props.user.all_teams">
+                <template v-for="team in $page.props.user.all_teams" :key="team.id">
                   <form @submit.prevent="switchToTeam(team)">
                     <jet-dropdown-link as="button">
                       <div class="d-flex">
