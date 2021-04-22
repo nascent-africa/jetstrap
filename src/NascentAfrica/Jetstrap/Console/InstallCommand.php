@@ -155,6 +155,7 @@ class InstallCommand extends Command
             return [
                 '@inertiajs/inertia' => '^0.8.2',
                 '@inertiajs/inertia-vue3' => '^0.3.5',
+                '@inertiajs/progress' => '^0.2.4',
                 'alpinejs' => '^2.7.3',
                 'bootstrap' => '^4.6.0',
                 'jquery' => '^3.5.1',
