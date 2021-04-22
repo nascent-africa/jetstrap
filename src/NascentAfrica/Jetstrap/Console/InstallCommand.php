@@ -159,7 +159,6 @@ class InstallCommand extends Command
                 'alpinejs' => '^2.7.3',
                 'bootstrap' => '^4.6.0',
                 'jquery' => '^3.5.1',
-                'laravel-jetstream' => '^0.0.3',
                 'popper.js' => '^1.16.1',
                 'vue' => '^3.0.5',
                 '@vue/compiler-sfc' => '^3.0.5',
