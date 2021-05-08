@@ -83,7 +83,7 @@ This will publish overrides to enable Bootstrap like the good old days!
 
 ### Finalizing The Installation
 
-After installing Jetsrtap and swapping Jetstream resources, remove tailwindCSS and its dependencies if any from your package.json and then install and build your NPM dependencies and migrate your database:
+After installing Jetstrap and swapping Jetstream resources, remove tailwindCSS and its dependencies if any from your package.json and then install and build your NPM dependencies and migrate your database:
 
 ```
 npm install && npm run dev
