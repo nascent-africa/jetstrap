@@ -42,7 +42,7 @@ switch ($maxWidth ?? '') {
             show = false
         })
     }"
-    wire:ignore.self 
+
     class="modal fade" 
     tabindex="-1" 
     id="{{ $id }}" 
