@@ -41,8 +41,15 @@ switch ($maxWidth ?? '') {
         modal.on('hide.bs.modal', function () {
             show = false
         })
+        
+        modal.click(function(e) {
+            if (e.target == this) {
+                show = false;
+            }
+        });
     }"
-
+    x-on:keydown.escape.window="show = false"
+    wire:ignore.self
     class="modal fade" 
     tabindex="-1" 
     id="{{ $id }}" 
