@@ -18,10 +18,10 @@
     "php": "^7.3|^8.0",
     "illuminate/support": "^8.0",
     "laravel/breeze": "^1.1",
-    "laravel/jetstream": "^2.3",
-    "inertiajs/inertia-laravel": "^0.3"
+    "laravel/jetstream": "^2.3"
   },
   "require-dev": {
+    "inertiajs/inertia-laravel": "^0.3",
     "orchestra/testbench": "^6.0",
     "phpunit/phpunit": "^9.3"
   },
